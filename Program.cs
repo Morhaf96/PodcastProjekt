@@ -20,5 +20,7 @@ namespace PodcastProjekt
             Console.WriteLine("YOOOOO WASSUP!");
 
         }
+
+        
     }
 }
