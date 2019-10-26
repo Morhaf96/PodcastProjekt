@@ -164,6 +164,7 @@
             this.btnLaggTillKat.TabIndex = 14;
             this.btnLaggTillKat.Text = "Lägg till kategori";
             this.btnLaggTillKat.UseVisualStyleBackColor = true;
+            this.btnLaggTillKat.Click += new System.EventHandler(this.btnLaggTillKat_Click);
             // 
             // btnTaBortKat
             // 

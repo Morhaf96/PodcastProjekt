@@ -8,5 +8,10 @@ namespace PodcastProjekt.Logic
 {
     class Validering
     {
+        public void enMetod()
+        {
+            Console.WriteLine("En text");
+        }
     }
+    
 }
