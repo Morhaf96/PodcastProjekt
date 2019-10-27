@@ -9,16 +9,20 @@ namespace PodcastProjekt.Models
 {
     public class Kategori
     {
-        public List<string> Namn; 
+        public List<string> Namn { get; set; }
+
+
+        public Kategori()
+        {
+
+        }
 
         public Kategori(string ettNamn)
         {
             laggTillKategori(ettNamn);
         }
 
-        public Kategori() {
-
-        }
+        
 
         public void bytNamn(string gammaltNamn, string nyttNamn) {
 

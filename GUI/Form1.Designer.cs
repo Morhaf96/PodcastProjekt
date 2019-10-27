@@ -34,14 +34,17 @@
             this.lvKat = new System.Windows.Forms.ListView();
             this.tlpDetalj = new System.Windows.Forms.TableLayoutPanel();
             this.lblKategori = new System.Windows.Forms.Label();
-            this.txbUrl = new System.Windows.Forms.TextBox();
+            this.tbUrl = new System.Windows.Forms.TextBox();
             this.lblUrl = new System.Windows.Forms.Label();
             this.btnLaggTillPod = new System.Windows.Forms.Button();
             this.btnTaBortPod = new System.Windows.Forms.Button();
-            this.txbKategori = new System.Windows.Forms.TextBox();
+            this.tbKategori = new System.Windows.Forms.TextBox();
             this.lblKatnamn = new System.Windows.Forms.Label();
             this.btnLaggTillKat = new System.Windows.Forms.Button();
             this.btnTaBortKat = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,12 +107,12 @@
             this.lblKategori.Text = "Katergori:";
             this.lblKategori.Click += new System.EventHandler(this.label1_Click);
             // 
-            // txbUrl
+            // tbUrl
             // 
-            this.txbUrl.Location = new System.Drawing.Point(12, 224);
-            this.txbUrl.Name = "txbUrl";
-            this.txbUrl.Size = new System.Drawing.Size(179, 20);
-            this.txbUrl.TabIndex = 8;
+            this.tbUrl.Location = new System.Drawing.Point(12, 224);
+            this.tbUrl.Name = "tbUrl";
+            this.tbUrl.Size = new System.Drawing.Size(179, 20);
+            this.tbUrl.TabIndex = 8;
             // 
             // lblUrl
             // 
@@ -139,12 +142,13 @@
             this.btnTaBortPod.Text = "Ta bort podcast";
             this.btnTaBortPod.UseVisualStyleBackColor = true;
             // 
-            // txbKategori
+            // tbKategori
             // 
-            this.txbKategori.Location = new System.Drawing.Point(351, 247);
-            this.txbKategori.Name = "txbKategori";
-            this.txbKategori.Size = new System.Drawing.Size(125, 20);
-            this.txbKategori.TabIndex = 12;
+            this.tbKategori.Location = new System.Drawing.Point(351, 247);
+            this.tbKategori.Name = "tbKategori";
+            this.tbKategori.Size = new System.Drawing.Size(125, 20);
+            this.tbKategori.TabIndex = 12;
+            this.tbKategori.Tag = "";
             // 
             // lblKatnamn
             // 
@@ -175,20 +179,51 @@
             this.btnTaBortKat.Text = "Ta bort kategori";
             this.btnTaBortKat.UseVisualStyleBackColor = true;
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(20, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(85, 17);
+            this.radioButton1.TabIndex = 16;
+            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoCheck = false;
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(20, 44);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(85, 17);
+            this.radioButton2.TabIndex = 17;
+            this.radioButton2.Text = "radioButton2";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(310, 295);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 185);
+            this.vScrollBar1.TabIndex = 18;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(753, 487);
+            this.Controls.Add(this.vScrollBar1);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.btnTaBortKat);
             this.Controls.Add(this.btnLaggTillKat);
             this.Controls.Add(this.lblKatnamn);
-            this.Controls.Add(this.txbKategori);
+            this.Controls.Add(this.tbKategori);
             this.Controls.Add(this.btnTaBortPod);
             this.Controls.Add(this.btnLaggTillPod);
             this.Controls.Add(this.lblUrl);
-            this.Controls.Add(this.txbUrl);
+            this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.lblKategori);
             this.Controls.Add(this.tlpDetalj);
             this.Controls.Add(this.lvKat);
@@ -213,14 +248,17 @@
         private System.Windows.Forms.ListView lvKat;
         private System.Windows.Forms.TableLayoutPanel tlpDetalj;
         private System.Windows.Forms.Label lblKategori;
-        private System.Windows.Forms.TextBox txbUrl;
+        private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.Button btnLaggTillPod;
         private System.Windows.Forms.Button btnTaBortPod;
-        private System.Windows.Forms.TextBox txbKategori;
+        private System.Windows.Forms.TextBox tbKategori;
         private System.Windows.Forms.Label lblKatnamn;
         private System.Windows.Forms.Button btnLaggTillKat;
         private System.Windows.Forms.Button btnTaBortKat;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }
 

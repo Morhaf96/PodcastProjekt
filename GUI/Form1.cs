@@ -17,6 +17,7 @@ namespace PodcastProjekt
         public Form1()
         {
             InitializeComponent();
+                
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -36,11 +37,11 @@ namespace PodcastProjekt
 
         private void btnLaggTillKat_Click(object sender, EventArgs e)
         {
-            string textAttLagga = txbKategori.Text.Trim();
+            string textAttLagga = tbKategori.Text.Trim();
             if (!textAttLagga.Equals(""))
             {
                 enKategoriLista.laggTillKategori(textAttLagga);
-                txbKategori.Text = "";
+                tbKategori.Text = "";
                 
             }
 
@@ -48,6 +49,7 @@ namespace PodcastProjekt
                 MessageBox.Show("Du måste ange ett giltigt namn på kategorin!", "Felmeddelande");
             }
 
+            
         }
     }
 }
