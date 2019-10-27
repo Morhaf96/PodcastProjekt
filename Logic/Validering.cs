@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Logic
 {
-    class Validering
+    public static class Validering
     {
         public void enMetod()
         {
-            Console.WriteLine("En text");
+         
         }
     }
     
