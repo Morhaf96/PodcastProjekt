@@ -42,9 +42,11 @@
             this.lblKatnamn = new System.Windows.Forms.Label();
             this.btnLaggTillKat = new System.Windows.Forms.Button();
             this.btnTaBortKat = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.btnSparaKat = new System.Windows.Forms.Button();
+            this.lblPodcast = new System.Windows.Forms.Label();
+            this.lblAvsnitt = new System.Windows.Forms.Label();
+            this.lblDetaljer = new System.Windows.Forms.Label();
+            this.lvlKateogir = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,18 +54,18 @@
             // 
             this.cmbKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(12, 267);
+            this.cmbKategori.Location = new System.Drawing.Point(12, 247);
             this.cmbKategori.Name = "cmbKategori";
-            this.cmbKategori.Size = new System.Drawing.Size(179, 21);
+            this.cmbKategori.Size = new System.Drawing.Size(207, 21);
             this.cmbKategori.TabIndex = 0;
             // 
             // dgvPod
             // 
             this.dgvPod.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPod.Location = new System.Drawing.Point(12, 12);
+            this.dgvPod.Location = new System.Drawing.Point(12, 28);
             this.dgvPod.Name = "dgvPod";
-            this.dgvPod.Size = new System.Drawing.Size(316, 190);
+            this.dgvPod.Size = new System.Drawing.Size(410, 151);
             this.dgvPod.TabIndex = 3;
             // 
             // lbAvsnitt
@@ -71,15 +73,15 @@
             this.lbAvsnitt.FormattingEnabled = true;
             this.lbAvsnitt.Location = new System.Drawing.Point(12, 294);
             this.lbAvsnitt.Name = "lbAvsnitt";
-            this.lbAvsnitt.Size = new System.Drawing.Size(316, 186);
+            this.lbAvsnitt.Size = new System.Drawing.Size(410, 186);
             this.lbAvsnitt.TabIndex = 4;
             // 
             // lvKat
             // 
             this.lvKat.HideSelection = false;
-            this.lvKat.Location = new System.Drawing.Point(351, 12);
+            this.lvKat.Location = new System.Drawing.Point(487, 31);
             this.lvKat.Name = "lvKat";
-            this.lvKat.Size = new System.Drawing.Size(390, 199);
+            this.lvKat.Size = new System.Drawing.Size(390, 148);
             this.lvKat.TabIndex = 5;
             this.lvKat.UseCompatibleStateImageBehavior = false;
             // 
@@ -88,7 +90,7 @@
             this.tlpDetalj.ColumnCount = 2;
             this.tlpDetalj.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpDetalj.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpDetalj.Location = new System.Drawing.Point(351, 294);
+            this.tlpDetalj.Location = new System.Drawing.Point(487, 294);
             this.tlpDetalj.Name = "tlpDetalj";
             this.tlpDetalj.RowCount = 2;
             this.tlpDetalj.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53F));
@@ -100,7 +102,7 @@
             // 
             this.lblKategori.AutoSize = true;
             this.lblKategori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKategori.Location = new System.Drawing.Point(12, 247);
+            this.lblKategori.Location = new System.Drawing.Point(12, 228);
             this.lblKategori.Name = "lblKategori";
             this.lblKategori.Size = new System.Drawing.Size(65, 16);
             this.lblKategori.TabIndex = 7;
@@ -109,16 +111,16 @@
             // 
             // tbUrl
             // 
-            this.tbUrl.Location = new System.Drawing.Point(12, 224);
+            this.tbUrl.Location = new System.Drawing.Point(12, 205);
             this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(179, 20);
+            this.tbUrl.Size = new System.Drawing.Size(207, 20);
             this.tbUrl.TabIndex = 8;
             // 
             // lblUrl
             // 
             this.lblUrl.AutoSize = true;
             this.lblUrl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUrl.Location = new System.Drawing.Point(12, 205);
+            this.lblUrl.Location = new System.Drawing.Point(12, 186);
             this.lblUrl.Name = "lblUrl";
             this.lblUrl.Size = new System.Drawing.Size(38, 16);
             this.lblUrl.TabIndex = 9;
@@ -126,7 +128,7 @@
             // 
             // btnLaggTillPod
             // 
-            this.btnLaggTillPod.Location = new System.Drawing.Point(206, 221);
+            this.btnLaggTillPod.Location = new System.Drawing.Point(264, 205);
             this.btnLaggTillPod.Name = "btnLaggTillPod";
             this.btnLaggTillPod.Size = new System.Drawing.Size(115, 23);
             this.btnLaggTillPod.TabIndex = 10;
@@ -135,7 +137,7 @@
             // 
             // btnTaBortPod
             // 
-            this.btnTaBortPod.Location = new System.Drawing.Point(206, 265);
+            this.btnTaBortPod.Location = new System.Drawing.Point(264, 245);
             this.btnTaBortPod.Name = "btnTaBortPod";
             this.btnTaBortPod.Size = new System.Drawing.Size(115, 23);
             this.btnTaBortPod.TabIndex = 11;
@@ -144,7 +146,7 @@
             // 
             // tbKategori
             // 
-            this.tbKategori.Location = new System.Drawing.Point(351, 247);
+            this.tbKategori.Location = new System.Drawing.Point(622, 186);
             this.tbKategori.Name = "tbKategori";
             this.tbKategori.Size = new System.Drawing.Size(125, 20);
             this.tbKategori.TabIndex = 12;
@@ -154,7 +156,7 @@
             // 
             this.lblKatnamn.AutoSize = true;
             this.lblKatnamn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblKatnamn.Location = new System.Drawing.Point(348, 221);
+            this.lblKatnamn.Location = new System.Drawing.Point(498, 190);
             this.lblKatnamn.Name = "lblKatnamn";
             this.lblKatnamn.Size = new System.Drawing.Size(118, 16);
             this.lblKatnamn.TabIndex = 13;
@@ -162,7 +164,7 @@
             // 
             // btnLaggTillKat
             // 
-            this.btnLaggTillKat.Location = new System.Drawing.Point(552, 220);
+            this.btnLaggTillKat.Location = new System.Drawing.Point(487, 220);
             this.btnLaggTillKat.Name = "btnLaggTillKat";
             this.btnLaggTillKat.Size = new System.Drawing.Size(129, 24);
             this.btnLaggTillKat.TabIndex = 14;
@@ -172,50 +174,73 @@
             // 
             // btnTaBortKat
             // 
-            this.btnTaBortKat.Location = new System.Drawing.Point(552, 265);
+            this.btnTaBortKat.Location = new System.Drawing.Point(748, 220);
             this.btnTaBortKat.Name = "btnTaBortKat";
             this.btnTaBortKat.Size = new System.Drawing.Size(129, 23);
             this.btnTaBortKat.TabIndex = 15;
             this.btnTaBortKat.Text = "Ta bort kategori";
             this.btnTaBortKat.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // btnSparaKat
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(20, 20);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 16;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.btnSparaKat.Location = new System.Drawing.Point(622, 220);
+            this.btnSparaKat.Name = "btnSparaKat";
+            this.btnSparaKat.Size = new System.Drawing.Size(120, 23);
+            this.btnSparaKat.TabIndex = 16;
+            this.btnSparaKat.Text = "Spara kategori";
+            this.btnSparaKat.UseVisualStyleBackColor = true;
             // 
-            // radioButton2
+            // lblPodcast
             // 
-            this.radioButton2.AutoCheck = false;
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(20, 44);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
-            this.radioButton2.TabIndex = 17;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.lblPodcast.AutoSize = true;
+            this.lblPodcast.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPodcast.Location = new System.Drawing.Point(12, 9);
+            this.lblPodcast.Name = "lblPodcast";
+            this.lblPodcast.Size = new System.Drawing.Size(69, 16);
+            this.lblPodcast.TabIndex = 17;
+            this.lblPodcast.Text = "Podcast:";
             // 
-            // vScrollBar1
+            // lblAvsnitt
             // 
-            this.vScrollBar1.Location = new System.Drawing.Point(310, 295);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 185);
-            this.vScrollBar1.TabIndex = 18;
+            this.lblAvsnitt.AutoSize = true;
+            this.lblAvsnitt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvsnitt.Location = new System.Drawing.Point(15, 275);
+            this.lblAvsnitt.Name = "lblAvsnitt";
+            this.lblAvsnitt.Size = new System.Drawing.Size(58, 16);
+            this.lblAvsnitt.TabIndex = 18;
+            this.lblAvsnitt.Text = "Avsnitt:";
+            // 
+            // lblDetaljer
+            // 
+            this.lblDetaljer.AutoSize = true;
+            this.lblDetaljer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDetaljer.Location = new System.Drawing.Point(487, 275);
+            this.lblDetaljer.Name = "lblDetaljer";
+            this.lblDetaljer.Size = new System.Drawing.Size(67, 16);
+            this.lblDetaljer.TabIndex = 19;
+            this.lblDetaljer.Text = "Detlajer:";
+            // 
+            // lvlKateogir
+            // 
+            this.lvlKateogir.AutoSize = true;
+            this.lvlKateogir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvlKateogir.Location = new System.Drawing.Point(490, 11);
+            this.lvlKateogir.Name = "lvlKateogir";
+            this.lvlKateogir.Size = new System.Drawing.Size(70, 16);
+            this.lvlKateogir.TabIndex = 20;
+            this.lvlKateogir.Text = "Kategori:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(753, 487);
-            this.Controls.Add(this.vScrollBar1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.ClientSize = new System.Drawing.Size(889, 493);
+            this.Controls.Add(this.lvlKateogir);
+            this.Controls.Add(this.lblDetaljer);
+            this.Controls.Add(this.lblAvsnitt);
+            this.Controls.Add(this.lblPodcast);
+            this.Controls.Add(this.btnSparaKat);
             this.Controls.Add(this.btnTaBortKat);
             this.Controls.Add(this.btnLaggTillKat);
             this.Controls.Add(this.lblKatnamn);
@@ -256,9 +281,11 @@
         private System.Windows.Forms.Label lblKatnamn;
         private System.Windows.Forms.Button btnLaggTillKat;
         private System.Windows.Forms.Button btnTaBortKat;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private System.Windows.Forms.Button btnSparaKat;
+        private System.Windows.Forms.Label lblPodcast;
+        private System.Windows.Forms.Label lblAvsnitt;
+        private System.Windows.Forms.Label lblDetaljer;
+        private System.Windows.Forms.Label lvlKateogir;
     }
 }
 
