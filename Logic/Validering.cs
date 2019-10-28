@@ -9,6 +9,7 @@ namespace PodcastProjekt.Logic
 {
     public static class Validering
     {
+        
         public static bool isEmptyTextBox(TextBox enTextBox) {
             bool isEmpty = false;
             if (enTextBox.Text.Trim().Equals("")) {

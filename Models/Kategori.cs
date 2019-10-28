@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Models
 {
+
+    
     public class Kategori
     {
-        public List<string> Namn { get; set; }
+        public List<string> KategoriLista { get; set; }
 
 
         public Kategori()
@@ -19,27 +21,27 @@ namespace PodcastProjekt.Models
 
         public Kategori(string ettNamn)
         {
-            laggTillKategori(ettNamn);
+            KategoriLista.Add(ettNamn);
         }
 
         
 
         public void bytNamn(string gammaltNamn, string nyttNamn) {
 
-            int i = Namn.IndexOf(gammaltNamn);
-            Namn[i] = nyttNamn;
+            int i = KategoriLista.IndexOf(gammaltNamn);
+            KategoriLista[i] = nyttNamn;
         }
 
         public void laggTillKategori(string ettNamn) {
-            Namn.Add(ettNamn);
+            KategoriLista.Add(ettNamn);
         }
 
         public void taBortKategori(string ettNamn) {
            
             try
             {
-                int i = Namn.IndexOf(ettNamn);
-                Namn.RemoveAt(i);
+                int i = KategoriLista.IndexOf(ettNamn);
+                KategoriLista.RemoveAt(i);
             }
 
             catch (Exception ex) {
