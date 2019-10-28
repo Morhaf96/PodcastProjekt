@@ -19,6 +19,7 @@ namespace PodcastProjekt.Logic
             }
             return isEmpty;
         }
+        kan jag skriva här?
     }
     
 }
