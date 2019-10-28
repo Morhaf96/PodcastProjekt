@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PodcastProjekt.Models
 {
@@ -16,7 +17,7 @@ namespace PodcastProjekt.Models
 
         public Kategori()
         {
-
+        
         }
 
         public Kategori(string ettNamn)
@@ -27,13 +28,26 @@ namespace PodcastProjekt.Models
         
 
         public void bytNamn(string gammaltNamn, string nyttNamn) {
+            try
+            {
+                KategoriLista.BinarySearch(gammaltNamn);
+                int i = KategoriLista.IndexOf(gammaltNamn);
+                KategoriLista[i] = nyttNamn;
+            }
 
-            int i = KategoriLista.IndexOf(gammaltNamn);
-            KategoriLista[i] = nyttNamn;
+            catch (ArgumentOutOfRangeException e) {
+                MessageBox.Show("Inga kategorier hittades för det angivna namnet!", "Fel inmatning");
+            }
+
+            catch (ArgumentNullException e) {
+
+                MessageBox.Show("Du måste välja en kategori för att byta namnet på!", "Fel inmatning");
+
+            }
         }
 
         public void laggTillKategori(string ettNamn) {
-            KategoriLista.Add(ettNamn);
+            KategoriLista[0]= ettNamn;
         }
 
         public void taBortKategori(string ettNamn) {
