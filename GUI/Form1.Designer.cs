@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbKategori = new System.Windows.Forms.ComboBox();
+            this.cmbKat = new System.Windows.Forms.ComboBox();
             this.dgvPod = new System.Windows.Forms.DataGridView();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
@@ -52,14 +52,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
-            // cmbKategori
+            // cmbKat
             // 
-            this.cmbKategori.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbKategori.FormattingEnabled = true;
-            this.cmbKategori.Location = new System.Drawing.Point(86, 219);
-            this.cmbKategori.Name = "cmbKategori";
-            this.cmbKategori.Size = new System.Drawing.Size(246, 21);
-            this.cmbKategori.TabIndex = 0;
+            this.cmbKat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbKat.FormattingEnabled = true;
+            this.cmbKat.Location = new System.Drawing.Point(86, 219);
+            this.cmbKat.Name = "cmbKat";
+            this.cmbKat.Size = new System.Drawing.Size(246, 21);
+            this.cmbKat.TabIndex = 0;
             // 
             // dgvPod
             // 
@@ -86,6 +86,7 @@
             this.lvKat.Size = new System.Drawing.Size(325, 148);
             this.lvKat.TabIndex = 5;
             this.lvKat.UseCompatibleStateImageBehavior = false;
+            this.lvKat.SelectedIndexChanged += new System.EventHandler(this.lvKat_SelectedIndexChanged);
             // 
             // tlpDetalj
             // 
@@ -182,6 +183,7 @@
             this.btnTaBortKat.TabIndex = 15;
             this.btnTaBortKat.Text = "Ta bort kategori";
             this.btnTaBortKat.UseVisualStyleBackColor = true;
+            this.btnTaBortKat.Click += new System.EventHandler(this.btnTaBortKat_Click);
             // 
             // btnSparaKat
             // 
@@ -191,6 +193,7 @@
             this.btnSparaKat.TabIndex = 16;
             this.btnSparaKat.Text = "Spara kategori";
             this.btnSparaKat.UseVisualStyleBackColor = true;
+            this.btnSparaKat.Click += new System.EventHandler(this.btnSparaKat_Click);
             // 
             // lblPodcast
             // 
@@ -276,7 +279,7 @@
             this.Controls.Add(this.lvKat);
             this.Controls.Add(this.lbAvsnitt);
             this.Controls.Add(this.dgvPod);
-            this.Controls.Add(this.cmbKategori);
+            this.Controls.Add(this.cmbKat);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Podcast RSS Reader";
@@ -289,7 +292,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cmbKategori;
+        private System.Windows.Forms.ComboBox cmbKat;
         private System.Windows.Forms.DataGridView dgvPod;
         private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.ListView lvKat;

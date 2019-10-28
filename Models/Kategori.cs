@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,10 @@ using System.Windows.Forms;
 
 namespace PodcastProjekt.Models
 {
-
-    
     public class Kategori
     {
-        public List<string> KategoriLista { get; set; }
+        private List<string> kategoriLista = new List<string>();
+        private string sparadeKategorier = @"sparadeKategorier";
 
 
         public Kategori()
@@ -22,7 +22,7 @@ namespace PodcastProjekt.Models
 
         public Kategori(string ettNamn)
         {
-            KategoriLista.Add(ettNamn);
+            kategoriLista.Add(ettNamn);
         }
 
         
@@ -30,9 +30,16 @@ namespace PodcastProjekt.Models
         public void bytNamn(string gammaltNamn, string nyttNamn) {
             try
             {
-                KategoriLista.BinarySearch(gammaltNamn);
-                int i = KategoriLista.IndexOf(gammaltNamn);
-                KategoriLista[i] = nyttNamn;
+                int i = kategoriLista.IndexOf(gammaltNamn);
+                kategoriLista[i] = nyttNamn;
+
+                File.WriteAllText(sparadeKategorier, string.Empty);
+                using (StreamWriter sw = File.AppendText(sparadeKategorier)){
+                    foreach (var c in kategoriLista){
+                        sw.WriteLine(c);
+                    }
+                }
+
             }
 
             catch (ArgumentOutOfRangeException e) {
@@ -46,16 +53,26 @@ namespace PodcastProjekt.Models
             }
         }
 
-        public void laggTillKategori(string ettNamn) {
-            KategoriLista.Add(ettNamn);
+        public void laggTillKategori(string kategoriNamn) {
+            kategoriLista.Add(kategoriNamn);
+            using (StreamWriter sw = File.AppendText(sparadeKategorier)) {
+                sw.WriteLine(kategoriNamn);
+            }
         }
 
-        public void taBortKategori(string ettNamn) {
+        public void taBortKategori(string kategoriNamn) {
            
             try
             {
-                int i = KategoriLista.IndexOf(ettNamn);
-                KategoriLista.RemoveAt(i);
+                kategoriLista.Remove(kategoriNamn);
+                File.WriteAllText(sparadeKategorier, string.Empty);
+
+                using (StreamWriter sw = File.AppendText(sparadeKategorier)){
+                    foreach (var kat in kategoriLista){
+                        sw.WriteLine(kat);
+                    }
+                }
+                
             }
 
             catch (Exception ex) {
@@ -64,18 +81,22 @@ namespace PodcastProjekt.Models
             
         }
 
-        public string visaKategoriLista(List<string> kategoriListan) {
-            string listanIString="";
-            foreach (string k in kategoriListan) {
-                listanIString += k + "\n";
+        public List<string> getKategoriLista() {
+            kategoriLista.Clear();
+
+            if (File.Exists(sparadeKategorier) == true)
+            {
+                using (StreamReader sr = new StreamReader(sparadeKategorier))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        kategoriLista.Add(line);
+                    }
+                }
             }
 
-            if (listanIString.Equals("")) {
-                listanIString = "Det finns inga kategorier att visa!";
-            }
-            return listanIString;
-
-            //Test
+            return kategoriLista;
         }
             
      }
