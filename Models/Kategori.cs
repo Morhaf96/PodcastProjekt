@@ -60,6 +60,8 @@ namespace PodcastProjekt.Models
                 listanIString = "Det finns inga kategorier att visa!";
             }
             return listanIString;
+
+            //Test
         }
             
      }
