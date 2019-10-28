@@ -47,7 +47,7 @@ namespace PodcastProjekt.Models
         }
 
         public void laggTillKategori(string ettNamn) {
-            KategoriLista[0]= ettNamn;
+            KategoriLista.Add(ettNamn);
         }
 
         public void taBortKategori(string ettNamn) {
