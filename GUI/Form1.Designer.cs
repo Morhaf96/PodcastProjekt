@@ -133,25 +133,25 @@
             // 
             this.btnLaggTillPod.Location = new System.Drawing.Point(338, 189);
             this.btnLaggTillPod.Name = "btnLaggTillPod";
-            this.btnLaggTillPod.Size = new System.Drawing.Size(140, 23);
+            this.btnLaggTillPod.Size = new System.Drawing.Size(140, 30);
             this.btnLaggTillPod.TabIndex = 10;
             this.btnLaggTillPod.Text = "Lägg till podcast";
             this.btnLaggTillPod.UseVisualStyleBackColor = true;
             // 
             // btnTaBortPod
             // 
-            this.btnTaBortPod.Location = new System.Drawing.Point(338, 219);
+            this.btnTaBortPod.Location = new System.Drawing.Point(338, 235);
             this.btnTaBortPod.Name = "btnTaBortPod";
-            this.btnTaBortPod.Size = new System.Drawing.Size(140, 21);
+            this.btnTaBortPod.Size = new System.Drawing.Size(140, 31);
             this.btnTaBortPod.TabIndex = 11;
             this.btnTaBortPod.Text = "Ta bort markerad podcast";
             this.btnTaBortPod.UseVisualStyleBackColor = true;
             // 
             // tbKategori
             // 
-            this.tbKategori.Location = new System.Drawing.Point(748, 182);
+            this.tbKategori.Location = new System.Drawing.Point(696, 188);
             this.tbKategori.Name = "tbKategori";
-            this.tbKategori.Size = new System.Drawing.Size(125, 20);
+            this.tbKategori.Size = new System.Drawing.Size(181, 20);
             this.tbKategori.TabIndex = 12;
             this.tbKategori.Tag = "";
             // 
@@ -169,7 +169,7 @@
             // 
             this.btnLaggTillKat.Location = new System.Drawing.Point(552, 216);
             this.btnLaggTillKat.Name = "btnLaggTillKat";
-            this.btnLaggTillKat.Size = new System.Drawing.Size(108, 24);
+            this.btnLaggTillKat.Size = new System.Drawing.Size(108, 33);
             this.btnLaggTillKat.TabIndex = 14;
             this.btnLaggTillKat.Text = "Lägg till kategori";
             this.btnLaggTillKat.UseVisualStyleBackColor = true;
@@ -179,7 +179,7 @@
             // 
             this.btnTaBortKat.Location = new System.Drawing.Point(771, 217);
             this.btnTaBortKat.Name = "btnTaBortKat";
-            this.btnTaBortKat.Size = new System.Drawing.Size(106, 23);
+            this.btnTaBortKat.Size = new System.Drawing.Size(106, 32);
             this.btnTaBortKat.TabIndex = 15;
             this.btnTaBortKat.Text = "Ta bort kategori";
             this.btnTaBortKat.UseVisualStyleBackColor = true;
@@ -189,7 +189,7 @@
             // 
             this.btnSparaKat.Location = new System.Drawing.Point(666, 217);
             this.btnSparaKat.Name = "btnSparaKat";
-            this.btnSparaKat.Size = new System.Drawing.Size(98, 23);
+            this.btnSparaKat.Size = new System.Drawing.Size(98, 32);
             this.btnSparaKat.TabIndex = 16;
             this.btnSparaKat.Text = "Spara kategori";
             this.btnSparaKat.UseVisualStyleBackColor = true;
@@ -258,6 +258,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackgroundImage = global::PodcastProjekt.Properties.Resources._9;
             this.ClientSize = new System.Drawing.Size(889, 493);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblUppdateringsintervall);
