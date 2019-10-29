@@ -80,6 +80,7 @@
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
             this.dgvPod.TabIndex = 3;
             this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
+            this.dgvPod.SelectionChanged += new System.EventHandler(this.dgvPod_SelectionChanged);
             // 
             // lbAvsnitt
             // 

@@ -163,5 +163,26 @@ namespace PodcastProjekt
         {
 
         }
+
+        private void dgvPod_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvPod.SelectedRows.Count != 0)
+            {
+                var podcast = (Podcast)dgvPod.SelectedRows[0].Tag;
+                fyllPodcastLista(podcast.AvsnittLista);
+            }
+        }
+
+        public void fyllPodcastLista(List<Avsnitt> AvsnittsLista)
+        {
+            lbAvsnitt.Items.Clear();
+            if (AvsnittsLista != null)
+            {
+                foreach (var avsnitt in AvsnittsLista)
+                {
+                    lbAvsnitt.Items.Add(avsnitt);
+                }
+            }
+        }
     }
 }

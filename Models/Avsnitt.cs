@@ -10,6 +10,12 @@ namespace PodcastProjekt.Models
     {
         public string Titel { get; set; }
         public string Beskrivning { get; set; }
-        
+
+        public override string ToString()
+        {
+            return Titel;
+        }
+
     }
+    
 }
