@@ -13,6 +13,6 @@ namespace PodcastProjekt.Models
         public Kategori PodcastKategori { get; set; }
         public string Titel { get; set; }
 
-
+        public long UppdateringsFrekvens = 0;
     }
 }

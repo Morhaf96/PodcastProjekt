@@ -16,7 +16,7 @@ namespace PodcastProjekt
     {
         private PodcastHanterare podcastHanterare = new PodcastHanterare();
 
-        Kategori kategori = new Kategori();
+        KategoriHanterare kategori = new KategoriHanterare();
         public Form1()
         {
             InitializeComponent();
@@ -121,6 +121,24 @@ namespace PodcastProjekt
             }
         }
 
+        private void uppdateraPodcast()
+        {
+            dgvPod.Rows.Clear();
+            foreach (var podcast in podcastHanterare.HamtaPodcasts())
+            {
+                Console.WriteLine(podcast);
+                int rad = dgvPod.Rows.Add();
+                dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.Titel;
+                if (podcast.PodcastKategori != null)
+                {
+                    dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori.KategoriNamn;
+                }
+                dgvPod.Rows[rad].Cells["clmUppdateringsfrekvens"].Value = podcast.UppdateringsFrekvens;
+                dgvPod.Rows[rad].Cells["clmAvsnitt"].Value = podcast.AvsnittLista.Count;
+                dgvPod.Rows[rad].Tag = podcast;
+            }
+        }
+
         private void lvKat_SelectedIndexChanged(object sender, EventArgs e)
         {
             try {
@@ -138,6 +156,11 @@ namespace PodcastProjekt
             string hamtadUrl = tbUrl.Text.Trim();
             Uri hamtadUri = new Uri(hamtadUrl);
             podcastHanterare.LaggTillStream(hamtadUri);
+            uppdateraPodcast();
+        }
+
+        private void dgvPod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

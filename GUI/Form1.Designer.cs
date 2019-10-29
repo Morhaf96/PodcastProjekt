@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cmbKat = new System.Windows.Forms.ComboBox();
             this.dgvPod = new System.Windows.Forms.DataGridView();
-            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUppdaterngsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
             this.tlpDetalj = new System.Windows.Forms.TableLayoutPanel();
@@ -53,6 +50,10 @@
             this.lvlKateogir = new System.Windows.Forms.Label();
             this.lblUppdateringsintervall = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,32 +73,13 @@
             this.dgvPod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmAvsnitt,
             this.clmNamn,
-            this.clmUppdaterngsfrekvens,
+            this.clmUppdateringsfrekvens,
             this.clmKategori});
             this.dgvPod.Location = new System.Drawing.Point(12, 28);
             this.dgvPod.Name = "dgvPod";
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
             this.dgvPod.TabIndex = 3;
-            // 
-            // clmAvsnitt
-            // 
-            this.clmAvsnitt.HeaderText = "Avsnitt";
-            this.clmAvsnitt.Name = "clmAvsnitt";
-            // 
-            // clmNamn
-            // 
-            this.clmNamn.HeaderText = "Namn";
-            this.clmNamn.Name = "clmNamn";
-            // 
-            // clmUppdaterngsfrekvens
-            // 
-            this.clmUppdaterngsfrekvens.HeaderText = "Uppdaterngsfrekvens";
-            this.clmUppdaterngsfrekvens.Name = "clmUppdaterngsfrekvens";
-            // 
-            // clmKategori
-            // 
-            this.clmKategori.HeaderText = "Kategori";
-            this.clmKategori.Name = "clmKategori";
+            this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
             // 
             // lbAvsnitt
             // 
@@ -284,12 +266,32 @@
             this.comboBox1.Size = new System.Drawing.Size(172, 21);
             this.comboBox1.TabIndex = 22;
             // 
+            // clmAvsnitt
+            // 
+            this.clmAvsnitt.HeaderText = "Avsnitt";
+            this.clmAvsnitt.Name = "clmAvsnitt";
+            // 
+            // clmNamn
+            // 
+            this.clmNamn.HeaderText = "Namn";
+            this.clmNamn.Name = "clmNamn";
+            // 
+            // clmUppdateringsfrekvens
+            // 
+            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
+            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
+            // 
+            // clmKategori
+            // 
+            this.clmKategori.HeaderText = "Kategori";
+            this.clmKategori.Name = "clmKategori";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackgroundImage = global::PodcastProjekt.Properties.Resources._9;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(889, 493);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblUppdateringsintervall);
@@ -347,7 +349,7 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAvsnitt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdaterngsfrekvens;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdateringsfrekvens;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmKategori;
     }
 }
