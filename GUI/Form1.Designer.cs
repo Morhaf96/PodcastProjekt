@@ -30,6 +30,10 @@
         {
             this.cmbKat = new System.Windows.Forms.ComboBox();
             this.dgvPod = new System.Windows.Forms.DataGridView();
+            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdaterngsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
             this.tlpDetalj = new System.Windows.Forms.TableLayoutPanel();
@@ -49,10 +53,6 @@
             this.lvlKateogir = new System.Windows.Forms.Label();
             this.lblUppdateringsintervall = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUppdaterngsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,6 +79,26 @@
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
             this.dgvPod.TabIndex = 3;
             // 
+            // clmAvsnitt
+            // 
+            this.clmAvsnitt.HeaderText = "Avsnitt";
+            this.clmAvsnitt.Name = "clmAvsnitt";
+            // 
+            // clmNamn
+            // 
+            this.clmNamn.HeaderText = "Namn";
+            this.clmNamn.Name = "clmNamn";
+            // 
+            // clmUppdaterngsfrekvens
+            // 
+            this.clmUppdaterngsfrekvens.HeaderText = "Uppdaterngsfrekvens";
+            this.clmUppdaterngsfrekvens.Name = "clmUppdaterngsfrekvens";
+            // 
+            // clmKategori
+            // 
+            this.clmKategori.HeaderText = "Kategori";
+            this.clmKategori.Name = "clmKategori";
+            // 
             // lbAvsnitt
             // 
             this.lbAvsnitt.FormattingEnabled = true;
@@ -90,6 +110,7 @@
             // lvKat
             // 
             this.lvKat.HideSelection = false;
+            this.lvKat.LabelEdit = true;
             this.lvKat.Location = new System.Drawing.Point(552, 31);
             this.lvKat.Name = "lvKat";
             this.lvKat.Size = new System.Drawing.Size(325, 148);
@@ -261,26 +282,6 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(172, 21);
             this.comboBox1.TabIndex = 22;
-            // 
-            // clmAvsnitt
-            // 
-            this.clmAvsnitt.HeaderText = "Avsnitt";
-            this.clmAvsnitt.Name = "clmAvsnitt";
-            // 
-            // clmNamn
-            // 
-            this.clmNamn.HeaderText = "Namn";
-            this.clmNamn.Name = "clmNamn";
-            // 
-            // clmUppdaterngsfrekvens
-            // 
-            this.clmUppdaterngsfrekvens.HeaderText = "Uppdaterngsfrekvens";
-            this.clmUppdaterngsfrekvens.Name = "clmUppdaterngsfrekvens";
-            // 
-            // clmKategori
-            // 
-            this.clmKategori.HeaderText = "Kategori";
-            this.clmKategori.Name = "clmKategori";
             // 
             // Form1
             // 
