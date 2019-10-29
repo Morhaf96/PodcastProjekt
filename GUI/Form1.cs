@@ -1,4 +1,5 @@
-﻿using PodcastProjekt.Models;
+﻿using PodcastProjekt.Logic;
+using PodcastProjekt.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace PodcastProjekt
 {
     public partial class Form1 : Form
     {
+        private PodcastHanterare podcastHanterare = new PodcastHanterare();
+
         Kategori kategori = new Kategori();
         public Form1()
         {
@@ -128,6 +131,14 @@ namespace PodcastProjekt
             catch (Exception ex) {
                 Console.WriteLine(ex.Message + "\n" + ex.GetType());
             }
+        }
+
+        private void btnLaggTillPod_Click(object sender, EventArgs e)
+        {
+            string hamtadUrl = tbUrl.Text.Trim();
+            Uri hamtadUri = new Uri(hamtadUrl);
+            podcastHanterare.LaggTillStream(hamtadUri);
+
         }
     }
 }

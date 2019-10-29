@@ -167,6 +167,7 @@
             this.btnLaggTillPod.TabIndex = 10;
             this.btnLaggTillPod.Text = "Lägg till podcast";
             this.btnLaggTillPod.UseVisualStyleBackColor = true;
+            this.btnLaggTillPod.Click += new System.EventHandler(this.btnLaggTillPod_Click);
             // 
             // btnTaBortPod
             // 
