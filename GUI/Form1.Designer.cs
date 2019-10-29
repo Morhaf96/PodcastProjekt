@@ -49,6 +49,10 @@
             this.lvlKateogir = new System.Windows.Forms.Label();
             this.lblUppdateringsintervall = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdaterngsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +69,11 @@
             // 
             this.dgvPod.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmAvsnitt,
+            this.clmNamn,
+            this.clmUppdaterngsfrekvens,
+            this.clmKategori});
             this.dgvPod.Location = new System.Drawing.Point(12, 28);
             this.dgvPod.Name = "dgvPod";
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
@@ -253,6 +262,26 @@
             this.comboBox1.Size = new System.Drawing.Size(172, 21);
             this.comboBox1.TabIndex = 22;
             // 
+            // clmAvsnitt
+            // 
+            this.clmAvsnitt.HeaderText = "Avsnitt";
+            this.clmAvsnitt.Name = "clmAvsnitt";
+            // 
+            // clmNamn
+            // 
+            this.clmNamn.HeaderText = "Namn";
+            this.clmNamn.Name = "clmNamn";
+            // 
+            // clmUppdaterngsfrekvens
+            // 
+            this.clmUppdaterngsfrekvens.HeaderText = "Uppdaterngsfrekvens";
+            this.clmUppdaterngsfrekvens.Name = "clmUppdaterngsfrekvens";
+            // 
+            // clmKategori
+            // 
+            this.clmKategori.HeaderText = "Kategori";
+            this.clmKategori.Name = "clmKategori";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -314,6 +343,10 @@
         private System.Windows.Forms.Label lvlKateogir;
         private System.Windows.Forms.Label lblUppdateringsintervall;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmAvsnitt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdaterngsfrekvens;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmKategori;
     }
 }
 
