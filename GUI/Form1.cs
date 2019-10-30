@@ -15,8 +15,9 @@ namespace PodcastProjekt
     public partial class Form1 : Form
     {
         private PodcastHanterare podcastHanterare = new PodcastHanterare();
-
+        private Avsnitt avsnitt;
         KategoriHanterare kategori = new KategoriHanterare();
+
         public Form1()
         {
             InitializeComponent();
@@ -157,6 +158,7 @@ namespace PodcastProjekt
             Uri hamtadUri = new Uri(hamtadUrl);
             podcastHanterare.LaggTillStream(hamtadUri);
             uppdateraPodcast();
+            tbUrl.Clear();
         }
 
         private void dgvPod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -191,9 +193,7 @@ namespace PodcastProjekt
         }
 
         private void lbAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-            tbBeskrivning.Clear();
+        {          
             if (lbAvsnitt.SelectedItems.Count == 0)
             {
                 return;
@@ -201,10 +201,11 @@ namespace PodcastProjekt
             if (lbAvsnitt.SelectedItems[0] != null)
             {
                 var podcast = (Avsnitt)lbAvsnitt.SelectedItems[0];
-                Avsnitt avsnitt = new Avsnitt();
+                avsnitt = podcast;
                 string titel = avsnitt.Titel;
                 string beskrivning = avsnitt.Beskrivning;
-                tbBeskrivning.Text = titel + "\n \n" + beskrivning;
+                lblAvsnittTitel.Text = titel;
+                wbBeskrivning.DocumentText = beskrivning;
             }
 
 

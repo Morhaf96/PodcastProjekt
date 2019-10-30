@@ -53,7 +53,8 @@
             this.lvlKateogir = new System.Windows.Forms.Label();
             this.lblUppdateringsintervall = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.tbBeskrivning = new System.Windows.Forms.TextBox();
+            this.wbBeskrivning = new System.Windows.Forms.WebBrowser();
+            this.lblAvsnittTitel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -107,7 +108,7 @@
             this.lbAvsnitt.FormattingEnabled = true;
             this.lbAvsnitt.Location = new System.Drawing.Point(12, 294);
             this.lbAvsnitt.Name = "lbAvsnitt";
-            this.lbAvsnitt.Size = new System.Drawing.Size(466, 186);
+            this.lbAvsnitt.Size = new System.Drawing.Size(466, 199);
             this.lbAvsnitt.TabIndex = 4;
             this.lbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lbAvsnitt_SelectedIndexChanged);
             // 
@@ -241,7 +242,7 @@
             // 
             this.lblBeskrivning.AutoSize = true;
             this.lblBeskrivning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeskrivning.Location = new System.Drawing.Point(549, 275);
+            this.lblBeskrivning.Location = new System.Drawing.Point(523, 273);
             this.lblBeskrivning.Name = "lblBeskrivning";
             this.lblBeskrivning.Size = new System.Drawing.Size(93, 16);
             this.lblBeskrivning.TabIndex = 19;
@@ -281,13 +282,22 @@
             this.comboBox1.TabIndex = 22;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // tbBeskrivning
+            // wbBeskrivning
             // 
-            this.tbBeskrivning.Location = new System.Drawing.Point(558, 294);
-            this.tbBeskrivning.Multiline = true;
-            this.tbBeskrivning.Name = "tbBeskrivning";
-            this.tbBeskrivning.Size = new System.Drawing.Size(319, 186);
-            this.tbBeskrivning.TabIndex = 23;
+            this.wbBeskrivning.Location = new System.Drawing.Point(532, 294);
+            this.wbBeskrivning.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbBeskrivning.Name = "wbBeskrivning";
+            this.wbBeskrivning.Size = new System.Drawing.Size(345, 198);
+            this.wbBeskrivning.TabIndex = 23;
+            // 
+            // lblAvsnittTitel
+            // 
+            this.lblAvsnittTitel.AutoSize = true;
+            this.lblAvsnittTitel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAvsnittTitel.Location = new System.Drawing.Point(625, 268);
+            this.lblAvsnittTitel.Name = "lblAvsnittTitel";
+            this.lblAvsnittTitel.Size = new System.Drawing.Size(0, 19);
+            this.lblAvsnittTitel.TabIndex = 24;
             // 
             // Form1
             // 
@@ -295,8 +305,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(889, 493);
-            this.Controls.Add(this.tbBeskrivning);
+            this.ClientSize = new System.Drawing.Size(911, 513);
+            this.Controls.Add(this.lblAvsnittTitel);
+            this.Controls.Add(this.wbBeskrivning);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblUppdateringsintervall);
             this.Controls.Add(this.lvlKateogir);
@@ -353,7 +364,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdateringsfrekvens;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmKategori;
-        private System.Windows.Forms.TextBox tbBeskrivning;
+        private System.Windows.Forms.WebBrowser wbBeskrivning;
+        private System.Windows.Forms.Label lblAvsnittTitel;
     }
 }
 
