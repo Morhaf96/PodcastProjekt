@@ -31,9 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cmbKat = new System.Windows.Forms.ComboBox();
             this.dgvPod = new System.Windows.Forms.DataGridView();
+            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
-            this.tlpDetalj = new System.Windows.Forms.TableLayoutPanel();
             this.lblKategori = new System.Windows.Forms.Label();
             this.tbUrl = new System.Windows.Forms.TextBox();
             this.lblUrl = new System.Windows.Forms.Label();
@@ -46,14 +49,11 @@
             this.btnSparaKat = new System.Windows.Forms.Button();
             this.lblPodcast = new System.Windows.Forms.Label();
             this.lblAvsnitt = new System.Windows.Forms.Label();
-            this.lblDetaljer = new System.Windows.Forms.Label();
+            this.lblBeskrivning = new System.Windows.Forms.Label();
             this.lvlKateogir = new System.Windows.Forms.Label();
             this.lblUppdateringsintervall = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbBeskrivning = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,6 +82,26 @@
             this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
             this.dgvPod.SelectionChanged += new System.EventHandler(this.dgvPod_SelectionChanged);
             // 
+            // clmAvsnitt
+            // 
+            this.clmAvsnitt.HeaderText = "Avsnitt";
+            this.clmAvsnitt.Name = "clmAvsnitt";
+            // 
+            // clmNamn
+            // 
+            this.clmNamn.HeaderText = "Namn";
+            this.clmNamn.Name = "clmNamn";
+            // 
+            // clmUppdateringsfrekvens
+            // 
+            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
+            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
+            // 
+            // clmKategori
+            // 
+            this.clmKategori.HeaderText = "Kategori";
+            this.clmKategori.Name = "clmKategori";
+            // 
             // lbAvsnitt
             // 
             this.lbAvsnitt.FormattingEnabled = true;
@@ -89,6 +109,7 @@
             this.lbAvsnitt.Name = "lbAvsnitt";
             this.lbAvsnitt.Size = new System.Drawing.Size(466, 186);
             this.lbAvsnitt.TabIndex = 4;
+            this.lbAvsnitt.SelectedIndexChanged += new System.EventHandler(this.lbAvsnitt_SelectedIndexChanged);
             // 
             // lvKat
             // 
@@ -100,19 +121,6 @@
             this.lvKat.TabIndex = 5;
             this.lvKat.UseCompatibleStateImageBehavior = false;
             this.lvKat.SelectedIndexChanged += new System.EventHandler(this.lvKat_SelectedIndexChanged);
-            // 
-            // tlpDetalj
-            // 
-            this.tlpDetalj.ColumnCount = 2;
-            this.tlpDetalj.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpDetalj.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tlpDetalj.Location = new System.Drawing.Point(552, 294);
-            this.tlpDetalj.Name = "tlpDetalj";
-            this.tlpDetalj.RowCount = 2;
-            this.tlpDetalj.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 53F));
-            this.tlpDetalj.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47F));
-            this.tlpDetalj.Size = new System.Drawing.Size(325, 186);
-            this.tlpDetalj.TabIndex = 6;
             // 
             // lblKategori
             // 
@@ -229,15 +237,15 @@
             this.lblAvsnitt.TabIndex = 18;
             this.lblAvsnitt.Text = "Avsnitt:";
             // 
-            // lblDetaljer
+            // lblBeskrivning
             // 
-            this.lblDetaljer.AutoSize = true;
-            this.lblDetaljer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDetaljer.Location = new System.Drawing.Point(549, 275);
-            this.lblDetaljer.Name = "lblDetaljer";
-            this.lblDetaljer.Size = new System.Drawing.Size(67, 16);
-            this.lblDetaljer.TabIndex = 19;
-            this.lblDetaljer.Text = "Detlajer:";
+            this.lblBeskrivning.AutoSize = true;
+            this.lblBeskrivning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeskrivning.Location = new System.Drawing.Point(549, 275);
+            this.lblBeskrivning.Name = "lblBeskrivning";
+            this.lblBeskrivning.Size = new System.Drawing.Size(93, 16);
+            this.lblBeskrivning.TabIndex = 19;
+            this.lblBeskrivning.Text = "Beskrivning:";
             // 
             // lvlKateogir
             // 
@@ -262,30 +270,24 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "1 min",
+            "3 min",
+            "5 min",
+            "10 min"});
             this.comboBox1.Location = new System.Drawing.Point(160, 245);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(172, 21);
             this.comboBox1.TabIndex = 22;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // clmAvsnitt
+            // tbBeskrivning
             // 
-            this.clmAvsnitt.HeaderText = "Avsnitt";
-            this.clmAvsnitt.Name = "clmAvsnitt";
-            // 
-            // clmNamn
-            // 
-            this.clmNamn.HeaderText = "Namn";
-            this.clmNamn.Name = "clmNamn";
-            // 
-            // clmUppdateringsfrekvens
-            // 
-            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
-            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
-            // 
-            // clmKategori
-            // 
-            this.clmKategori.HeaderText = "Kategori";
-            this.clmKategori.Name = "clmKategori";
+            this.tbBeskrivning.Location = new System.Drawing.Point(558, 294);
+            this.tbBeskrivning.Multiline = true;
+            this.tbBeskrivning.Name = "tbBeskrivning";
+            this.tbBeskrivning.Size = new System.Drawing.Size(319, 186);
+            this.tbBeskrivning.TabIndex = 23;
             // 
             // Form1
             // 
@@ -294,10 +296,11 @@
             this.AutoScroll = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(889, 493);
+            this.Controls.Add(this.tbBeskrivning);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.lblUppdateringsintervall);
             this.Controls.Add(this.lvlKateogir);
-            this.Controls.Add(this.lblDetaljer);
+            this.Controls.Add(this.lblBeskrivning);
             this.Controls.Add(this.lblAvsnitt);
             this.Controls.Add(this.lblPodcast);
             this.Controls.Add(this.btnSparaKat);
@@ -310,7 +313,6 @@
             this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.tbUrl);
             this.Controls.Add(this.lblKategori);
-            this.Controls.Add(this.tlpDetalj);
             this.Controls.Add(this.lvKat);
             this.Controls.Add(this.lbAvsnitt);
             this.Controls.Add(this.dgvPod);
@@ -331,7 +333,6 @@
         private System.Windows.Forms.DataGridView dgvPod;
         private System.Windows.Forms.ListBox lbAvsnitt;
         private System.Windows.Forms.ListView lvKat;
-        private System.Windows.Forms.TableLayoutPanel tlpDetalj;
         private System.Windows.Forms.Label lblKategori;
         private System.Windows.Forms.TextBox tbUrl;
         private System.Windows.Forms.Label lblUrl;
@@ -344,7 +345,7 @@
         private System.Windows.Forms.Button btnSparaKat;
         private System.Windows.Forms.Label lblPodcast;
         private System.Windows.Forms.Label lblAvsnitt;
-        private System.Windows.Forms.Label lblDetaljer;
+        private System.Windows.Forms.Label lblBeskrivning;
         private System.Windows.Forms.Label lvlKateogir;
         private System.Windows.Forms.Label lblUppdateringsintervall;
         private System.Windows.Forms.ComboBox comboBox1;
@@ -352,6 +353,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdateringsfrekvens;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmKategori;
+        private System.Windows.Forms.TextBox tbBeskrivning;
     }
 }
 

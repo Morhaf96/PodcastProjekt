@@ -184,5 +184,31 @@ namespace PodcastProjekt
                 }
             }
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbAvsnitt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            tbBeskrivning.Clear();
+            if (lbAvsnitt.SelectedItems.Count == 0)
+            {
+                return;
+            }
+            if (lbAvsnitt.SelectedItems[0] != null)
+            {
+                var podcast = (Avsnitt)lbAvsnitt.SelectedItems[0];
+                Avsnitt avsnitt = new Avsnitt();
+                string titel = avsnitt.Titel;
+                string beskrivning = avsnitt.Beskrivning;
+                tbBeskrivning.Text = titel + "\n \n" + beskrivning;
+            }
+
+
+        }
+        }
     }
-}
+

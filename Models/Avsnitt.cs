@@ -26,6 +26,10 @@ namespace PodcastProjekt.Models
             this.Beskrivning = beskrivning;
         }
 
+        public string getBeskrivning(Avsnitt avsnitt) {
+            return Beskrivning;
+        }
+
         public override string ToString()
         {
             return Titel;
