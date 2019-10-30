@@ -47,7 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\IFetchable.cs" />
     <Compile Include="Data\RSSHamtare.cs" />
+    <Compile Include="Data\XmlLasare.cs" />
+    <Compile Include="Data\XmlSkrivare.cs" />
     <Compile Include="GUI\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

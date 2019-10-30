@@ -9,7 +9,7 @@ using System.Xml;
 
 namespace PodcastProjekt.Data
 {
-    public class RSSHamtare
+    public class RSSHamtare: IFetchable
     {  
         public Podcast HamtaPodcast(Uri hamtaUrl)
         {
