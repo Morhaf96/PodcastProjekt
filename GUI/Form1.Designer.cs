@@ -52,7 +52,7 @@
             this.lblBeskrivning = new System.Windows.Forms.Label();
             this.lvlKateogir = new System.Windows.Forms.Label();
             this.lblUppdateringsintervall = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbUppdatering = new System.Windows.Forms.ComboBox();
             this.wbBeskrivning = new System.Windows.Forms.WebBrowser();
             this.lblAvsnittTitel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
@@ -268,19 +268,19 @@
             this.lblUppdateringsintervall.TabIndex = 21;
             this.lblUppdateringsintervall.Text = "Uppdateringsintervall:";
             // 
-            // comboBox1
+            // cmbUppdatering
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cmbUppdatering.FormattingEnabled = true;
+            this.cmbUppdatering.Items.AddRange(new object[] {
             "1 min",
             "3 min",
             "5 min",
             "10 min"});
-            this.comboBox1.Location = new System.Drawing.Point(160, 245);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(172, 21);
-            this.comboBox1.TabIndex = 22;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.cmbUppdatering.Location = new System.Drawing.Point(160, 245);
+            this.cmbUppdatering.Name = "cmbUppdatering";
+            this.cmbUppdatering.Size = new System.Drawing.Size(172, 21);
+            this.cmbUppdatering.TabIndex = 22;
+            this.cmbUppdatering.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // wbBeskrivning
             // 
@@ -308,7 +308,7 @@
             this.ClientSize = new System.Drawing.Size(911, 513);
             this.Controls.Add(this.lblAvsnittTitel);
             this.Controls.Add(this.wbBeskrivning);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbUppdatering);
             this.Controls.Add(this.lblUppdateringsintervall);
             this.Controls.Add(this.lvlKateogir);
             this.Controls.Add(this.lblBeskrivning);
@@ -359,7 +359,7 @@
         private System.Windows.Forms.Label lblBeskrivning;
         private System.Windows.Forms.Label lvlKateogir;
         private System.Windows.Forms.Label lblUppdateringsintervall;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbUppdatering;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAvsnitt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdateringsfrekvens;

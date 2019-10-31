@@ -12,14 +12,14 @@ namespace PodcastProjekt.Logic
     public static class Validering
     {
         
-        public static bool isEmptyTextBox(TextBox enTextBox) {
-            bool isEmpty = false;
+        public static void isEmptyTextBox(TextBox enTextBox) {
+           
             if (enTextBox.Text.Trim().Equals("")) {
-                isEmpty = true;
+                throw new TextFaltArTomException();
                 MessageBox.Show("Detta textfält får inte vara tomt!");
                 enTextBox.Focus();
             }
-            return isEmpty;
+           
         }
 
         public static void valideraComboBoxVald(ComboBox cmb)

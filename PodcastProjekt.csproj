@@ -61,11 +61,13 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\PodcastHanterare.cs" />
+    <Compile Include="Logic\UthallighetsHanterare.cs" />
     <Compile Include="Logic\Validering.cs" />
     <Compile Include="Models\Avsnitt.cs" />
     <Compile Include="Logic\KategoriHanterare.cs" />
     <Compile Include="Models\Kategori.cs" />
     <Compile Include="Models\Podcast.cs" />
+    <Compile Include="Models\UthallighetsFil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="GUI\Form1.resx">

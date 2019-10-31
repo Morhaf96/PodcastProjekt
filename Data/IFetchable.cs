@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Data
 {
-    interface IFetchable
+    interface IFetchable<T>
     {
 
         Podcast HamtaPodcast(Uri hamtaUrl);

@@ -1,4 +1,5 @@
 ﻿using PodcastProjekt.Data;
+using PodcastProjekt.Exceptions;
 using PodcastProjekt.Models;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,77 @@ namespace PodcastProjekt.Logic
 {
     public class PodcastHanterare
     {
-        private List<Podcast> Podcasts = new List<Podcast>();
+        private static List<Podcast> Podcasts = new List<Podcast>();
         
-        public void LaggTillStream(Uri adress)
-        {
-            RSSHamtare rsshamtare = new RSSHamtare();
-            Podcasts.Add(rsshamtare.HamtaPodcast(adress));
-        }
-        public List<Podcast> HamtaPodcasts()
+        public delegate void UppdateradePodcastEventHandler(object sender, EventArgs e);
+        public static event UppdateradePodcastEventHandler UppdateradePodcast;
+
+
+        public static List<Podcast> HamtaPodcasts()
         {
             return Podcasts;
         }
+
+
+        public static void LaggTillPodcast(Podcast podcast)
+        {
+            try
+            {
+                Validering.valideraPodcast(podcast);
+            }
+            catch (ValideringsException ex)
+            {
+                throw ex;
+            }
+
+            podcast.startaTimer();
+            podcast.TimerTick += vidUppdateradPodcast;
+            Podcasts.Add(podcast);
+
+        }
+
+        
+
+        public void LaggTillStream(Uri adress, Kategori kategori)
+        {
+            if (kategori == null)
+            {
+                throw new ArgumentException();
+            }
+            try
+            {
+                Podcast podcast = new RSSHamtare().HamtaPodcast(adress);
+                podcast.PodcastKategori = kategori;
+                LaggTillPodcast(podcast);
+            }
+            catch (ValideringsException ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+        public static void taBortPodcast(Podcast podcast)
+        {
+            Podcasts.Remove(podcast);
+        }
+
+
+        public async static void uppdateraPodcastAvsnitt(Podcast podcast) {
+            RSSHamtare hamtare = new RSSHamtare();
+            Podcast enPodcast = hamtare.HamtaPodcast(podcast.Uri);
+            await Task.Run(() => { podcast.AvsnittLista = enPodcast.AvsnittLista; });
+
+        }
+
+        static void vidUppdateradPodcast(object sender, EventArgs e)
+        {
+            uppdateraPodcastAvsnitt((Podcast)sender);
+            if (UppdateradePodcast != null) {
+                UppdateradePodcast(typeof(PodcastHanterare), EventArgs.Empty);
+            }
+
+        }
+
     }
 }

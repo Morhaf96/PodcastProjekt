@@ -9,8 +9,14 @@ using System.Xml;
 
 namespace PodcastProjekt.Data
 {
-    public class RSSHamtare: IFetchable
-    {  
+    public class RSSHamtare: IFetchable<Avsnitt>
+    {
+
+        public RSSHamtare() { 
+        
+        }
+
+
         public Podcast HamtaPodcast(Uri hamtaUrl)
         {
             XmlReader Lasare = XmlReader.Create(hamtaUrl.ToString());

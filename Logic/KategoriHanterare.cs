@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PodcastProjekt.Exceptions;
+using PodcastProjekt.Logic;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +13,7 @@ namespace PodcastProjekt.Models
 {
     public class KategoriHanterare
     {
-        private List<string> kategoriLista = new List<string>();
+        private static List<Kategori> kategoriLista = new List<Kategori>();
         private string sparadeKategorier = @"sparadeKategorier";
 
 
@@ -20,9 +22,82 @@ namespace PodcastProjekt.Models
         
         }
 
-        
+        public static void laggTillKategori(Kategori kategori) {
 
-        
+            try
+            {
+                Validering.valideraKategori(kategori);
+            }
+            catch (ValideringsException ex)
+            {
+                throw ex;
+
+            }
+
+            kategoriLista.Add(kategori);
+        }
+
+        public static void laggTillKategori(string kategoriNamn)
+        {
+            Kategori kategori = new Kategori(kategoriNamn);
+
+            try
+            {
+                laggTillKategori(kategori);
+            }
+            catch (ValideringsException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static Kategori getKategori(string kategoriNamn) {
+            foreach (Kategori k in kategoriLista) {
+                if (k.KategoriNamn == kategoriNamn){
+                    return k;
+                }
+            }
+            Kategori nyKategori = new Kategori(kategoriNamn);
+            laggTillKategori(nyKategori);
+            return nyKategori;
+        }
+
+        public static List<Kategori> getKategoriLista()
+        {
+
+            var Query =
+                    from kategori in kategoriLista
+                    orderby kategori.KategoriNamn ascending
+                    select kategori;
+
+            List<Kategori> sorteradKategoriLista = new List<Kategori>();
+            foreach (Kategori k in Query)
+            {
+                sorteradKategoriLista.Add(k);
+            }
+            return sorteradKategoriLista;
+        }
+
+        public static void taBortKategori(Kategori kategori) {
+            var podcast = PodcastHanterare.HamtaPodcasts();
+            foreach (var p in podcast)
+            {
+                if (p.PodcastKategori == kategori)
+                {
+
+                    throw new KategoriUpptagenException();
+
+                }
+            }
+            kategoriLista.Remove(kategori);
+        }
+
+        //--------------------------------------------------------------------//
+        //--------------------------------------------------------------------//
+        //--------------------------------------------------------------------//
+        //--------------------------------------------------------------------//
+
+
 
         public void bytNamn(string gammaltNamn, string nyttNamn) {
             try
@@ -73,6 +148,7 @@ namespace PodcastProjekt.Models
             }
 
             catch (Exception ex) {
+
                 Console.WriteLine(ex.Message);
             }
             

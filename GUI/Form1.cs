@@ -157,8 +157,64 @@ namespace PodcastProjekt
             string hamtadUrl = tbUrl.Text.Trim();
             Uri hamtadUri = new Uri(hamtadUrl);
             podcastHanterare.LaggTillStream(hamtadUri);
-            uppdateraPodcast();
-            tbUrl.Clear();
+            Kategori valdKategori = new Kategori(cmbKat.SelectedItem.ToString());
+            MessageBox.Show(valdKategori.KategoriNamn);
+
+
+            int uppdateringsFrekvens;
+            string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
+            switch (valdUppdatering)
+            {
+                case "1 min":
+                    uppdateringsFrekvens = 60000;
+                    break;
+                case "3 min":
+                    uppdateringsFrekvens = 180000;
+                    break;
+                case "5 min":
+                    uppdateringsFrekvens = 300000;
+                    break;
+                case "10 min":
+                    uppdateringsFrekvens = 600000;
+                    break;
+                default:
+                    return;
+
+                    //    if (cmbUppdatering.SelectedItem==null)
+                    //    {
+                    //        MessageBox.Show("Du måste välja en uppdateringsfrekvens!");
+                    //        return;
+
+                    //        }
+
+
+                    //    else {
+                    //      int uppdateringsFrekvens;
+                    //string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
+                    //        switch (valdUppdatering)
+                    //        {
+                    //            case "1 min":
+                    //                uppdateringsFrekvens = 60000;
+                    //                break;
+                    //            case "3 min":
+                    //                uppdateringsFrekvens = 180000;
+                    //                break;
+                    //            case "5 min":
+                    //                uppdateringsFrekvens = 300000;
+                    //                break;
+                    //            case "10 min":
+                    //                uppdateringsFrekvens = 600000;
+                    //                break;
+                    //            default:
+                    //                return;
+                    //    }
+                    //    }
+
+
+
+                    uppdateraPodcast();
+                    tbUrl.Clear();
+            }
         }
 
         private void dgvPod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
