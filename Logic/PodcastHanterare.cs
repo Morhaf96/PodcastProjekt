@@ -25,6 +25,13 @@ namespace PodcastProjekt.Logic
 
             return sorteradLista;
         }
+        public static List<Podcast> HamtaPodcasts(Kategori kategori)
+        {
+            var podcastLista = Podcasts.Where(item => item.PodcastKategori == kategori)
+                               .ToList();
+            return podcastLista;
+
+        }
 
 
         public static void LaggTillPodcast(Podcast podcast)
