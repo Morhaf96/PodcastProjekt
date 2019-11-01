@@ -31,10 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cmbKat = new System.Windows.Forms.ComboBox();
             this.dgvPod = new System.Windows.Forms.DataGridView();
-            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
             this.lblKategori = new System.Windows.Forms.Label();
@@ -55,6 +51,10 @@
             this.cmbUppdatering = new System.Windows.Forms.ComboBox();
             this.wbBeskrivning = new System.Windows.Forms.WebBrowser();
             this.lblAvsnittTitel = new System.Windows.Forms.Label();
+            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -82,26 +82,6 @@
             this.dgvPod.TabIndex = 3;
             this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
             this.dgvPod.SelectionChanged += new System.EventHandler(this.dgvPod_SelectionChanged);
-            // 
-            // clmAvsnitt
-            // 
-            this.clmAvsnitt.HeaderText = "Avsnitt";
-            this.clmAvsnitt.Name = "clmAvsnitt";
-            // 
-            // clmNamn
-            // 
-            this.clmNamn.HeaderText = "Namn";
-            this.clmNamn.Name = "clmNamn";
-            // 
-            // clmUppdateringsfrekvens
-            // 
-            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
-            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
-            // 
-            // clmKategori
-            // 
-            this.clmKategori.HeaderText = "Kategori";
-            this.clmKategori.Name = "clmKategori";
             // 
             // lbAvsnitt
             // 
@@ -299,6 +279,27 @@
             this.lblAvsnittTitel.Size = new System.Drawing.Size(0, 19);
             this.lblAvsnittTitel.TabIndex = 24;
             // 
+            // clmAvsnitt
+            // 
+            this.clmAvsnitt.HeaderText = "Avsnitt";
+            this.clmAvsnitt.Name = "clmAvsnitt";
+            // 
+            // clmNamn
+            // 
+            this.clmNamn.HeaderText = "Namn";
+            this.clmNamn.Name = "clmNamn";
+            // 
+            // clmUppdateringsfrekvens
+            // 
+            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
+            this.clmUppdateringsfrekvens.MinimumWidth = 11;
+            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
+            // 
+            // clmKategori
+            // 
+            this.clmKategori.HeaderText = "Kategori";
+            this.clmKategori.Name = "clmKategori";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,12 +361,12 @@
         private System.Windows.Forms.Label lvlKateogir;
         private System.Windows.Forms.Label lblUppdateringsintervall;
         private System.Windows.Forms.ComboBox cmbUppdatering;
+        private System.Windows.Forms.WebBrowser wbBeskrivning;
+        private System.Windows.Forms.Label lblAvsnittTitel;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAvsnitt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdateringsfrekvens;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmKategori;
-        private System.Windows.Forms.WebBrowser wbBeskrivning;
-        private System.Windows.Forms.Label lblAvsnittTitel;
     }
 }
 

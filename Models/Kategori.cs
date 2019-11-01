@@ -11,8 +11,7 @@ namespace PodcastProjekt.Models
     {
         public string KategoriNamn { get; set; }
         
-        public Kategori(string kategoriNamn)
-        {
+        public Kategori(string kategoriNamn){
             this.KategoriNamn = kategoriNamn;
         }
 
