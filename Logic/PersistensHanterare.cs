@@ -21,7 +21,7 @@ namespace PodcastProjekt.Logic
             Url = Path.Combine(befentligSokvag, filnamn);
         }
 
-        public UthallighetsFil Las()
+        public PersistentFil Las()
         {
             string xmlString = "";
             XmlLasare lasare = new XmlLasare(Url);
@@ -36,7 +36,7 @@ namespace PodcastProjekt.Logic
 
 
 
-            UthallighetsFil data = new UthallighetsFil().Deserialize(xmlString);
+            PersistentFil data = new PersistentFil().Deserialize(xmlString);
 
             for (int i = 0; i < data.podcastLista.Count; i++)
             {
@@ -48,10 +48,10 @@ namespace PodcastProjekt.Logic
             return data;
         }
 
-        public void Skriv(UthallighetsFil uthallighetsFil)
+        public void Skriv(PersistentFil persistentFil)
         {
 
-            string xml = uthallighetsFil.Serialize();
+            string xml = persistentFil.Serialize();
             XmlSkrivare skrivare = new XmlSkrivare(xml, Url);
              skrivare.SkrivXml();
         }

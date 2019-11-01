@@ -9,18 +9,18 @@ using System.Xml.Serialization;
 
 namespace PodcastProjekt.Models
 {
-    class UthallighetsFil
+    class PersistentFil
     {
         public List<Podcast> podcastLista;
         public List<Kategori> kategoriLista;
         
-        public UthallighetsFil(List<Podcast> podcastLista, List<Kategori> kategoriLista)
+        public PersistentFil(List<Podcast> podcastLista, List<Kategori> kategoriLista)
         {
             this.podcastLista = podcastLista;
             this.kategoriLista = kategoriLista;
         }
 
-        public UthallighetsFil()
+        public PersistentFil()
         {
             podcastLista = new List<Podcast>();
             kategoriLista = new List<Kategori>();
@@ -28,7 +28,7 @@ namespace PodcastProjekt.Models
 
         public string Serialize()
         {
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(UthallighetsFil));
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(PersistentFil));
 
             using (var stringWriter = new StringWriter()){
 
@@ -41,22 +41,22 @@ namespace PodcastProjekt.Models
             }
         }
 
-        public UthallighetsFil Deserialize(string serializedString)
+        public PersistentFil Deserialize(string serializedString)
         {
 
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(UthallighetsFil));
+            XmlSerializer xsSubmit = new XmlSerializer(typeof(PersistentFil));
 
 
             using (var stringReader = new StringReader(serializedString))
             {
                 try
                 {
-                    return xsSubmit.Deserialize(stringReader) as UthallighetsFil;
+                    return xsSubmit.Deserialize(stringReader) as PersistentFil;
                 }
                 catch (InvalidOperationException ex)
                 {
                     Console.WriteLine(ex);
-                    return new UthallighetsFil();
+                    return new PersistentFil();
                 }
 
             }
