@@ -19,7 +19,11 @@ namespace PodcastProjekt.Logic
 
         public static List<Podcast> HamtaPodcasts()
         {
-            return Podcasts;
+            var sorteradLista = Podcasts
+                                .OrderBy(item => item.Titel)
+                                .ToList();
+
+            return sorteradLista;
         }
 
 
