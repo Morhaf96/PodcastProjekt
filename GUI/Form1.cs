@@ -1,4 +1,5 @@
-﻿using PodcastProjekt.Logic;
+﻿using PodcastProjekt.Exceptions;
+using PodcastProjekt.Logic;
 using PodcastProjekt.Models;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace PodcastProjekt
 {
@@ -44,47 +46,30 @@ namespace PodcastProjekt
 
         private void btnLaggTillKat_Click(object sender, EventArgs e)
         {
-            string textAttLagga = tbKategori.Text.Trim();
-            if (!textAttLagga.Equals(""))
-            {
-                kategori.laggTillKategori(textAttLagga);
-                tbKategori.Text = "";
-                cmbKat.Items.Clear();
-                lvKat.Items.Clear();
-
-                try
-                {
-
-                    foreach (var kat in kategori.getKategoriLista())
-                    {
-                        cmbKat.Items.Add(kat);
-                        lvKat.Items.Add(kat);
-                    }
+                try {
+                string textAttLagga = tbKategori.Text.Trim();
+                KategoriHanterare.laggTillKategori(textAttLagga);
                 }
                 catch (Exception exception)
                 {
                     Console.WriteLine(exception.Message);
                 }
-
+                tbKategori.Text = "";
+                cmbKat.Items.Clear();
+                lvKat.Items.Clear();
                 uppdateraKategori();
                 
-            }
-
-            else {
-                MessageBox.Show("Du måste ange ett giltigt namn på kategorin!", "Felmeddelande");
-            }
-
-            
         }
 
-        private void btnSparaKat_Click(object sender, EventArgs e)
-        {
-            if (!tbKategori.Text.Equals(""))
-            {
+        private void btnSparaKat_Click(object sender, EventArgs e){
+
+            if (!tbKategori.Text.Equals("")) {
                 string gammaltNamn = lvKat.SelectedItems.ToString();
                 string nyttNamn = tbKategori.Text.ToString();
                 tbKategori.Text = "";
-                kategori.bytNamn(gammaltNamn, nyttNamn);
+                int i = lvKat.SelectedIndices[0];
+                Kategori kategori = (Kategori)lvKat.Items[i].Tag;
+                KategoriHanterare.bytNamn(kategori, nyttNamn);
                 uppdateraKategori();
 
 
@@ -95,37 +80,59 @@ namespace PodcastProjekt
             }
         }
 
-        private void btnTaBortKat_Click(object sender, EventArgs e)
-        {
-            string kategoriNamn = tbKategori.Text.Trim();
-            kategori.taBortKategori(kategoriNamn);
+        private void btnTaBortKat_Click(object sender, EventArgs e) {
+            if (lvKat.SelectedItems[0] == null)  {
+                return;
+
+            }
+
+            int i = lvKat.SelectedIndices[0];
+            Kategori kategori = (Kategori)lvKat.Items[i].Tag;
+
+            try {
+                KategoriHanterare.taBortKategori(kategori);
+            }
+
+            catch (KategoriUpptagenException ex){
+                MessageBox.Show("Kategorin är knuten till en eller flera podcasts och kan därför inte tas bort!");
+                
+            }
+            
             uppdateraKategori();
             tbKategori.Text = "";
-
         }
 
         private void uppdateraKategori() {
             cmbKat.Items.Clear();
             lvKat.Items.Clear();
+            
+            foreach (var item in KategoriHanterare.getKategoriLista())
+            {
+                cmbKat.Items.Add(item);
+            }
+
             try
             {
-                foreach (var c in kategori.getKategoriLista())
+                foreach (Kategori k in KategoriHanterare.getKategoriLista())
                 {
-                    
-                    lvKat.Items.Add(c);
-                    cmbKat.Items.Add(c);
+                    ListViewItem item = new ListViewItem();
+                    item.Text = k.KategoriNamn;
+                    item.Tag = k;
+                    lvKat.Items.Add(item);
+                    cmbKat.Items.Add(item);
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
+            
         }
 
         private void uppdateraPodcast()
         {
             dgvPod.Rows.Clear();
-            foreach (var podcast in podcastHanterare.HamtaPodcasts())
+            foreach (var podcast in podcastHanterare.GetPodcasts())
             {
                 Console.WriteLine(podcast);
                 int rad = dgvPod.Rows.Add();
@@ -152,69 +159,66 @@ namespace PodcastProjekt
             }
         }
 
-        private void btnLaggTillPod_Click(object sender, EventArgs e)
-        {
-            string hamtadUrl = tbUrl.Text.Trim();
-            Uri hamtadUri = new Uri(hamtadUrl);
-            podcastHanterare.LaggTillStream(hamtadUri);
-            Kategori valdKategori = new Kategori(cmbKat.SelectedItem.ToString());
-            MessageBox.Show(valdKategori.KategoriNamn);
+        private void btnLaggTillPod_Click(object sender, EventArgs e) {
 
+            try {
+                string hamtadUrl = tbUrl.Text.Trim();
+                Uri hamtadUri = new Uri(hamtadUrl);
+                Kategori valdKategori = ((Kategori)cmbKat.SelectedItem);
+                podcastHanterare.LaggTillStream(hamtadUri, valdKategori);
 
-            int uppdateringsFrekvens;
-            string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
-            switch (valdUppdatering)
-            {
-                case "1 min":
-                    uppdateringsFrekvens = 60000;
-                    break;
-                case "3 min":
-                    uppdateringsFrekvens = 180000;
-                    break;
-                case "5 min":
-                    uppdateringsFrekvens = 300000;
-                    break;
-                case "10 min":
-                    uppdateringsFrekvens = 600000;
-                    break;
-                default:
-                    return;
-
-                    //    if (cmbUppdatering.SelectedItem==null)
-                    //    {
-                    //        MessageBox.Show("Du måste välja en uppdateringsfrekvens!");
-                    //        return;
-
-                    //        }
-
-
-                    //    else {
-                    //      int uppdateringsFrekvens;
-                    //string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
-                    //        switch (valdUppdatering)
-                    //        {
-                    //            case "1 min":
-                    //                uppdateringsFrekvens = 60000;
-                    //                break;
-                    //            case "3 min":
-                    //                uppdateringsFrekvens = 180000;
-                    //                break;
-                    //            case "5 min":
-                    //                uppdateringsFrekvens = 300000;
-                    //                break;
-                    //            case "10 min":
-                    //                uppdateringsFrekvens = 600000;
-                    //                break;
-                    //            default:
-                    //                return;
-                    //    }
-                    //    }
+                int uppdateringsFrekvens = 0;
+                string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
+                switch (valdUppdatering)
+                {
+                    case "1 min":
+                        uppdateringsFrekvens = 60000;
+                        break;
+                    case "3 min":
+                        uppdateringsFrekvens = 180000;
+                        break;
+                    case "5 min":
+                        uppdateringsFrekvens = 300000;
+                        break;
+                    case "10 min":
+                        uppdateringsFrekvens = 600000;
+                        break;
+                    default:
+                        uppdateringsFrekvens = 0;
+                        return;
 
 
 
-                    uppdateraPodcast();
-                    tbUrl.Clear();
+                }
+
             }
+
+            catch (Exception ex) {
+                string felmeddelande = "";
+                if (ex is ValideringsException){
+                    felmeddelande = ex.Message;
+                }
+                if (ex is UriFormatException){
+                    felmeddelande = "Vänligen ange en giltig URL!";
+                    tbUrl.Focus();
+                }
+                if (ex is XmlException){
+                    felmeddelande = "XML Datan kunde inte läsas! Vänligen ange en XML URL!";
+                    tbUrl.Focus();
+                }
+                if (ex is KategoriNullException)
+                {
+                    felmeddelande = "Du måste välja en kategori från komboboxen till den nya podcasten!";
+
+                }
+
+                else {
+                    felmeddelande = ex.Message;
+                }
+                var result = MessageBox.Show(felmeddelande);
+            }
+            uppdateraPodcast();
+            tbUrl.Clear();
         }
 
         private void dgvPod_CellValueChanged(object sender, DataGridViewCellEventArgs e)

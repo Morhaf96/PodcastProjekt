@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace PodcastProjekt.Logic
 {
-    class UthallighetsHanterare
+    class PersistensHanterare
     {
         private string filnamn = "PodcastSparadData.xml";
         public string Url;
 
-        public UthallighetsHanterare()
+        public PersistensHanterare()
         {
             string befentligSokvag = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             Url = Path.Combine(befentligSokvag, filnamn);
@@ -29,12 +29,11 @@ namespace PodcastProjekt.Logic
             {
                  xmlString = lasare.las();
             }
-            catch (FileNotFoundException)
+            catch (FileNotFoundException ex)
             {
-                Console.WriteLine("Kunde inte läsa in sparade Podcasts. Sparfilen saknas!"); 
+                MessageBox.Show("Kunde inte läsa in sparade Podcasts. Sparfilen saknas!");
+                Console.WriteLine(ex.Message+"\n \n" + ex.GetType());
             }
-
-
 
             PersistentFil data = new PersistentFil().Deserialize(xmlString);
 
@@ -53,7 +52,7 @@ namespace PodcastProjekt.Logic
 
             string xml = persistentFil.Serialize();
             XmlSkrivare skrivare = new XmlSkrivare(xml, Url);
-             skrivare.SkrivXml();
+            skrivare.SkrivXml();
         }
 
 

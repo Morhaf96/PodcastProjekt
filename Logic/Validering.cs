@@ -14,7 +14,7 @@ namespace PodcastProjekt.Logic
         
         public static void isEmptyTextBox(TextBox enTextBox) {
            
-            if (enTextBox.Text.Trim().Equals("")) {
+            if (enTextBox.Text.Trim().Equals(string.Empty)) {
                 throw new TextFaltArTomException();
             }
            
@@ -30,15 +30,15 @@ namespace PodcastProjekt.Logic
         }
 
         public static void valideraKategori(Kategori kategori) {
-            if (kategori.KategoriNamn.Trim(' ') == string.Empty) {
-                throw new ValideringsException("Du måste ange en kategori först!");
+            if (kategori.KategoriNamn.Trim() == string.Empty) {
+                throw new ValideringsException("Du måste ange namn på kategori först!");
             }
             return;
         }
 
         public static void valideraPodcast(Podcast podcast) {
 
-            if (podcast.Uri.ToString().Trim(' ') == string.Empty) {
+            if (podcast.Uri.ToString().Trim() == string.Empty) {
                 throw new ValideringsException("Podcast URL får inte vara tom!");
             }
             return;

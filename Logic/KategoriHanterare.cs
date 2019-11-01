@@ -14,21 +14,13 @@ namespace PodcastProjekt.Models
     public class KategoriHanterare
     {
         private static List<Kategori> kategoriLista = new List<Kategori>();
-        
-
-        public KategoriHanterare()
-        {
-        
-        }
 
         public static void laggTillKategori(Kategori kategori) {
 
-            try
-            {
+            try {
                 Validering.valideraKategori(kategori);
             }
-            catch (ValideringsException ex)
-            {
+            catch (ValideringsException ex){
                 throw ex;
 
             }
@@ -36,23 +28,20 @@ namespace PodcastProjekt.Models
             kategoriLista.Add(kategori);
         }
 
-        public static void laggTillKategori(string kategoriNamn)
-        {
+        public static void laggTillKategori(string kategoriNamn) {
             Kategori kategori = new Kategori(kategoriNamn);
 
-            try
-            {
+            try{
                 laggTillKategori(kategori);
             }
-            catch (ValideringsException ex)
-            {
+            catch (ValideringsException ex) {
                 throw ex;
             }
         }
 
         public static Kategori getKategori(string kategoriNamn) {
             foreach (Kategori k in kategoriLista) {
-                if (k.KategoriNamn == kategoriNamn){
+                if (k.KategoriNamn == kategoriNamn) {
                     return k;
                 }
             }
@@ -64,10 +53,9 @@ namespace PodcastProjekt.Models
         public static List<Kategori> getKategoriLista()
         {
 
-            var Query =
-                    from kategori in kategoriLista
-                    orderby kategori.KategoriNamn ascending
-                    select kategori;
+            var Query = from kategori in kategoriLista 
+                        orderby kategori.KategoriNamn ascending
+                        select kategori;
 
             List<Kategori> sorteradKategoriLista = new List<Kategori>();
             foreach (Kategori k in Query)
@@ -78,9 +66,9 @@ namespace PodcastProjekt.Models
         }
 
         public static void taBortKategori(Kategori kategori) {
-            var podcast = PodcastHanterare.HamtaPodcasts();
-            foreach (var p in podcast)
-            {
+            List<Podcast> podcast = PodcastHanterare.HamtaPodcasts();
+            foreach (var p in podcast){
+
                 if (p.PodcastKategori == kategori)
                 {
 
@@ -88,90 +76,23 @@ namespace PodcastProjekt.Models
 
                 }
             }
+
             kategoriLista.Remove(kategori);
         }
 
-        //--------------------------------------------------------------------//
-        //--------------------------------------------------------------------//
-        //--------------------------------------------------------------------//
-        //--------------------------------------------------------------------//
+        public static void bytNamn(Kategori kategori, string nyttNamn) {
+            try {
+                int i = kategoriLista.IndexOf(kategori);
+                kategoriLista[i].KategoriNamn = nyttNamn;
 
+            }
 
+            catch (Exception ex) {
+                MessageBox.Show("BytNamn metoden i kategorihanterare " + ex.Message);
+            }
 
-        //public void bytNamn(string gammaltNamn, string nyttNamn) {
-        //    try
-        //    {
-        //        int i = kategoriLista.IndexOf(gammaltNamn);
-        //        kategoriLista[i] = nyttNamn;
-
-        //        File.WriteAllText(sparadeKategorier, string.Empty);
-        //        using (StreamWriter sw = File.AppendText(sparadeKategorier)){
-        //            foreach (var c in kategoriLista){
-        //                sw.WriteLine(c);
-        //            }
-        //        }
-
-        //    }
-
-        //    catch (ArgumentOutOfRangeException e) {
-        //        MessageBox.Show("Inga kategorier hittades för det angivna namnet!", "Fel inmatning");
-        //    }
-
-        //    catch (ArgumentNullException e) {
-
-        //        MessageBox.Show("Du måste välja en kategori för att byta namnet på!", "Fel inmatning");
-
-        //    }
-        //}
-
-        //public void laggTillKategori(string kategoriNamn) {
-        //    kategoriLista.Add(kategoriNamn);
-        //    using (StreamWriter sw = File.AppendText(sparadeKategorier)) {
-        //        sw.WriteLine(kategoriNamn);
-        //    }
-        //}
-
-        //public void taBortKategori(string kategoriNamn) {
-           
-        //    try
-        //    {
-        //        kategoriLista.Remove(kategoriNamn);
-        //        File.WriteAllText(sparadeKategorier, string.Empty);
-
-        //        using (StreamWriter sw = File.AppendText(sparadeKategorier)){
-        //            foreach (var kat in kategoriLista){
-        //                sw.WriteLine(kat);
-        //            }
-        //        }
-                
-        //    }
-
-        //    catch (Exception ex) {
-
-        //        Console.WriteLine(ex.Message);
-        //    }
-            
-        //}
-
-        //public List<string> getKategoriLista() {
-        //    kategoriLista.Clear();
-
-        //    if (File.Exists(sparadeKategorier) == true)
-        //    {
-        //        using (StreamReader sr = new StreamReader(sparadeKategorier))
-        //        {
-        //            string line;
-        //            while ((line = sr.ReadLine()) != null)
-        //            {
-        //                kategoriLista.Add(line);
-        //            }
-        //        }
-        //    }
-
-        //    return kategoriLista;
-        //}
-            
-     }
+        }
+    } 
 }
 
 

@@ -12,29 +12,12 @@ namespace PodcastProjekt.Logic
     public class PodcastHanterare
     {
         private static List<Podcast> Podcasts = new List<Podcast>();
-        
+
         public delegate void UppdateradePodcastEventHandler(object sender, EventArgs e);
         public static event UppdateradePodcastEventHandler UppdateradePodcast;
 
 
-        public static List<Podcast> HamtaPodcasts()
-        {
-            var sorteradLista = Podcasts
-                                .OrderBy(item => item.Titel)
-                                .ToList();
-
-            return sorteradLista;
-        }
-        public static List<Podcast> HamtaPodcasts(Kategori kategori)
-        {
-            var podcastLista = Podcasts.Where(item => item.PodcastKategori == kategori)
-                               .ToList();
-            return podcastLista;
-
-        }
-
-
-        public static void LaggTillPodcast(Podcast podcast)
+        public void LaggTillPodcast(Podcast podcast)
         {
             try
             {
@@ -51,7 +34,7 @@ namespace PodcastProjekt.Logic
 
         }
 
-        
+
 
         public void LaggTillStream(Uri adress, Kategori kategori)
         {
@@ -69,18 +52,39 @@ namespace PodcastProjekt.Logic
             {
                 throw ex;
             }
-            
+
         }
 
-        public static void taBortPodcast(Podcast podcast)
+        public void taBortPodcast(Podcast podcast)
         {
             Podcasts.Remove(podcast);
+        }
+
+        public List<Podcast> GetPodcasts(){
+            return Podcasts;
+        }
+
+        public static List<Podcast> HamtaPodcasts()
+        {
+            var sorteradLista = Podcasts
+                                .OrderBy(item => item.Titel)
+                                .ToList();
+
+            return sorteradLista;
+        }
+        public static List<Podcast> HamtaPodcastsPaKategori(Kategori kategori)
+        {
+            List<Podcast> podcastLista = Podcasts.Where(item => item.PodcastKategori == kategori)
+                               .ToList();
+            return podcastLista;
+
         }
 
 
         public async static void uppdateraPodcastAvsnitt(Podcast podcast) {
             RSSHamtare hamtare = new RSSHamtare();
-            Podcast enPodcast = hamtare.HamtaPodcast(podcast.Uri);
+            Uri podcastensUri = podcast.Uri;
+            Podcast enPodcast = hamtare.HamtaPodcast(podcastensUri);
             await Task.Run(() => { podcast.AvsnittLista = enPodcast.AvsnittLista; });
 
         }

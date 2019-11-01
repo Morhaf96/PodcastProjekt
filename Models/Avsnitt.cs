@@ -15,13 +15,11 @@ namespace PodcastProjekt.Models
         
         }
 
-        public Avsnitt(string titel)
-        {
+        public Avsnitt(string titel){
             this.Titel = titel;
         }
 
-        public Avsnitt(string titel, string beskrivning)
-        {
+        public Avsnitt(string titel, string beskrivning){
             this.Titel = titel;
             this.Beskrivning = beskrivning;
         }
@@ -30,8 +28,7 @@ namespace PodcastProjekt.Models
             return Beskrivning;
         }
 
-        public override string ToString()
-        {
+        public override string ToString(){
             return Titel;
         }
 

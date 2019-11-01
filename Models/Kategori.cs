@@ -10,13 +10,13 @@ namespace PodcastProjekt.Models
     public class Kategori 
     {
         public string KategoriNamn { get; set; }
-        
-        public Kategori(string kategoriNamn){
-            this.KategoriNamn = kategoriNamn;
+
+        public Kategori() {
+
         }
 
-        public Kategori() { 
-        
+        public Kategori(string kategoriNamn){
+            KategoriNamn = kategoriNamn;
         }
 
         public override string ToString() {

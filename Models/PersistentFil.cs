@@ -14,20 +14,17 @@ namespace PodcastProjekt.Models
         public List<Podcast> podcastLista;
         public List<Kategori> kategoriLista;
         
-        public PersistentFil(List<Podcast> podcastLista, List<Kategori> kategoriLista)
-        {
+        public PersistentFil(List<Podcast> podcastLista, List<Kategori> kategoriLista){
             this.podcastLista = podcastLista;
             this.kategoriLista = kategoriLista;
         }
 
-        public PersistentFil()
-        {
+        public PersistentFil() {
             podcastLista = new List<Podcast>();
             kategoriLista = new List<Kategori>();
         }
 
-        public string Serialize()
-        {
+        public string Serialize(){
             XmlSerializer xsSubmit = new XmlSerializer(typeof(PersistentFil));
 
             using (var stringWriter = new StringWriter()){
@@ -41,20 +38,15 @@ namespace PodcastProjekt.Models
             }
         }
 
-        public PersistentFil Deserialize(string serializedString)
-        {
+        public PersistentFil Deserialize(string serializedString) {
 
-            XmlSerializer xsSubmit = new XmlSerializer(typeof(PersistentFil));
+            XmlSerializer xmlSerializeer = new XmlSerializer(typeof(PersistentFil));
 
-
-            using (var stringReader = new StringReader(serializedString))
-            {
-                try
-                {
-                    return xsSubmit.Deserialize(stringReader) as PersistentFil;
+            using (var stringReader = new StringReader(serializedString)){
+                try{
+                    return xmlSerializeer.Deserialize(stringReader) as PersistentFil;
                 }
-                catch (InvalidOperationException ex)
-                {
+                catch (InvalidOperationException ex){
                     Console.WriteLine(ex);
                     return new PersistentFil();
                 }

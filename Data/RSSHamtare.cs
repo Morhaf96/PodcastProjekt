@@ -17,43 +17,38 @@ namespace PodcastProjekt.Data
         }
 
 
-        public Podcast HamtaPodcast(Uri hamtaUrl)
-        {
-            XmlReader Lasare = XmlReader.Create(hamtaUrl.ToString());
-            SyndicationFeed feed = SyndicationFeed.Load(Lasare);
-            Lasare.Close();
+        public Podcast HamtaPodcast(Uri hamtaUrl) {
+            XmlReader xmlLasare = XmlReader.Create(hamtaUrl.ToString());
+            SyndicationFeed feed = SyndicationFeed.Load(xmlLasare);
+            xmlLasare.Close();
 
             return PodcastFranSyndicationFeed(feed);
-
-
         }
 
+        private Avsnitt AvsnittFranSyndicationFeedAvsnitt(SyndicationItem syndicationItem){
+            Avsnitt output = new Avsnitt();
+            output.Titel = syndicationItem.Title.Text;
+            output.Beskrivning = syndicationItem.Summary.Text;
+
+            return output;
+        }
+
+        private List<Avsnitt> AvsnittFranSyndicationFeedAllaAvsnitt(IEnumerable<SyndicationItem> SyndicationItemList){
+            List<Avsnitt> output = new List<Avsnitt>();
+
+            foreach(var item in SyndicationItemList) {
+                output.Add(AvsnittFranSyndicationFeedAvsnitt(item));
+            }
+
+            return output;
+        }
         private Podcast PodcastFranSyndicationFeed(SyndicationFeed feed)
         {
             Podcast podcast = new Podcast();
             podcast.Titel = feed.Title.Text;
-
             podcast.AvsnittLista = AvsnittFranSyndicationFeedAllaAvsnitt(feed.Items);
             return podcast;
         }
 
-        private List<Avsnitt> AvsnittFranSyndicationFeedAllaAvsnitt(IEnumerable<SyndicationItem> SyndicationItemList)
-        {
-            List<Avsnitt> output = new List<Avsnitt>();
-
-            foreach(var item in SyndicationItemList)
-            {
-                output.Add(AvsnittFranSyndicationFeedAvsnitt(item));
-            }
-            return output;
-        }
-
-        private Avsnitt AvsnittFranSyndicationFeedAvsnitt(SyndicationItem syndicationItem) 
-        {
-            Avsnitt output = new Avsnitt();
-            output.Titel = syndicationItem.Title.Text;
-            output.Beskrivning = syndicationItem.Summary.Text;
-            return output;
-        }
     }
 }

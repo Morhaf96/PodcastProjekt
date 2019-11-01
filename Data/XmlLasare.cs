@@ -18,8 +18,7 @@ namespace PodcastProjekt.Data
         public string las() {
             FileStream fs;
 
-            try
-            {
+            try{
                 fs = new FileStream(sokvag, FileMode.Open,FileAccess.Read);
             }
 
