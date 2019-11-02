@@ -36,7 +36,7 @@ namespace PodcastProjekt.Logic
 
 
 
-        public void LaggTillStream(Uri adress, Kategori kategori)
+        public void LaggTillStream(Uri adress, Kategori kategori, int uppdateringsFrekvens)
         {
             if (kategori == null)
             {
@@ -46,6 +46,7 @@ namespace PodcastProjekt.Logic
             {
                 Podcast podcast = new RSSHamtare().HamtaPodcast(adress);
                 podcast.PodcastKategori = kategori;
+                podcast.UppdateringsFrekvens = uppdateringsFrekvens;
                 LaggTillPodcast(podcast);
             }
             catch (ValideringsException ex)
