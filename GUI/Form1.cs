@@ -192,29 +192,29 @@ namespace PodcastProjekt
                 podcastHanterare.LaggTillStream(hamtadUri, valdKategori);
                 tbUrl.Clear();
 
-                int uppdateringsFrekvens = 0;
-                string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
-                switch (valdUppdatering)
-                {
-                    case "1 min":
-                        uppdateringsFrekvens = 60000;
-                        break;
-                    case "3 min":
-                        uppdateringsFrekvens = 180000;
-                        break;
-                    case "5 min":
-                        uppdateringsFrekvens = 300000;
-                        break;
-                    case "10 min":
-                        uppdateringsFrekvens = 600000;
-                        break;
-                    default:
-                        uppdateringsFrekvens = 0;
-                        return;
+                //int uppdateringsFrekvens = 0;
+                //string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
+                //switch (valdUppdatering)
+                //{
+                //    case "1 min":
+                //        uppdateringsFrekvens = 60000;
+                //        break;
+                //    case "3 min":
+                //        uppdateringsFrekvens = 180000;
+                //        break;
+                //    case "5 min":
+                //        uppdateringsFrekvens = 300000;
+                //        break;
+                //    case "10 min":
+                //        uppdateringsFrekvens = 600000;
+                //        break;
+                //    default:
+                //        uppdateringsFrekvens = 0;
+                //        return;
 
 
 
-                }
+                //}
 
             }
 
