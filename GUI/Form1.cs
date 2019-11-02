@@ -105,10 +105,16 @@ namespace PodcastProjekt
                 string textAttLagga = tbKategori.Text.Trim();
                 KategoriHanterare.laggTillKategori(textAttLagga);
             }
-            catch (Exception exception)
+
+            catch (KategoriFinnsRedanException ex)
             {
-                MessageBox.Show(exception.Message);
+                MessageBox.Show(ex.Message);
             }
+
+            catch (ValideringsException ex) {
+                MessageBox.Show(ex.Message);
+            }
+
             tbKategori.Text = "";
             cmbKat.Items.Clear();
             lvKat.Items.Clear();
@@ -148,19 +154,20 @@ namespace PodcastProjekt
 
         private void btnTaBortKat_Click(object sender, EventArgs e)
         {
-            if (lvKat.SelectedItems[0] == null)
-            {
-                return;
-            }
-
-            int i = lvKat.SelectedIndices[0];
-            Kategori kategori = (Kategori)lvKat.Items[i].Tag;
-
             try
             {
+                if (lvKat.SelectedItems[0] == null)
+                {
+                    return;
+                }
+                int i = lvKat.SelectedIndices[0];
+                Kategori kategori = (Kategori)lvKat.Items[i].Tag;
                 KategoriHanterare.taBortKategori(kategori);
             }
-
+            catch(ArgumentOutOfRangeException ex) {
+                MessageBox.Show("Ingen kategori är vald för att ta bort!");
+            }
+            
             catch (KategoriUpptagenException ex)
             {
                 MessageBox.Show("Kategorin är knuten till en eller flera podcasts och kan därför inte tas bort!");
@@ -256,6 +263,9 @@ namespace PodcastProjekt
                 {
                     felmeddelande = "Du måste välja en kategori från komboboxen till den nya podcasten!";
 
+                }
+                else {
+                    felmeddelande = ex.Message + "   " + ex.GetType();
                 }
 
                 MessageBox.Show(felmeddelande, "Fel uppstod!");

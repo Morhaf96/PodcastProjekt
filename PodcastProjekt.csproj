@@ -51,6 +51,7 @@
     <Compile Include="Data\RSSHamtare.cs" />
     <Compile Include="Data\XmlLasare.cs" />
     <Compile Include="Data\XmlSkrivare.cs" />
+    <Compile Include="Exceptions\KategoriFinnsRedanException.cs" />
     <Compile Include="Exceptions\KategoriNullException.cs" />
     <Compile Include="Exceptions\KategoriUpptagenException.cs" />
     <Compile Include="Exceptions\TextFaltArTomException.cs" />

@@ -29,11 +29,25 @@ namespace PodcastProjekt.Logic
 
         }
 
-        public static void valideraKategori(Kategori kategori) {
+        public static void valideraKategoriAngivet(Kategori kategori) {
             if (kategori.KategoriNamn.Trim() == string.Empty) {
                 throw new ValideringsException("Du måste ange namn på kategori först!");
             }
+
             return;
+        }
+
+        public static void valideraKategoriFinns(List<Kategori> kategoriLista, Kategori nyKategori){
+            
+            foreach (Kategori k in kategoriLista)
+            {
+                if (k.KategoriNamn == nyKategori.KategoriNamn)
+                {
+                    throw new KategoriFinnsRedanException("Det finns redan en kategori med det angivna namnet!");
+                }
+                return;
+
+            }
         }
 
         public static void valideraPodcast(Podcast podcast) {

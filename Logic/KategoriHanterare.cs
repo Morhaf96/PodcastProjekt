@@ -15,33 +15,48 @@ namespace PodcastProjekt.Models
     {
         private static List<Kategori> kategoriLista = new List<Kategori>();
 
-        public static void laggTillKategori(Kategori kategori) {
+        public static void laggTillKategori(Kategori kategori)
+        {
 
-            try {
-                Validering.valideraKategori(kategori);
+            try
+            {
+                Validering.valideraKategoriAngivet(kategori);
+                Validering.valideraKategoriFinns(kategoriLista, kategori);
+
             }
-            catch (ValideringsException ex){
+            catch (ValideringsException ex)
+            {
                 throw ex;
 
+            }
+
+            catch (KategoriFinnsRedanException ex) {
+                throw ex;
             }
 
             kategoriLista.Add(kategori);
         }
 
-        public static void laggTillKategori(string kategoriNamn) {
+        public static void laggTillKategori(string kategoriNamn)
+        {
             Kategori kategori = new Kategori(kategoriNamn);
 
-            try{
+            try
+            {
                 laggTillKategori(kategori);
             }
-            catch (ValideringsException ex) {
+            catch (ValideringsException ex)
+            {
                 throw ex;
             }
         }
 
-        public static Kategori getKategori(string kategoriNamn) {
-            foreach (Kategori k in kategoriLista) {
-                if (k.KategoriNamn == kategoriNamn) {
+        public static Kategori getKategori(string kategoriNamn)
+        {
+            foreach (Kategori k in kategoriLista)
+            {
+                if (k.KategoriNamn == kategoriNamn)
+                {
                     return k;
                 }
             }
@@ -53,7 +68,7 @@ namespace PodcastProjekt.Models
         public static List<Kategori> getKategoriLista()
         {
 
-            var Query = from kategori in kategoriLista 
+            var Query = from kategori in kategoriLista
                         orderby kategori.KategoriNamn ascending
                         select kategori;
 
@@ -65,9 +80,11 @@ namespace PodcastProjekt.Models
             return sorteradKategoriLista;
         }
 
-        public static void taBortKategori(Kategori kategori) {
+        public static void taBortKategori(Kategori kategori)
+        {
             List<Podcast> podcast = PodcastHanterare.HamtaPodcasts();
-            foreach (var p in podcast){
+            foreach (var p in podcast)
+            {
 
                 if (p.PodcastKategori == kategori)
                 {
@@ -80,19 +97,24 @@ namespace PodcastProjekt.Models
             kategoriLista.Remove(kategori);
         }
 
-        public static void bytNamn(Kategori kategori, string nyttNamn) {
-            try {
+        public static void bytNamn(Kategori kategori, string nyttNamn)
+        {
+            try
+            {
                 int i = kategoriLista.IndexOf(kategori);
                 kategoriLista[i].KategoriNamn = nyttNamn;
 
             }
 
-            catch (Exception ex) {
-                MessageBox.Show("BytNamn metoden i kategorihanterare " + ex.Message);
+            catch (Exception ex)
+            {
+                Console.WriteLine("BytNamn metoden i kategorihanterare " + ex.Message);
             }
 
         }
-    } 
+
+        
+    }
 }
 
 
