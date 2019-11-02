@@ -21,7 +21,7 @@ namespace PodcastProjekt.Models
             try
             {
                 Validering.valideraKategoriAngivet(kategori);
-                Validering.valideraKategoriFinns(kategoriLista, kategori);
+                
 
             }
             catch (ValideringsException ex)
@@ -30,22 +30,26 @@ namespace PodcastProjekt.Models
 
             }
 
-            catch (KategoriFinnsRedanException ex) {
-                throw ex;
-            }
+            
 
             kategoriLista.Add(kategori);
         }
 
         public static void laggTillKategori(string kategoriNamn)
         {
-            Kategori kategori = new Kategori(kategoriNamn);
+            Kategori kategori = new Kategori(kategoriNamn.ToLower());
 
             try
             {
+                Validering.valideraKategoriFinns(kategoriLista, kategoriNamn);
                 laggTillKategori(kategori);
             }
             catch (ValideringsException ex)
+            {
+                throw ex;
+            }
+
+            catch (KategoriFinnsRedanException ex)
             {
                 throw ex;
             }
@@ -69,7 +73,7 @@ namespace PodcastProjekt.Models
         {
 
             var Query = from kategori in kategoriLista
-                        orderby kategori.KategoriNamn ascending
+                        orderby kategori.KategoriNamn.ToLower() ascending
                         select kategori;
 
             List<Kategori> sorteradKategoriLista = new List<Kategori>();
@@ -102,7 +106,7 @@ namespace PodcastProjekt.Models
             try
             {
                 int i = kategoriLista.IndexOf(kategori);
-                kategoriLista[i].KategoriNamn = nyttNamn;
+                kategoriLista[i].KategoriNamn = nyttNamn.ToLower();
 
             }
 

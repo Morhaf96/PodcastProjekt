@@ -102,7 +102,7 @@ namespace PodcastProjekt
         {
             try
             {
-                string textAttLagga = tbKategori.Text.Trim();
+                string textAttLagga = tbKategori.Text.Trim().ToLower();
                 KategoriHanterare.laggTillKategori(textAttLagga);
             }
 
@@ -128,10 +128,14 @@ namespace PodcastProjekt
             if (!tbKategori.Text.Equals(""))
             {
                 string gammaltNamn = lvKat.SelectedItems.ToString();
-                string nyttNamn = tbKategori.Text.ToString();
+                string nyttNamn = tbKategori.Text.ToString().ToLower();
+
+                List<Kategori> ktaegoriLista = KategoriHanterare.getKategoriLista();
+
                 tbKategori.Text = "";
                 try
                 {
+                    Validering.valideraKategoriFinns(ktaegoriLista, nyttNamn);
                     int i = lvKat.SelectedIndices[0];
                     Kategori kategori = (Kategori)lvKat.Items[i].Tag;
                     KategoriHanterare.bytNamn(kategori, nyttNamn);
@@ -140,6 +144,11 @@ namespace PodcastProjekt
                 catch (ArgumentOutOfRangeException ex)
                 {
                     MessageBox.Show("Du måste först välja en kategori från boxen ovan!");
+                }
+
+                catch (KategoriFinnsRedanException ex)
+                {
+                    throw ex;
                 }
 
                 uppdateraKategori();

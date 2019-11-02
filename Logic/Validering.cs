@@ -37,11 +37,11 @@ namespace PodcastProjekt.Logic
             return;
         }
 
-        public static void valideraKategoriFinns(List<Kategori> kategoriLista, Kategori nyKategori){
+        public static void valideraKategoriFinns(List<Kategori> kategoriLista, string kategoriNamn){
             
             foreach (Kategori k in kategoriLista)
             {
-                if (k.KategoriNamn == nyKategori.KategoriNamn)
+                if (k.KategoriNamn.ToLower() == kategoriNamn.ToLower())
                 {
                     throw new KategoriFinnsRedanException("Det finns redan en kategori med det angivna namnet!");
                 }
