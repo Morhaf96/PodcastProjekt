@@ -34,6 +34,19 @@ namespace PodcastProjekt.Models
 
         }
 
+        public Uri getPodcastUri() { 
+            return Uri;
+        }
+
+        public Kategori getPodcastKategori() {
+            return PodcastKategori;
+        }
+
+        public int getUppdateringsFrekvens()
+        {
+            return UppdateringsFrekvens;
+        }
+
         public void initialiseraKategori() {
             PodcastKategori = KategoriHanterare.getKategori(KategoriNamn);
         }

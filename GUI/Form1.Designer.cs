@@ -33,8 +33,8 @@
             this.dgvPod = new System.Windows.Forms.DataGridView();
             this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
             this.lblKategori = new System.Windows.Forms.Label();
@@ -55,6 +55,7 @@
             this.cmbUppdatering = new System.Windows.Forms.ComboBox();
             this.wbBeskrivning = new System.Windows.Forms.WebBrowser();
             this.lblAvsnittTitel = new System.Windows.Forms.Label();
+            this.btnSparaPodcast = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +70,9 @@
             // 
             // dgvPod
             // 
+            this.dgvPod.AllowUserToAddRows = false;
+            this.dgvPod.AllowUserToDeleteRows = false;
+            this.dgvPod.AllowUserToResizeRows = false;
             this.dgvPod.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvPod.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPod.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -80,6 +84,9 @@
             this.dgvPod.Name = "dgvPod";
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
             this.dgvPod.TabIndex = 3;
+            this.dgvPod.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvPod_CellBeginEdit);
+            this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
+            this.dgvPod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvPod_DataError);
             this.dgvPod.SelectionChanged += new System.EventHandler(this.dgvPod_SelectionChanged);
             // 
             // clmAvsnitt
@@ -95,7 +102,11 @@
             // clmUppdateringsfrekvens
             // 
             this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
-            this.clmUppdateringsfrekvens.MinimumWidth = 11;
+            this.clmUppdateringsfrekvens.Items.AddRange(new object[] {
+            "1 min",
+            "3 min",
+            "5 min",
+            "10 min"});
             this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
             // 
             // clmKategori
@@ -151,9 +162,9 @@
             // 
             // btnLaggTillPod
             // 
-            this.btnLaggTillPod.Location = new System.Drawing.Point(338, 189);
+            this.btnLaggTillPod.Location = new System.Drawing.Point(338, 185);
             this.btnLaggTillPod.Name = "btnLaggTillPod";
-            this.btnLaggTillPod.Size = new System.Drawing.Size(140, 30);
+            this.btnLaggTillPod.Size = new System.Drawing.Size(161, 23);
             this.btnLaggTillPod.TabIndex = 10;
             this.btnLaggTillPod.Text = "Lägg till podcast";
             this.btnLaggTillPod.UseVisualStyleBackColor = true;
@@ -161,12 +172,13 @@
             // 
             // btnTaBortPod
             // 
-            this.btnTaBortPod.Location = new System.Drawing.Point(338, 235);
+            this.btnTaBortPod.Location = new System.Drawing.Point(338, 250);
             this.btnTaBortPod.Name = "btnTaBortPod";
-            this.btnTaBortPod.Size = new System.Drawing.Size(140, 31);
+            this.btnTaBortPod.Size = new System.Drawing.Size(161, 28);
             this.btnTaBortPod.TabIndex = 11;
             this.btnTaBortPod.Text = "Ta bort markerad podcast";
             this.btnTaBortPod.UseVisualStyleBackColor = true;
+            this.btnTaBortPod.Click += new System.EventHandler(this.btnTaBortPod_Click);
             // 
             // tbKategori
             // 
@@ -297,6 +309,16 @@
             this.lblAvsnittTitel.Size = new System.Drawing.Size(0, 19);
             this.lblAvsnittTitel.TabIndex = 24;
             // 
+            // btnSparaPodcast
+            // 
+            this.btnSparaPodcast.Location = new System.Drawing.Point(338, 219);
+            this.btnSparaPodcast.Name = "btnSparaPodcast";
+            this.btnSparaPodcast.Size = new System.Drawing.Size(161, 25);
+            this.btnSparaPodcast.TabIndex = 25;
+            this.btnSparaPodcast.Text = "Spara ny URL på vald podcast";
+            this.btnSparaPodcast.UseVisualStyleBackColor = true;
+            this.btnSparaPodcast.Click += new System.EventHandler(this.btnSparaPodcast_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +326,7 @@
             this.AutoScroll = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(911, 513);
+            this.Controls.Add(this.btnSparaPodcast);
             this.Controls.Add(this.lblAvsnittTitel);
             this.Controls.Add(this.wbBeskrivning);
             this.Controls.Add(this.cmbUppdatering);
@@ -361,8 +384,9 @@
         private System.Windows.Forms.Label lblAvsnittTitel;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAvsnitt;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNamn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmUppdateringsfrekvens;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmKategori;
+        private System.Windows.Forms.DataGridViewComboBoxColumn clmUppdateringsfrekvens;
+        private System.Windows.Forms.DataGridViewComboBoxColumn clmKategori;
+        private System.Windows.Forms.Button btnSparaPodcast;
     }
 }
 

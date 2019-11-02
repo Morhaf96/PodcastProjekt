@@ -12,6 +12,7 @@ namespace PodcastProjekt.Logic
     public class PodcastHanterare
     {
         private static List<Podcast> Podcasts = new List<Podcast>();
+        private RSSHamtare rssHamtare = new RSSHamtare();
 
         public delegate void UppdateradePodcastEventHandler(object sender, EventArgs e);
         public static event UppdateradePodcastEventHandler UppdateradePodcast;
@@ -97,6 +98,10 @@ namespace PodcastProjekt.Logic
                 UppdateradePodcast(typeof(PodcastHanterare), EventArgs.Empty);
             }
 
+        }
+
+        public RSSHamtare getRssHamtare() {
+            return rssHamtare;
         }
 
     }

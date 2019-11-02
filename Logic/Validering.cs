@@ -48,7 +48,7 @@ namespace PodcastProjekt.Logic
 
             foreach (Kategori k in kategoriLista)
             {
-                if (k.KategoriNamn.ToLower() == kategoriNamn.ToLower())
+                if (k.KategoriNamn.ToUpper() == kategoriNamn.ToUpper())
                 {
                     throw new KategoriFinnsRedanException("Det finns redan en kategori med det angivna namnet!");
                 }
