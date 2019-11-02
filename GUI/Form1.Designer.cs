@@ -121,7 +121,6 @@
             this.lvKat.Size = new System.Drawing.Size(325, 148);
             this.lvKat.TabIndex = 5;
             this.lvKat.UseCompatibleStateImageBehavior = false;
-            this.lvKat.SelectedIndexChanged += new System.EventHandler(this.lvKat_SelectedIndexChanged);
             // 
             // lblKategori
             // 

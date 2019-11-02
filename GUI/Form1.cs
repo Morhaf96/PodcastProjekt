@@ -19,7 +19,7 @@ namespace PodcastProjekt
         private PodcastHanterare podcastHanterare = new PodcastHanterare();
         private Avsnitt avsnitt;
         KategoriHanterare kategori = new KategoriHanterare();
-        
+
 
         public Form1()
         {
@@ -33,7 +33,7 @@ namespace PodcastProjekt
 
         private void UpdatedFeed(Object sender, EventArgs e)
         {
-                uppdateraPodcast();
+            uppdateraPodcast();
         }
 
         private void lasInPersistens()
@@ -111,7 +111,8 @@ namespace PodcastProjekt
                 MessageBox.Show(ex.Message);
             }
 
-            catch (ValideringsException ex) {
+            catch (ValideringsException ex)
+            {
                 MessageBox.Show(ex.Message);
             }
 
@@ -143,12 +144,12 @@ namespace PodcastProjekt
 
                 catch (ArgumentOutOfRangeException ex)
                 {
-                    MessageBox.Show("Du måste först välja en kategori från boxen ovan!");
+                    MessageBox.Show(ex.Message);
                 }
 
                 catch (KategoriFinnsRedanException ex)
                 {
-                    throw ex;
+                    MessageBox.Show(ex.Message);
                 }
 
                 uppdateraKategori();
@@ -173,10 +174,11 @@ namespace PodcastProjekt
                 Kategori kategori = (Kategori)lvKat.Items[i].Tag;
                 KategoriHanterare.taBortKategori(kategori);
             }
-            catch(ArgumentOutOfRangeException ex) {
+            catch (ArgumentOutOfRangeException ex)
+            {
                 MessageBox.Show("Ingen kategori är vald för att ta bort!");
             }
-            
+
             catch (KategoriUpptagenException ex)
             {
                 MessageBox.Show("Kategorin är knuten till en eller flera podcasts och kan därför inte tas bort!");
@@ -185,21 +187,6 @@ namespace PodcastProjekt
 
             uppdateraKategori();
             tbKategori.Text = "";
-        }
-
-
-        private void lvKat_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                String text = lvKat.SelectedItems[0].Text;
-                tbKategori.Text = text;
-            }
-
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message + "\n" + ex.GetType());
-            }
         }
 
         private void btnLaggTillPod_Click(object sender, EventArgs e)
@@ -273,7 +260,8 @@ namespace PodcastProjekt
                     felmeddelande = "Du måste välja en kategori från komboboxen till den nya podcasten!";
 
                 }
-                else {
+                else
+                {
                     felmeddelande = ex.Message + "   " + ex.GetType();
                 }
 

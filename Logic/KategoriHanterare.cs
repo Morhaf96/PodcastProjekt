@@ -21,7 +21,7 @@ namespace PodcastProjekt.Models
             try
             {
                 Validering.valideraKategoriAngivet(kategori);
-                
+
 
             }
             catch (ValideringsException ex)
@@ -30,7 +30,7 @@ namespace PodcastProjekt.Models
 
             }
 
-            
+
 
             kategoriLista.Add(kategori);
         }
@@ -103,11 +103,19 @@ namespace PodcastProjekt.Models
 
         public static void bytNamn(Kategori kategori, string nyttNamn)
         {
+
+
             try
             {
+                Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
                 int i = kategoriLista.IndexOf(kategori);
                 kategoriLista[i].KategoriNamn = nyttNamn.ToLower();
 
+            }
+
+            catch (KategoriFinnsRedanException ex)
+            {
+                throw ex;
             }
 
             catch (Exception ex)
@@ -115,9 +123,11 @@ namespace PodcastProjekt.Models
                 Console.WriteLine("BytNamn metoden i kategorihanterare " + ex.Message);
             }
 
+            
+
         }
 
-        
+
     }
 }
 

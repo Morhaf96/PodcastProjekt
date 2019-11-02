@@ -16,14 +16,14 @@ namespace PodcastProjekt.Data
         }
 
         public string las() {
-            FileStream fs;
 
+            FileStream fs;
             try{
                 fs = new FileStream(sokvag, FileMode.Open,FileAccess.Read);
             }
 
-            catch(Exception ex) {
-                Console.WriteLine(ex.Message);
+            catch(FileNotFoundException ex) {
+                Console.WriteLine(ex.Message +" Från XmlLäsare.Las()");
                 throw ex;
             }
 

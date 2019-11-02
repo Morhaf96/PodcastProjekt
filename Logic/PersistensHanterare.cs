@@ -35,7 +35,7 @@ namespace PodcastProjekt.Logic
                 Console.WriteLine(ex.Message+"\n \n" + ex.GetType());
             }
 
-            PersistentFil data = new PersistentFil().Deserialize(xmlString);
+            var data = new PersistentFil().Deserialize(xmlString);
 
             for (int i = 0; i < data.podcastLista.Count; i++)
             {

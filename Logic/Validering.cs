@@ -9,36 +9,43 @@ using System.Windows.Forms;
 
 namespace PodcastProjekt.Logic
 {
-    public static class Validering 
+    public static class Validering
     {
-        
-        public static void isEmptyTextBox(TextBox enTextBox) {
-           
-            if (enTextBox.Text.Trim().Equals(string.Empty)) {
+
+        public static void isEmptyTextBox(TextBox enTextBox)
+        {
+
+            if (enTextBox.Text.Trim().Equals(string.Empty))
+            {
                 throw new TextFaltArTomException();
             }
-           
+
         }
 
-        public static void valideraComboBoxVald(ComboBox cmb)   {
+        public static void valideraComboBoxVald(ComboBox cmb)
+        {
 
-            if (cmb.SelectedItem == null) {
+            if (cmb.SelectedItem == null)
+            {
                 throw new ValideringsException("Du måste välja ett element från ComboBoxen!");
             }
             return;
 
         }
 
-        public static void valideraKategoriAngivet(Kategori kategori) {
-            if (kategori.KategoriNamn.Trim() == string.Empty) {
+        public static void valideraKategoriAngivet(Kategori kategori)
+        {
+            if (kategori.KategoriNamn.Trim() == string.Empty)
+            {
                 throw new ValideringsException("Du måste ange namn på kategori först!");
             }
 
             return;
         }
 
-        public static void valideraKategoriFinns(List<Kategori> kategoriLista, string kategoriNamn){
-            
+        public static void valideraKategoriFinns(List<Kategori> kategoriLista, string kategoriNamn)
+        {
+
             foreach (Kategori k in kategoriLista)
             {
                 if (k.KategoriNamn.ToLower() == kategoriNamn.ToLower())
@@ -50,13 +57,15 @@ namespace PodcastProjekt.Logic
             }
         }
 
-        public static void valideraPodcast(Podcast podcast) {
+        public static void valideraPodcast(Podcast podcast)
+        {
 
-            if (podcast.Uri.ToString().Trim() == string.Empty) {
+            if (podcast.Uri.ToString().Trim() == string.Empty)
+            {
                 throw new ValideringsException("Podcast URL får inte vara tom!");
             }
             return;
         }
     }
-    
+
 }
