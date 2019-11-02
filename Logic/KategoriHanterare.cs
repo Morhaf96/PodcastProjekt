@@ -37,7 +37,7 @@ namespace PodcastProjekt.Models
 
         public static void laggTillKategori(string kategoriNamn)
         {
-            Kategori kategori = new Kategori(kategoriNamn.ToLower());
+            Kategori kategori = new Kategori(kategoriNamn.ToUpper());
 
             try
             {
@@ -73,7 +73,7 @@ namespace PodcastProjekt.Models
         {
 
             var Query = from kategori in kategoriLista
-                        orderby kategori.KategoriNamn.ToLower() ascending
+                        orderby kategori.KategoriNamn ascending
                         select kategori;
 
             List<Kategori> sorteradKategoriLista = new List<Kategori>();
@@ -109,7 +109,7 @@ namespace PodcastProjekt.Models
             {
                 Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
                 int i = kategoriLista.IndexOf(kategori);
-                kategoriLista[i].KategoriNamn = nyttNamn.ToLower();
+                kategoriLista[i].KategoriNamn = nyttNamn.ToUpper();
 
             }
 
