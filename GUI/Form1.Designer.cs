@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cmbKat = new System.Windows.Forms.ComboBox();
             this.dgvPod = new System.Windows.Forms.DataGridView();
+            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbAvsnitt = new System.Windows.Forms.ListBox();
             this.lvKat = new System.Windows.Forms.ListView();
             this.lblKategori = new System.Windows.Forms.Label();
@@ -51,10 +55,6 @@
             this.cmbUppdatering = new System.Windows.Forms.ComboBox();
             this.wbBeskrivning = new System.Windows.Forms.WebBrowser();
             this.lblAvsnittTitel = new System.Windows.Forms.Label();
-            this.clmAvsnitt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNamn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmUppdateringsfrekvens = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmKategori = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,8 +80,28 @@
             this.dgvPod.Name = "dgvPod";
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
             this.dgvPod.TabIndex = 3;
-            this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
             this.dgvPod.SelectionChanged += new System.EventHandler(this.dgvPod_SelectionChanged);
+            // 
+            // clmAvsnitt
+            // 
+            this.clmAvsnitt.HeaderText = "Avsnitt";
+            this.clmAvsnitt.Name = "clmAvsnitt";
+            // 
+            // clmNamn
+            // 
+            this.clmNamn.HeaderText = "Namn";
+            this.clmNamn.Name = "clmNamn";
+            // 
+            // clmUppdateringsfrekvens
+            // 
+            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
+            this.clmUppdateringsfrekvens.MinimumWidth = 11;
+            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
+            // 
+            // clmKategori
+            // 
+            this.clmKategori.HeaderText = "Kategori";
+            this.clmKategori.Name = "clmKategori";
             // 
             // lbAvsnitt
             // 
@@ -112,7 +132,6 @@
             this.lblKategori.Size = new System.Drawing.Size(65, 16);
             this.lblKategori.TabIndex = 7;
             this.lblKategori.Text = "Katergori:";
-            this.lblKategori.Click += new System.EventHandler(this.label1_Click);
             // 
             // tbUrl
             // 
@@ -250,6 +269,7 @@
             // 
             // cmbUppdatering
             // 
+            this.cmbUppdatering.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbUppdatering.FormattingEnabled = true;
             this.cmbUppdatering.Items.AddRange(new object[] {
             "1 min",
@@ -260,7 +280,6 @@
             this.cmbUppdatering.Name = "cmbUppdatering";
             this.cmbUppdatering.Size = new System.Drawing.Size(172, 21);
             this.cmbUppdatering.TabIndex = 22;
-            this.cmbUppdatering.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // wbBeskrivning
             // 
@@ -278,27 +297,6 @@
             this.lblAvsnittTitel.Name = "lblAvsnittTitel";
             this.lblAvsnittTitel.Size = new System.Drawing.Size(0, 19);
             this.lblAvsnittTitel.TabIndex = 24;
-            // 
-            // clmAvsnitt
-            // 
-            this.clmAvsnitt.HeaderText = "Avsnitt";
-            this.clmAvsnitt.Name = "clmAvsnitt";
-            // 
-            // clmNamn
-            // 
-            this.clmNamn.HeaderText = "Namn";
-            this.clmNamn.Name = "clmNamn";
-            // 
-            // clmUppdateringsfrekvens
-            // 
-            this.clmUppdateringsfrekvens.HeaderText = "Uppdateringsfrekvens";
-            this.clmUppdateringsfrekvens.MinimumWidth = 11;
-            this.clmUppdateringsfrekvens.Name = "clmUppdateringsfrekvens";
-            // 
-            // clmKategori
-            // 
-            this.clmKategori.HeaderText = "Kategori";
-            this.clmKategori.Name = "clmKategori";
             // 
             // Form1
             // 
@@ -332,7 +330,6 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Podcast RSS Reader";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

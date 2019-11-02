@@ -9,25 +9,29 @@ using System.Xml.Serialization;
 
 namespace PodcastProjekt.Models
 {
-    class PersistentFil
+    public class PersistentFil
     {
         public List<Podcast> podcastLista;
         public List<Kategori> kategoriLista;
-        
-        public PersistentFil(List<Podcast> podcastLista, List<Kategori> kategoriLista){
+
+        public PersistentFil(List<Podcast> podcastLista, List<Kategori> kategoriLista)
+        {
             this.podcastLista = podcastLista;
             this.kategoriLista = kategoriLista;
         }
 
-        public PersistentFil() {
+        public PersistentFil()
+        {
             podcastLista = new List<Podcast>();
             kategoriLista = new List<Kategori>();
         }
 
-        public string Serialize(){
+        public string Serialize()
+        {
             XmlSerializer xsSubmit = new XmlSerializer(typeof(PersistentFil));
 
-            using (var stringWriter = new StringWriter()){
+            using (var stringWriter = new StringWriter())
+            {
 
                 using (XmlWriter XMLWriter = XmlWriter.Create(stringWriter))
                 {
@@ -38,15 +42,19 @@ namespace PodcastProjekt.Models
             }
         }
 
-        public PersistentFil Deserialize(string serializedString) {
+        public PersistentFil Deserialize(string serializedString)
+        {
 
             XmlSerializer xmlSerializeer = new XmlSerializer(typeof(PersistentFil));
 
-            using (var stringReader = new StringReader(serializedString)){
-                try{
+            using (var stringReader = new StringReader(serializedString))
+            {
+                try
+                {
                     return xmlSerializeer.Deserialize(stringReader) as PersistentFil;
                 }
-                catch (InvalidOperationException ex){
+                catch (InvalidOperationException ex)
+                {
                     Console.WriteLine(ex);
                     return new PersistentFil();
                 }

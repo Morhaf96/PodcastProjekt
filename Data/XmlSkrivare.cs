@@ -20,8 +20,8 @@ namespace PodcastProjekt.Data
 
 
         public void SkrivXml() { 
-            FileStream fs = new FileStream(sokvag, FileMode.Create, FileAccess.Write);
-            StreamWriter sw = new StreamWriter(fs);
+            var fs = new FileStream(sokvag, FileMode.Create, FileAccess.Write);
+            var sw = new StreamWriter(fs);
             sw.Write(xml);
             sw.Close();
             fs.Close();

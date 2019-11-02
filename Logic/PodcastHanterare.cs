@@ -83,8 +83,8 @@ namespace PodcastProjekt.Logic
 
         public async static void uppdateraPodcastAvsnitt(Podcast podcast) {
             RSSHamtare hamtare = new RSSHamtare();
-            Uri podcastensUri = podcast.Uri;
-            Podcast enPodcast = hamtare.HamtaPodcast(podcastensUri);
+            Uri podcastUri = podcast.Uri;
+            Podcast enPodcast = hamtare.HamtaPodcast(podcastUri);
             await Task.Run(() => { podcast.AvsnittLista = enPodcast.AvsnittLista; });
 
         }

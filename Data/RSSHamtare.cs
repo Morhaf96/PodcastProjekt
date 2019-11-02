@@ -25,6 +25,26 @@ namespace PodcastProjekt.Data
             return PodcastFranSyndicationFeed(feed);
         }
 
+        private Podcast PodcastFranSyndicationFeed(SyndicationFeed feed)
+        {
+            Podcast podcast = new Podcast();
+            podcast.Titel = feed.Title.Text;
+            podcast.AvsnittLista = AvsnittFranSyndicationFeedAllaAvsnitt(feed.Items);
+            return podcast;
+        }
+
+        private List<Avsnitt> AvsnittFranSyndicationFeedAllaAvsnitt(IEnumerable<SyndicationItem> SyndicationItemList)
+        {
+            List<Avsnitt> output = new List<Avsnitt>();
+
+            foreach (var item in SyndicationItemList)
+            {
+                output.Add(AvsnittFranSyndicationFeedAvsnitt(item));
+            }
+
+            return output;
+        }
+
         private Avsnitt AvsnittFranSyndicationFeedAvsnitt(SyndicationItem syndicationItem){
             Avsnitt output = new Avsnitt();
             output.Titel = syndicationItem.Title.Text;
@@ -33,22 +53,8 @@ namespace PodcastProjekt.Data
             return output;
         }
 
-        private List<Avsnitt> AvsnittFranSyndicationFeedAllaAvsnitt(IEnumerable<SyndicationItem> SyndicationItemList){
-            List<Avsnitt> output = new List<Avsnitt>();
-
-            foreach(var item in SyndicationItemList) {
-                output.Add(AvsnittFranSyndicationFeedAvsnitt(item));
-            }
-
-            return output;
-        }
-        private Podcast PodcastFranSyndicationFeed(SyndicationFeed feed)
-        {
-            Podcast podcast = new Podcast();
-            podcast.Titel = feed.Title.Text;
-            podcast.AvsnittLista = AvsnittFranSyndicationFeedAllaAvsnitt(feed.Items);
-            return podcast;
-        }
+        
+        
 
     }
 }
