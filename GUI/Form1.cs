@@ -250,7 +250,7 @@ namespace PodcastProjekt
                 }
                 if (ex is XmlException)
                 {
-                    felmeddelande = "XML Datan kunde inte läsas! Vänligen ange en giltig XML URL!";
+                    felmeddelande = "XMLException har fångats!";
                     tbUrl.Focus();
                 }
                 if (ex is NullReferenceException)
@@ -258,8 +258,13 @@ namespace PodcastProjekt
                     felmeddelande = "Välj ett uppdateringsintervall till den nya podcasten!";
 
                 }
-                if (ex is KategoriNullException) {
+                if (ex is KategoriNullException)
+                {
                     felmeddelande = "Välj en kategori till den nya podcasten!";
+                }
+
+                if (ex is System.Net.WebException) {
+                    felmeddelande = "XML Datan kunde inte läsas från den angivna adressen!" +"\n \n"+  "Vänligen ange en giltig XML URL!";
                 }
                 
                 MessageBox.Show(felmeddelande, "Fel uppstod!");
@@ -405,7 +410,7 @@ namespace PodcastProjekt
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Kunde inte konvertera texten från uppdateringsfrekvens komboboxen " +"\n \n" + ex.Message + "   " + ex.GetType());
+                MessageBox.Show(ex.Message + "   " + ex.GetType());
             }
             harAndrats = false;
             uppdateraPodcast();
@@ -524,6 +529,13 @@ namespace PodcastProjekt
         private void btnVisaAllaPodcasts_Click(object sender, EventArgs e)
         {
             uppdateraPodcast();
+        }
+
+        private void dgvPod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgvPod.Rows[e.RowIndex];
+
+            Podcast valdPodcast = (Podcast)row.Tag;
         }
     }
 }
