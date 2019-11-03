@@ -28,7 +28,7 @@ namespace PodcastProjekt.Logic
 
             if (cmb.SelectedItem == null)
             {
-                throw new ValideringsException("Du måste välja ett element från ComboBoxen!");
+                throw new ValideringsException("Du måste välja ett element från listan!");
             }
             return;
 
