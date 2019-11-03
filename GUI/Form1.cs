@@ -106,6 +106,22 @@ namespace PodcastProjekt
             }
         }
 
+        private void uppdateraPodcastPerKategori(Kategori kategori)
+        {
+            dgvPod.Rows.Clear();
+            List<Podcast> podcastLista = PodcastHanterare.HamtaPodcastsPaKategori(kategori);
+            foreach (var podcast in podcastLista)
+            {
+                int rad = dgvPod.Rows.Add();
+                dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.Titel;
+                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori.KategoriNamn;
+                string uppdateringsFrekvensString = konverteraUppdateringsVardeTillText(podcast.UppdateringsFrekvens);
+                dgvPod.Rows[rad].Cells["clmUppdateringsfrekvens"].Value = uppdateringsFrekvensString;
+                dgvPod.Rows[rad].Cells["clmAvsnitt"].Value = podcast.AvsnittLista.Count;
+                dgvPod.Rows[rad].Tag = podcast;
+            }
+        }
+
         private void btnLaggTillKat_Click(object sender, EventArgs e)
         {
             try
@@ -166,7 +182,7 @@ namespace PodcastProjekt
 
             else
             {
-                MessageBox.Show("Du måste välja en kategori för att ändra namnet på den!");
+                MessageBox.Show("Du måste välja en kategori och sen ange ett nytt namn i textrutan!");
             }
         }
 
@@ -202,17 +218,13 @@ namespace PodcastProjekt
 
             try
             {
-                if (tbUrl.Text.Trim().Equals(string.Empty))
-                {
-                    throw new TextFaltArTomException();
-                }
+                Validering.isEmptyTextBox(tbUrl);
                 string hamtadUrl = tbUrl.Text.Trim();
                 Uri hamtadUri = new Uri(hamtadUrl);
                 var valdKategori = (Kategori)cmbKat.SelectedItem;
-
                 string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
                 int uppdateringsFrekvens = konverteraUppdateringsTextTillVarde(valdUppdatering);
-
+                
                 podcastHanterare.LaggTillStream(hamtadUri, valdKategori, uppdateringsFrekvens);
                 tbUrl.Clear();
 
@@ -223,7 +235,7 @@ namespace PodcastProjekt
                 string felmeddelande = "";
                 if (ex is ValideringsException)
                 {
-                    felmeddelande = ex.Message;
+                    felmeddelande = "Du måste välja en uppdateringsfrekvens från komboboxen";
                 }
                 if (ex is TextFaltArTomException)
                 {
@@ -241,16 +253,15 @@ namespace PodcastProjekt
                     felmeddelande = "XML Datan kunde inte läsas! Vänligen ange en giltig XML URL!";
                     tbUrl.Focus();
                 }
-                if (ex is ArgumentException)
+                if (ex is NullReferenceException)
                 {
-                    felmeddelande = "Du måste välja en kategori från komboboxen till den nya podcasten!";
+                    felmeddelande = "Välj ett uppdateringsintervall till den nya podcasten!";
 
                 }
-                else
-                {
-                    felmeddelande = ex.Message + "   " + ex.GetType();
+                if (ex is KategoriNullException) {
+                    felmeddelande = "Välj en kategori till den nya podcasten!";
                 }
-
+                
                 MessageBox.Show(felmeddelande, "Fel uppstod!");
             }
 
@@ -288,6 +299,9 @@ namespace PodcastProjekt
             int uppdateringsfrekvens = 0;
             switch (valdText)
             {
+                case "":
+                    uppdateringsfrekvens = 0;
+                    break;
                 case "1 min":
                     uppdateringsfrekvens = 60000;
                     break;
@@ -406,19 +420,24 @@ namespace PodcastProjekt
 
         private void btnTaBortPod_Click(object sender, EventArgs e)
         {
-            var podcast = dgvPod;
-            if (podcast.SelectedRows.Count < 1)
-            {
-                return;
-            }
-            if (podcast.SelectedRows[0] == null)
-            {
-                return;
-            }
-            int radIndex = podcast.SelectedRows[0].Index;
+            
+                var podcast = dgvPod;
+                if (podcast.SelectedRows.Count < 1)
+                {
+                    
+                    return;
+                }
+                if (podcast.SelectedRows[0] == null)
+                {
+                    
+                    return;
+                }
+                int radIndex = podcast.SelectedRows[0].Index;
 
-            Podcast valdPodcast = (Podcast)podcast.Rows[radIndex].Tag;
-            podcastHanterare.taBortPodcast(valdPodcast);
+                Podcast valdPodcast = (Podcast)podcast.Rows[radIndex].Tag;
+                podcastHanterare.taBortPodcast(valdPodcast);
+            
+            
 
             uppdateraPodcast();
             lbAvsnitt.Items.Clear();
@@ -428,16 +447,25 @@ namespace PodcastProjekt
         {
             try
             {
-                int radIndex = dgvPod.CurrentRow.Index;
+                int valdRadIndex = dgvPod.SelectedCells[0].RowIndex;
+                DataGridViewRow selectedRow = dgvPod.Rows[valdRadIndex];
+                string podnamn = Convert.ToString(selectedRow.Cells["clmNamn"].Value);
+                Podcast nyPodcast = new Podcast();
+                List<Podcast> podcastList = PodcastHanterare.HamtaPodcasts();
+                
+
+                int index = podcastList.FindIndex(a => a.Titel == podnamn);
+
                 Uri nyURI = new Uri(tbUrl.Text.Trim());
                 Kategori nyKategori = (Kategori)cmbKat.SelectedItem;
                 string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
                 int nyUppdategingsfrekvens = konverteraUppdateringsTextTillVarde(valdUppdatering);
+                var rh = podcastHanterare.getRssHamtare();
+                var podcastNy = rh.HamtaPodcast(nyURI);
+                podcastList[index] = podcastNy;
+                podcastList[index].PodcastKategori = nyKategori;
+                podcastList[index].UppdateringsFrekvens = nyUppdategingsfrekvens;
 
-                Podcast valdPodcast = (Podcast)dgvPod.CurrentRow.DataBoundItem;
-                valdPodcast.Uri = nyURI;
-                valdPodcast.PodcastKategori = nyKategori;
-                valdPodcast.UppdateringsFrekvens = nyUppdategingsfrekvens;
             }
 
             catch (Exception ex)
@@ -476,6 +504,25 @@ namespace PodcastProjekt
                 MessageBox.Show(felmeddelande, "Fel uppstod!");
             }
 
+            uppdateraPodcast();
+        }
+
+        private void btnVisaPodcastsPerKategori_Click(object sender, EventArgs e)
+        {
+            try {
+                Kategori valdKategori = (Kategori)cmbKat.SelectedItem;
+                Validering.valideraKategoriAngivet(valdKategori);
+                uppdateraPodcastPerKategori(valdKategori);
+            }
+
+            catch (NullReferenceException) {
+                MessageBox.Show("Du måste välja en kategori från listan bredvid!");
+            }
+
+        }
+
+        private void btnVisaAllaPodcasts_Click(object sender, EventArgs e)
+        {
             uppdateraPodcast();
         }
     }

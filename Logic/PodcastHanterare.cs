@@ -41,7 +41,10 @@ namespace PodcastProjekt.Logic
         {
             if (kategori == null)
             {
-                throw new ArgumentException();
+                throw new KategoriNullException();
+            }
+            else if (uppdateringsFrekvens==0) { 
+                throw new ValideringsException();
             }
             try
             {
