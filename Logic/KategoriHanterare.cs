@@ -71,11 +71,6 @@ namespace PodcastProjekt.Models
 
         public static List<Kategori> getKategoriLista()
         {
-
-            var Query = from kategori in kategoriLista
-                        orderby kategori.KategoriNamn ascending
-                        select kategori;
-
             List<Kategori> sorteradKategoriLista = new List<Kategori>();
             foreach (Kategori k in kategoriLista)
             {

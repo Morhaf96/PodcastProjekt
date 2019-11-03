@@ -429,8 +429,8 @@ namespace PodcastProjekt
                 var podcast = dgvPod;
                 if (podcast.SelectedRows.Count < 1)
                 {
-                    
-                    return;
+                MessageBox.Show("Du måste starta en podcast från podcast-rutan för att kunna ta bort den!");
+                return;
                 }
                 if (podcast.SelectedRows[0] == null)
                 {
@@ -521,7 +521,7 @@ namespace PodcastProjekt
             }
 
             catch (NullReferenceException) {
-                MessageBox.Show("Du måste välja en kategori från listan bredvid!");
+                MessageBox.Show("Du måste välja en kategori från kategorilistan bredvid!");
             }
 
         }
