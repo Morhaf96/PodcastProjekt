@@ -20,14 +20,14 @@ namespace PodcastProjekt.Logic
 
         public void LaggTillPodcast(Podcast podcast)
         {
-            try
-            {
-                Validering.valideraPodcast(podcast);
-            }
-            catch (ValideringsException ex)
-            {
-                throw ex;
-            }
+            //try
+            //{
+            //    Validering.valideraPodcast(podcast);
+            //}
+            //catch (ValideringsException ex)
+            //{
+            //    throw ex;
+            //}
 
             podcast.startaTimer();
             podcast.TimerTick += vidUppdateradPodcast;
