@@ -77,7 +77,7 @@ namespace PodcastProjekt.Models
                         select kategori;
 
             List<Kategori> sorteradKategoriLista = new List<Kategori>();
-            foreach (Kategori k in Query)
+            foreach (Kategori k in kategoriLista)
             {
                 sorteradKategoriLista.Add(k);
             }
