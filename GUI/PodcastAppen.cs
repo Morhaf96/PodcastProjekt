@@ -468,70 +468,7 @@ namespace PodcastProjekt
             lbAvsnitt.Items.Clear();
         }
 
-        private void btnSparaPodcast_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                int valdRadIndex = dgvPod.SelectedCells[0].RowIndex;
-                DataGridViewRow selectedRow = dgvPod.Rows[valdRadIndex];
-                string podnamn = Convert.ToString(selectedRow.Cells["clmNamn"].Value);
-                Podcast nyPodcast = new Podcast();
-                List<Podcast> podcastList = PodcastHanterare.HamtaPodcasts();
-
-
-                int index = podcastList.FindIndex(a => a.Titel == podnamn);
-
-                Uri nyURI = new Uri(tbUrl.Text.Trim());
-                Kategori nyKategori = (Kategori)cmbKat.SelectedItem;
-                string valdUppdatering = cmbUppdatering.SelectedItem.ToString();
-                int nyUppdategingsfrekvens = konverteraUppdateringsTextTillVarde(valdUppdatering);
-                var rh = podcastHanterare.getRssHamtare();
-                var podcastNy = rh.HamtaPodcast(nyURI);
-                podcastList[index] = podcastNy;
-                podcastList[index].PodcastKategori = nyKategori;
-                podcastList[index].UppdateringsFrekvens = nyUppdategingsfrekvens;
-
-            }
-
-            catch (Exception ex)
-            {
-                string felmeddelande = "";
-                if (ex is ValideringsException)
-                {
-                    felmeddelande = ex.Message;
-                }
-                if (ex is TextFaltArTomException)
-                {
-                    felmeddelande = "URL fältet får inte vara tomt!";
-                    tbUrl.Focus();
-                }
-                if (ex is UriFormatException)
-                {
-                    felmeddelande = "Vänligen ange en giltig URL!";
-                    tbUrl.Text = "";
-                    tbUrl.Focus();
-                }
-                if (ex is XmlException)
-                {
-                    felmeddelande = "XML Datan kunde inte läsas! Vänligen ange en giltig XML URL!";
-                    tbUrl.Focus();
-                }
-                if (ex is ArgumentException)
-                {
-                    felmeddelande = "Du måste välja en kategori från komboboxen till den nya podcasten!";
-
-                }
-                else
-                {
-                    felmeddelande = ex.Message + "   " + ex.GetType();
-                }
-
-                MessageBox.Show(felmeddelande, "Fel uppstod!");
-            }
-
-            uppdateraPodcast();
-        }
-
+       
         private void btnVisaPodcastsPerKategori_Click(object sender, EventArgs e)
         {
             try
