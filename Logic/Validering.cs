@@ -18,7 +18,6 @@ namespace PodcastProjekt.Logic
             if (enTextBox.Text.Trim().Equals(string.Empty))
             {
                 throw new TextFaltArTomException();
-                enTextBox.Focus();
             }
 
         }

@@ -96,7 +96,7 @@ namespace PodcastProjekt.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine("XML kunde inte läsa/int.Parse:a uppdateringsfrekvensen");
+                Console.WriteLine("XML kunde inte läsa/int.Parse:a uppdateringsfrekvensen " + ex.Message);
             }
             xmlLasare.Skip();
         }

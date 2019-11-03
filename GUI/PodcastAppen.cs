@@ -4,7 +4,6 @@ using PodcastProjekt.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -209,12 +208,12 @@ namespace PodcastProjekt
                 Kategori kategori = (Kategori)lvKat.Items[i].Tag;
                 KategoriHanterare.taBortKategori(kategori);
             }
-            catch (ArgumentOutOfRangeException ex)
+            catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Ingen kategori är vald för att ta bort!");
             }
 
-            catch (KategoriUpptagenException ex)
+            catch (KategoriUpptagenException)
             {
                 MessageBox.Show("Kategorin är knuten till en eller flera podcasts och kan därför inte tas bort!");
 
@@ -468,7 +467,7 @@ namespace PodcastProjekt
             lbAvsnitt.Items.Clear();
         }
 
-       
+
         private void btnVisaPodcastsPerKategori_Click(object sender, EventArgs e)
         {
             try
