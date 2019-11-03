@@ -9,20 +9,30 @@ using System.Xml;
 
 namespace PodcastProjekt.Data
 {
-    public class RSSHamtare: IFetchable<Avsnitt>
+    public class RSSHamtare : IFetchable<Avsnitt>
     {
 
-        public RSSHamtare() { 
-        
+        public RSSHamtare()
+        {
+
         }
 
 
-        public Podcast HamtaPodcast(Uri hamtaUrl) {
-            XmlReader xmlLasare = XmlReader.Create(hamtaUrl.ToString());
-            SyndicationFeed feed = SyndicationFeed.Load(xmlLasare);
-            xmlLasare.Close();
+        public Podcast HamtaPodcast(Uri hamtaUrl)
+        {
+            Podcast podcast = new Podcast();
+            try
+            {
+                XmlReader xmlLasare = XmlReader.Create(hamtaUrl.ToString());
+                SyndicationFeed feed = SyndicationFeed.Load(xmlLasare);
+                xmlLasare.Close();
+                return PodcastFranSyndicationFeed(feed);
+            }
+            catch (NullReferenceException)
+            {
+                return podcast;
+            }
 
-            return PodcastFranSyndicationFeed(feed);
         }
 
         private Podcast PodcastFranSyndicationFeed(SyndicationFeed feed)
@@ -45,7 +55,8 @@ namespace PodcastProjekt.Data
             return output;
         }
 
-        private Avsnitt AvsnittFranSyndicationFeedAvsnitt(SyndicationItem syndicationItem){
+        private Avsnitt AvsnittFranSyndicationFeedAvsnitt(SyndicationItem syndicationItem)
+        {
             Avsnitt output = new Avsnitt();
             output.Titel = syndicationItem.Title.Text;
             output.Beskrivning = syndicationItem.Summary.Text;
@@ -53,8 +64,8 @@ namespace PodcastProjekt.Data
             return output;
         }
 
-        
-        
+
+
 
     }
 }

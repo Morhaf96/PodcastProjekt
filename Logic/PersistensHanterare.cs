@@ -27,12 +27,12 @@ namespace PodcastProjekt.Logic
             XmlLasare lasare = new XmlLasare(Url);
             try
             {
-                 xmlString = lasare.las();
+                xmlString = lasare.las();
             }
             catch (FileNotFoundException ex)
             {
                 MessageBox.Show("Kunde inte läsa in sparade Podcasts. Sparfilen saknas!");
-                Console.WriteLine(ex.Message+"\n \n" + ex.GetType());
+                Console.WriteLine(ex.Message + "\n \n" + ex.GetType());
             }
 
             var data = new PersistentFil().Deserialize(xmlString);

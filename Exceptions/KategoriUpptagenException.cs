@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Exceptions
 {
-    class KategoriUpptagenException : Exception 
+    class KategoriUpptagenException : Exception
     {
         public KategoriUpptagenException() : base() { }
         public KategoriUpptagenException(string message) : base(message) { }

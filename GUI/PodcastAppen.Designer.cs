@@ -131,9 +131,10 @@
             // 
             // lvKat
             // 
+            this.lvKat.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lvKat.HideSelection = false;
-            this.lvKat.LabelEdit = true;
             this.lvKat.Location = new System.Drawing.Point(552, 31);
+            this.lvKat.MultiSelect = false;
             this.lvKat.Name = "lvKat";
             this.lvKat.Size = new System.Drawing.Size(325, 148);
             this.lvKat.TabIndex = 5;

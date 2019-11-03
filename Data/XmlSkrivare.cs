@@ -19,7 +19,8 @@ namespace PodcastProjekt.Data
         }
 
 
-        public void SkrivXml() { 
+        public void SkrivXml()
+        {
             var fs = new FileStream(sokvag, FileMode.Create, FileAccess.Write);
             var sw = new StreamWriter(fs);
             sw.Write(xml);

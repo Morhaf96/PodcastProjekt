@@ -56,11 +56,11 @@
     <Compile Include="Exceptions\KategoriUpptagenException.cs" />
     <Compile Include="Exceptions\TextFaltArTomException.cs" />
     <Compile Include="Exceptions\ValideringsException.cs" />
-    <Compile Include="GUI\Form1.cs">
+    <Compile Include="GUI\PodcastAppen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUI\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GUI\PodcastAppen.Designer.cs">
+      <DependentUpon>PodcastAppen.cs</DependentUpon>
     </Compile>
     <Compile Include="Logic\PodcastHanterare.cs" />
     <Compile Include="Logic\PersistensHanterare.cs" />
@@ -72,8 +72,8 @@
     <Compile Include="Models\PersistentFil.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="GUI\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\PodcastAppen.resx">
+      <DependentUpon>PodcastAppen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -118,7 +118,7 @@ namespace PodcastProjekt.Models
                 Console.WriteLine("BytNamn metoden i kategorihanterare " + ex.Message);
             }
 
-            
+
 
         }
 

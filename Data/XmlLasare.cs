@@ -11,19 +11,23 @@ namespace PodcastProjekt.Data
     {
         public string sokvag;
 
-        public XmlLasare(string sokvag) {
+        public XmlLasare(string sokvag)
+        {
             this.sokvag = sokvag;
         }
 
-        public string las() {
+        public string las()
+        {
 
             FileStream fs;
-            try{
-                fs = new FileStream(sokvag, FileMode.Open,FileAccess.Read);
+            try
+            {
+                fs = new FileStream(sokvag, FileMode.Open, FileAccess.Read);
             }
 
-            catch(FileNotFoundException ex) {
-                Console.WriteLine(ex.Message +" Från XmlLäsare.Las()");
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(ex.Message + " Från XmlLäsare.Las()");
                 throw ex;
             }
 
@@ -31,7 +35,7 @@ namespace PodcastProjekt.Data
             var xmlString = sr.ReadToEnd();
             sr.Close();
             fs.Close();
-            
+
             return xmlString;
         }
     }

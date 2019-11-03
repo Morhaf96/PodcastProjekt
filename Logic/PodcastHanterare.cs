@@ -43,7 +43,8 @@ namespace PodcastProjekt.Logic
             {
                 throw new KategoriNullException();
             }
-            else if (uppdateringsFrekvens==0) { 
+            else if (uppdateringsFrekvens == 0)
+            {
                 throw new ValideringsException();
             }
             try
@@ -65,7 +66,8 @@ namespace PodcastProjekt.Logic
             Podcasts.Remove(podcast);
         }
 
-        public List<Podcast> GetPodcasts(){
+        public List<Podcast> GetPodcasts()
+        {
             return Podcasts;
         }
 
@@ -86,7 +88,8 @@ namespace PodcastProjekt.Logic
         }
 
 
-        public async static void uppdateraPodcastAvsnitt(Podcast podcast) {
+        public async static void uppdateraPodcastAvsnitt(Podcast podcast)
+        {
             RSSHamtare hamtare = new RSSHamtare();
             Uri podcastUri = podcast.Uri;
             Podcast enPodcast = hamtare.HamtaPodcast(podcastUri);
@@ -97,13 +100,15 @@ namespace PodcastProjekt.Logic
         static void vidUppdateradPodcast(object sender, EventArgs e)
         {
             uppdateraPodcastAvsnitt((Podcast)sender);
-            if (UppdateradePodcast != null) {
+            if (UppdateradePodcast != null)
+            {
                 UppdateradePodcast(typeof(PodcastHanterare), EventArgs.Empty);
             }
 
         }
 
-        public RSSHamtare getRssHamtare() {
+        public RSSHamtare getRssHamtare()
+        {
             return rssHamtare;
         }
 
