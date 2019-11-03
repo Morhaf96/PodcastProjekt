@@ -138,6 +138,7 @@
             this.lvKat.Size = new System.Drawing.Size(325, 148);
             this.lvKat.TabIndex = 5;
             this.lvKat.UseCompatibleStateImageBehavior = false;
+            this.lvKat.View = System.Windows.Forms.View.List;
             // 
             // lblKategori
             // 
@@ -258,7 +259,7 @@
             // 
             this.lblBeskrivning.AutoSize = true;
             this.lblBeskrivning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeskrivning.Location = new System.Drawing.Point(523, 273);
+            this.lblBeskrivning.Location = new System.Drawing.Point(513, 271);
             this.lblBeskrivning.Name = "lblBeskrivning";
             this.lblBeskrivning.Size = new System.Drawing.Size(93, 16);
             this.lblBeskrivning.TabIndex = 19;
@@ -310,7 +311,7 @@
             // 
             this.lblAvsnittTitel.AutoSize = true;
             this.lblAvsnittTitel.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvsnittTitel.Location = new System.Drawing.Point(625, 268);
+            this.lblAvsnittTitel.Location = new System.Drawing.Point(612, 268);
             this.lblAvsnittTitel.Name = "lblAvsnittTitel";
             this.lblAvsnittTitel.Size = new System.Drawing.Size(0, 19);
             this.lblAvsnittTitel.TabIndex = 24;
