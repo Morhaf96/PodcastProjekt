@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\IFetchable.cs" />
+    <Compile Include="Data\JsonLasare.cs" />
+    <Compile Include="Data\JsonSkrivare.cs" />
     <Compile Include="Data\RSSHamtare.cs" />
     <Compile Include="Data\XmlLasare.cs" />
     <Compile Include="Data\XmlSkrivare.cs" />
