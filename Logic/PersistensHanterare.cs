@@ -10,14 +10,15 @@ using System.Windows.Forms;
 
 namespace PodcastProjekt.Logic
 {
-    class PersistensHanterare
+    public class PersistensHanterare
     {
         private string filnamn = "PodcastSparadData.xml";
         public string Url;
+        public static string befentligSokvag;
 
         public PersistensHanterare()
         {
-            string befentligSokvag = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+            befentligSokvag = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
             Url = Path.Combine(befentligSokvag, filnamn);
         }
 
