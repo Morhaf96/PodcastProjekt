@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PodcastProjekt.Logic;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace PodcastProjekt.Data
 
         public void SkrivXml() 
         {
-            var fs = new FileStream(sokvag, FileMode.Create, FileAccess.Write);
+            var fs = new FileStream(PersistensHanterare.befentligSokvag, FileMode.Create, FileAccess.Write);
             var sw = new StreamWriter(fs);
             sw.Write(xml);
             sw.Close();
