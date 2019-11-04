@@ -1,4 +1,5 @@
-﻿using PodcastProjekt.Exceptions;
+﻿using PodcastProjekt.Data;
+using PodcastProjekt.Exceptions;
 using PodcastProjekt.Logic;
 using System;
 using System.Collections;
@@ -43,6 +44,7 @@ namespace PodcastProjekt.Models
             {
                 Validering.valideraKategoriFinns(kategoriLista, kategoriNamn);
                 laggTillKategori(kategori);
+                
             }
             catch (ValideringsException ex)
             {
@@ -53,6 +55,7 @@ namespace PodcastProjekt.Models
             {
                 throw ex;
             }
+            SparaTillPersistentFil(kategoriLista);
         }
 
         public static Kategori getKategori(string kategoriNamn)
@@ -95,6 +98,7 @@ namespace PodcastProjekt.Models
             }
 
             kategoriLista.Remove(kategori);
+            SparaTillPersistentFil(kategoriLista);
         }
 
         public static void bytNamn(Kategori kategori, string nyttNamn)
@@ -118,10 +122,26 @@ namespace PodcastProjekt.Models
             {
                 Console.WriteLine("BytNamn metoden i kategorihanterare " + ex.Message);
             }
-
+            SparaTillPersistentFil(kategoriLista);
 
 
         }
+        public static void SparaTillPersistentFil(List<Kategori> kategorier)
+        {
+            string filnamn = "KategoriLokalData.json";
+            var jsonSkrivare = new JsonSkrivare(filnamn);
+            jsonSkrivare.sparaKategorier(kategorier);
+        }
+
+        public void LaddaFranPersistentFil()
+        {
+            string filnamn = "KategoriLokalData.json";
+            var jsonLasare = new JsonLasare(filnamn);
+            var kategorilista = jsonLasare.lasKategoriLista();
+            kategoriLista.AddRange(kategorilista);
+        }
+
+        
 
 
     }

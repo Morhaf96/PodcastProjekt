@@ -23,6 +23,7 @@ namespace PodcastProjekt.Logic
             podcast.startaTimer();
             podcast.TimerTick += vidUppdateradPodcast;
             Podcasts.Add(podcast);
+            SparaTillPersistentFil(Podcasts);
 
         }
 
@@ -56,6 +57,7 @@ namespace PodcastProjekt.Logic
         public void taBortPodcast(Podcast podcast)
         {
             Podcasts.Remove(podcast);
+            SparaTillPersistentFil(Podcasts);
         }
 
         public List<Podcast> GetPodcasts()
@@ -86,7 +88,7 @@ namespace PodcastProjekt.Logic
             Uri podcastUri = podcast.Uri;
             Podcast enPodcast = hamtare.HamtaPodcast(podcastUri);
             await Task.Run(() => { podcast.AvsnittLista = enPodcast.AvsnittLista; });
-
+            SparaTillPersistentFil(Podcasts);
         }
 
         static void vidUppdateradPodcast(object sender, EventArgs e)
@@ -102,6 +104,23 @@ namespace PodcastProjekt.Logic
         public RSSHamtare getRssHamtare()
         {
             return rssHamtare;
+        }
+        public static void SparaTillPersistentFil(List<Podcast> poddar)
+        {
+            string filnamn = "PodcastLokalData.json";
+            var jsonSkrivare = new JsonSkrivare(filnamn);
+            jsonSkrivare.sparaPodcasts(poddar);
+        }
+
+        public void LaddaFranPersistentFil()
+        {
+            string filnamn = "PodcastLokalData.json";
+            var jsonLasare = new JsonLasare(filnamn);
+            var podcastLista = jsonLasare.lasPodcastLista();
+            foreach(var podcast in podcastLista)
+            {
+                Podcasts.Add(podcast);
+            }
         }
 
     }

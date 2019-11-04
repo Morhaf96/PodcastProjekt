@@ -43,6 +43,12 @@ namespace PodcastProjekt
 
         private void lasInPersistens()
         {
+            KategoriHanterare kh = new KategoriHanterare();
+            kh.LaddaFranPersistentFil();
+
+            PodcastHanterare podcastHanterare = new PodcastHanterare();
+            podcastHanterare.LaddaFranPersistentFil();
+
             PersistensHanterare pHanterare = new PersistensHanterare();
             PersistentFil fil = pHanterare.Las();
 
@@ -59,9 +65,10 @@ namespace PodcastProjekt
 
             uppdateraKategori();
             uppdateraPodcast();
+            
 
         }
-
+        
         private void uppdateraKategori()
         {
             cmbKat.Items.Clear();
