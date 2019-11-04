@@ -445,26 +445,28 @@ namespace PodcastProjekt
         private void btnTaBortPod_Click(object sender, EventArgs e)
         {
 
-            var podcast = dgvPod;
-            if (podcast.SelectedRows.Count < 1)
+            
+            if (dgvPod.SelectedRows.Count < 1)
             {
                 MessageBox.Show("Du måste starta en podcast från podcast-rutan för att kunna ta bort den!");
                 return;
             }
-            if (podcast.SelectedRows[0] == null)
+            if (dgvPod.SelectedRows[0] == null)
             {
 
                 return;
             }
-            int radIndex = podcast.SelectedRows[0].Index;
+            int radIndex = dgvPod.SelectedRows[0].Index;
 
-            Podcast valdPodcast = (Podcast)podcast.Rows[radIndex].Tag;
+            Podcast valdPodcast = (Podcast)dgvPod.Rows[radIndex].Tag;
             podcastHanterare.taBortPodcast(valdPodcast);
 
 
 
             uppdateraPodcast();
             lbAvsnitt.Items.Clear();
+            wbBeskrivning.Navigate("about:blank");
+            lblAvsnittTitel.Text = "";
         }
 
 
@@ -494,6 +496,43 @@ namespace PodcastProjekt
             var row = dgvPod.Rows[e.RowIndex];
 
             Podcast valdPodcast = (Podcast)row.Tag;
+        }
+
+        private void btnAndraUrl_Click(object sender, EventArgs e)
+        {
+            if (dgvPod.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("Du måste starta en podcast från podcast-rutan för att sen kunna ändra dess url");
+                return;
+            }
+            if (dgvPod.SelectedRows[0] == null)
+            {
+
+                return;
+            }
+            int radIndex = dgvPod.SelectedRows[0].Index;
+            Podcast valdPodcast = (Podcast)dgvPod.Rows[radIndex].Tag;
+
+            var rh = podcastHanterare.getRssHamtare();
+
+            try { Validering.isEmptyTextBox(tbUrl); 
+           
+            string hamtadUrl = tbUrl.Text.Trim();
+            Uri hamtadUri = new Uri(hamtadUrl);
+            Podcast nyPodcast = rh.HamtaPodcast(hamtadUri);
+
+
+
+            valdPodcast.Titel = nyPodcast.Titel;
+            valdPodcast.AvsnittLista = nyPodcast.AvsnittLista;
+            valdPodcast.Uri = nyPodcast.Uri;
+            valdPodcast = nyPodcast;
+            }
+            catch (TextFaltArTomException) { MessageBox.Show("Du måste skriva in en ny Url i urlfältet"); }
+            uppdateraPodcast();
+            lbAvsnitt.Items.Clear();
+            wbBeskrivning.Navigate("about:blank");
+            lblAvsnittTitel.Text = "";
         }
     }
 }

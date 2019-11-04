@@ -57,6 +57,7 @@
             this.lblAvsnittTitel = new System.Windows.Forms.Label();
             this.btnVisaPodcastsPerKategori = new System.Windows.Forms.Button();
             this.btnVisaAllaPodcasts = new System.Windows.Forms.Button();
+            this.btnAndraUrl = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPod)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +67,7 @@
             this.cmbKat.FormattingEnabled = true;
             this.cmbKat.Location = new System.Drawing.Point(86, 219);
             this.cmbKat.Name = "cmbKat";
-            this.cmbKat.Size = new System.Drawing.Size(246, 21);
+            this.cmbKat.Size = new System.Drawing.Size(213, 21);
             this.cmbKat.TabIndex = 0;
             // 
             // dgvPod
@@ -122,6 +123,7 @@
             // 
             // lbAvsnitt
             // 
+            this.lbAvsnitt.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.lbAvsnitt.FormattingEnabled = true;
             this.lbAvsnitt.Location = new System.Drawing.Point(12, 294);
             this.lbAvsnitt.Name = "lbAvsnitt";
@@ -155,7 +157,7 @@
             // 
             this.tbUrl.Location = new System.Drawing.Point(56, 185);
             this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(276, 20);
+            this.tbUrl.Size = new System.Drawing.Size(243, 20);
             this.tbUrl.TabIndex = 8;
             // 
             // lblUrl
@@ -170,9 +172,9 @@
             // 
             // btnLaggTillPod
             // 
-            this.btnLaggTillPod.Location = new System.Drawing.Point(338, 185);
+            this.btnLaggTillPod.Location = new System.Drawing.Point(305, 180);
             this.btnLaggTillPod.Name = "btnLaggTillPod";
-            this.btnLaggTillPod.Size = new System.Drawing.Size(140, 23);
+            this.btnLaggTillPod.Size = new System.Drawing.Size(96, 32);
             this.btnLaggTillPod.TabIndex = 10;
             this.btnLaggTillPod.Text = "Lägg till podcast";
             this.btnLaggTillPod.UseVisualStyleBackColor = true;
@@ -180,9 +182,9 @@
             // 
             // btnTaBortPod
             // 
-            this.btnTaBortPod.Location = new System.Drawing.Point(338, 250);
+            this.btnTaBortPod.Location = new System.Drawing.Point(305, 245);
             this.btnTaBortPod.Name = "btnTaBortPod";
-            this.btnTaBortPod.Size = new System.Drawing.Size(140, 26);
+            this.btnTaBortPod.Size = new System.Drawing.Size(173, 22);
             this.btnTaBortPod.TabIndex = 11;
             this.btnTaBortPod.Text = "Ta bort markerad podcast";
             this.btnTaBortPod.UseVisualStyleBackColor = true;
@@ -297,7 +299,7 @@
             "10 min"});
             this.cmbUppdatering.Location = new System.Drawing.Point(160, 245);
             this.cmbUppdatering.Name = "cmbUppdatering";
-            this.cmbUppdatering.Size = new System.Drawing.Size(172, 21);
+            this.cmbUppdatering.Size = new System.Drawing.Size(139, 21);
             this.cmbUppdatering.TabIndex = 22;
             // 
             // wbBeskrivning
@@ -319,11 +321,11 @@
             // 
             // btnVisaPodcastsPerKategori
             // 
-            this.btnVisaPodcastsPerKategori.Location = new System.Drawing.Point(339, 213);
+            this.btnVisaPodcastsPerKategori.Location = new System.Drawing.Point(305, 216);
             this.btnVisaPodcastsPerKategori.Name = "btnVisaPodcastsPerKategori";
-            this.btnVisaPodcastsPerKategori.Size = new System.Drawing.Size(139, 36);
+            this.btnVisaPodcastsPerKategori.Size = new System.Drawing.Size(173, 24);
             this.btnVisaPodcastsPerKategori.TabIndex = 25;
-            this.btnVisaPodcastsPerKategori.Text = "Visa podcasts på den valda kategorin";
+            this.btnVisaPodcastsPerKategori.Text = "Visa podcasts på vald kategori";
             this.btnVisaPodcastsPerKategori.UseVisualStyleBackColor = true;
             this.btnVisaPodcastsPerKategori.Click += new System.EventHandler(this.btnVisaPodcastsPerKategori_Click);
             // 
@@ -337,6 +339,16 @@
             this.btnVisaAllaPodcasts.UseVisualStyleBackColor = true;
             this.btnVisaAllaPodcasts.Click += new System.EventHandler(this.btnVisaAllaPodcasts_Click);
             // 
+            // btnAndraUrl
+            // 
+            this.btnAndraUrl.Location = new System.Drawing.Point(403, 180);
+            this.btnAndraUrl.Name = "btnAndraUrl";
+            this.btnAndraUrl.Size = new System.Drawing.Size(75, 32);
+            this.btnAndraUrl.TabIndex = 27;
+            this.btnAndraUrl.Text = "Ändra Url";
+            this.btnAndraUrl.UseVisualStyleBackColor = true;
+            this.btnAndraUrl.Click += new System.EventHandler(this.btnAndraUrl_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -344,6 +356,7 @@
             this.AutoScroll = true;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(911, 513);
+            this.Controls.Add(this.btnAndraUrl);
             this.Controls.Add(this.btnVisaAllaPodcasts);
             this.Controls.Add(this.btnVisaPodcastsPerKategori);
             this.Controls.Add(this.lblAvsnittTitel);
@@ -407,6 +420,7 @@
         private System.Windows.Forms.DataGridViewComboBoxColumn clmKategori;
         private System.Windows.Forms.Button btnVisaPodcastsPerKategori;
         private System.Windows.Forms.Button btnVisaAllaPodcasts;
+        private System.Windows.Forms.Button btnAndraUrl;
     }
 }
 
