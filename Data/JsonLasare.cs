@@ -13,7 +13,7 @@ namespace PodcastProjekt.Data
     {
         private readonly JsonSerializer jsonSerializer;
         private readonly string filnamn;
-        
+
         public JsonLasare(string filnamn)
         {
             this.filnamn = filnamn;

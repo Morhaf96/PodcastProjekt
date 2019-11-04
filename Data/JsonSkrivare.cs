@@ -13,7 +13,7 @@ namespace PodcastProjekt.Data
     {
         private readonly JsonSerializer jsonSerializer;
         private readonly string filnamn;
-       
+
         public JsonSkrivare(string filnamn)
         {
             jsonSerializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.All };
