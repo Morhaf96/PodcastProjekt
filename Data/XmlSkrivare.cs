@@ -12,10 +12,10 @@ namespace PodcastProjekt.Data
         public string sokvag;
         public string xml;
 
-        public XmlSkrivare(string sokvag, string xml)
+        public XmlSkrivare(string enSokvag, string xmlString)
         {
-            this.sokvag = sokvag;
-            this.xml = xml;
+            sokvag = enSokvag;
+            xml = xmlString;
         }
 
 

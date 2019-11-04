@@ -11,9 +11,9 @@ namespace PodcastProjekt.Data
     {
         public string sokvag;
 
-        public XmlLasare(string sokvag)
+        public XmlLasare(string enSokvag)
         {
-            this.sokvag = sokvag;
+           sokvag = enSokvag;
         }
 
         public string las()
@@ -32,7 +32,7 @@ namespace PodcastProjekt.Data
             }
 
             StreamReader sr = new StreamReader(fs);
-            var xmlString = sr.ReadToEnd();
+            string xmlString = sr.ReadToEnd();
             sr.Close();
             fs.Close();
 
