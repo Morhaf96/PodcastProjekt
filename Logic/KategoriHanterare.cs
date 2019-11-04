@@ -77,6 +77,7 @@ namespace PodcastProjekt.Models
                 sorteradKategoriLista.Add(k);
             }
             return sorteradKategoriLista;
+            //
         }
 
         public static void taBortKategori(Kategori kategori)
