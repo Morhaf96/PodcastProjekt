@@ -536,8 +536,9 @@ namespace PodcastProjekt
 
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            var persistensHanterare = new PersistensHanterare();
-            persistensHanterare.Skriv(new PersistentFil(PodcastHanterare.HamtaPodcasts(), KategoriHanterare.getKategoriLista()));
+        //    var persistensHanterare = new PersistensHanterare();
+        //    persistensHanterare.Skriv(new PersistentFil(PodcastHanterare.HamtaPodcasts(), KategoriHanterare.getKategoriLista()));
+        //
         }
     }
 }
