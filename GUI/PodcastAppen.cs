@@ -123,7 +123,7 @@ namespace PodcastProjekt
             {
                 int rad = dgvPod.Rows.Add();
                 dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.Titel;
-                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori.KategoriNamn;
+                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori;
                 string uppdateringsFrekvensString = konverteraUppdateringsVardeTillText(podcast.UppdateringsFrekvens);
                 dgvPod.Rows[rad].Cells["clmUppdateringsfrekvens"].Value = uppdateringsFrekvensString;
                 dgvPod.Rows[rad].Cells["clmAvsnitt"].Value = podcast.AvsnittLista.Count;
@@ -394,7 +394,8 @@ namespace PodcastProjekt
 
         private void dgvPod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPod.Rows.Count < 0)
+            var dgvpodcast = dgvPod;
+            if (dgvpodcast.Rows.Count < 0)
             {
                 return;
             }
@@ -402,7 +403,7 @@ namespace PodcastProjekt
             {
                 return;
             }
-            var rad = dgvPod.Rows[e.RowIndex];
+            var rad = dgvpodcast.Rows[e.RowIndex];
             if (rad.Tag == null)
             {
                 return;
