@@ -123,7 +123,7 @@ namespace PodcastProjekt
             {
                 int rad = dgvPod.Rows.Add();
                 dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.Titel;
-                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori;
+                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori.KategoriNamn;
                 string uppdateringsFrekvensString = konverteraUppdateringsVardeTillText(podcast.UppdateringsFrekvens);
                 dgvPod.Rows[rad].Cells["clmUppdateringsfrekvens"].Value = uppdateringsFrekvensString;
                 dgvPod.Rows[rad].Cells["clmAvsnitt"].Value = podcast.AvsnittLista.Count;
@@ -394,8 +394,7 @@ namespace PodcastProjekt
 
         private void dgvPod_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            var dgvpodcast = dgvPod;
-            if (dgvpodcast.Rows.Count < 0)
+            if (dgvPod.Rows.Count < 0)
             {
                 return;
             }
@@ -403,7 +402,7 @@ namespace PodcastProjekt
             {
                 return;
             }
-            var rad = dgvpodcast.Rows[e.RowIndex];
+            var rad = dgvPod.Rows[e.RowIndex];
             if (rad.Tag == null)
             {
                 return;
@@ -517,7 +516,6 @@ namespace PodcastProjekt
             var rh = podcastHanterare.getRssHamtare();
 
             try { Validering.isEmptyTextBox(tbUrl); 
-           
             string hamtadUrl = tbUrl.Text.Trim();
             Uri hamtadUri = new Uri(hamtadUrl);
             Podcast nyPodcast = rh.HamtaPodcast(hamtadUri);
@@ -534,12 +532,6 @@ namespace PodcastProjekt
             lbAvsnitt.Items.Clear();
             wbBeskrivning.Navigate("about:blank");
             lblAvsnittTitel.Text = "";
-        }
-
-        private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-            var persistensHanterare = new PersistensHanterare();
-            persistensHanterare.Skriv(new PersistentFil(PodcastHanterare.HamtaPodcasts(), KategoriHanterare.getKategoriLista()));
         }
     }
 }

@@ -41,6 +41,7 @@ namespace PodcastProjekt.Logic
             try
             {
                 Podcast podcast = new RSSHamtare().HamtaPodcast(adress);
+                podcast.Uri = adress;
                 podcast.PodcastKategori = kategori;
                 podcast.UppdateringsFrekvens = uppdateringsFrekvens;
                 LaggTillPodcast(podcast);
