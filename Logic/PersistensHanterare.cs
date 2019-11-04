@@ -32,7 +32,6 @@ namespace PodcastProjekt.Logic
             }
             catch (FileNotFoundException ex)
             {
-                MessageBox.Show("Kunde inte läsa in sparade Podcasts. Sparfilen saknas!");
                 Console.WriteLine(ex.Message + "\n \n" + ex.GetType());
             }
 
