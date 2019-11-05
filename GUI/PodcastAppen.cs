@@ -29,6 +29,8 @@ namespace PodcastProjekt
 
             lasInSparadData();
 
+            PodcastHanterare.SynkaKategori();
+
             PodcastHanterare.UppdateradePodcast += UpdatedFeed;
 
         }
