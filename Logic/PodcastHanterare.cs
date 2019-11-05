@@ -23,7 +23,7 @@ namespace PodcastProjekt.Logic
             podcast.startaTimer();
             podcast.TimerTick += vidUppdateradPodcast;
             Podcasts.Add(podcast);
-            sparaListaTillFil(Podcasts);
+           
 
         }
 
@@ -57,7 +57,6 @@ namespace PodcastProjekt.Logic
         public void taBortPodcast(Podcast podcast)
         {
             Podcasts.Remove(podcast);
-            sparaListaTillFil(Podcasts);
         }
 
         public List<Podcast> GetPodcasts()
@@ -88,7 +87,6 @@ namespace PodcastProjekt.Logic
             Uri podcastUri = podcast.Uri;
             Podcast enPodcast = hamtare.HamtaPodcast(podcastUri);
             await Task.Run(() => { podcast.AvsnittLista = enPodcast.AvsnittLista; });
-            sparaListaTillFil(Podcasts);
         }
 
         static void vidUppdateradPodcast(object sender, EventArgs e)

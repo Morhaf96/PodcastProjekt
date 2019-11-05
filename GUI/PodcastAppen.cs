@@ -17,7 +17,7 @@ namespace PodcastProjekt
     {
         private PodcastHanterare podcastHanterare = new PodcastHanterare();
         private Avsnitt avsnitt;
-        KategoriHanterare katgoriHanterare = new KategoriHanterare();
+        KategoriHanterare kategoriHanterare = new KategoriHanterare();
         private bool harAndrats = false;
 
 
@@ -43,7 +43,7 @@ namespace PodcastProjekt
 
         private void lasInSparadData()
         {
-            katgoriHanterare.lasFranFil();
+            kategoriHanterare.lasFranFil();
             podcastHanterare.lasFranFil();
             uppdateraKategori();
             uppdateraPodcast();
@@ -145,10 +145,7 @@ namespace PodcastProjekt
         }
 
         private void btnSparaKat_Click(object sender, EventArgs e)
-        {
-
-
-            //string gammaltNamn = lvKat.SelectedItems.ToString();
+        { 
             string nyttNamn = tbKategori.Text.ToString().ToUpper();
 
             List<Kategori> kategoriLista = KategoriHanterare.getKategoriLista();
@@ -179,7 +176,6 @@ namespace PodcastProjekt
             }
 
             uppdateraKategori();
-
 
         }
 
@@ -517,6 +513,13 @@ namespace PodcastProjekt
             lblAvsnittTitel.Text = "";
         }
 
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            List<Kategori> katLista = KategoriHanterare.getKategoriLista();
+            List<Podcast> podLista = PodcastHanterare.HamtaPodcasts();
+            KategoriHanterare.sparaListanTillFil(katLista);
+            PodcastHanterare.sparaListaTillFil(podLista);
+        }
     }
 }
 

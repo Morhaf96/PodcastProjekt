@@ -55,7 +55,7 @@ namespace PodcastProjekt.Models
             {
                 throw ex;
             }
-            sparaListanTillFil(kategoriLista);
+           
         }
 
         public static Kategori getKategori(string kategoriNamn)
@@ -98,7 +98,7 @@ namespace PodcastProjekt.Models
             }
 
             kategoriLista.Remove(kategori);
-            sparaListanTillFil(kategoriLista);
+         
         }
 
         public static void bytNamn(Kategori kategori, string nyttNamn)
@@ -122,7 +122,6 @@ namespace PodcastProjekt.Models
             {
                 Console.WriteLine("BytNamn metoden i kategorihanterare " + ex.Message);
             }
-            sparaListanTillFil(kategoriLista);
 
 
         }

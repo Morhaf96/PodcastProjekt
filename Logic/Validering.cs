@@ -22,17 +22,6 @@ namespace PodcastProjekt.Logic
 
         }
 
-        public static void valideraComboBoxVald(ComboBox cmb)
-        {
-
-            if (cmb.SelectedItem == null)
-            {
-                throw new ValideringsException("Du måste välja ett element från listan!");
-            }
-            return;
-
-        }
-
         public static void valideraKategoriAngivet(Kategori kategori)
         {
             if (kategori.KategoriNamn.Trim() == string.Empty)
@@ -57,15 +46,6 @@ namespace PodcastProjekt.Logic
             }
         }
 
-        public static void valideraPodcast(Podcast podcast)
-        {
-
-            if (podcast.Uri.ToString().Trim() == string.Empty)
-            {
-                throw new ValideringsException("Podcast URL får inte vara tom!");
-            }
-            return;
-        }
     }
 
 }
