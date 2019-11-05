@@ -33,6 +33,8 @@ namespace PodcastProjekt
 
             PodcastHanterare.UppdateradePodcast += UpdatedFeed;
 
+            uppdateraPodcast();
+
         }
 
         private void UpdatedFeed(Object sender, EventArgs e)
