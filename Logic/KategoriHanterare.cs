@@ -44,7 +44,7 @@ namespace PodcastProjekt.Models
             {
                 Validering.valideraKategoriFinns(kategoriLista, kategoriNamn);
                 laggTillKategori(kategori);
-                
+
             }
             catch (ValideringsException ex)
             {
@@ -55,7 +55,7 @@ namespace PodcastProjekt.Models
             {
                 throw ex;
             }
-           
+
         }
 
         public static Kategori getKategori(string kategoriNamn)
@@ -80,7 +80,7 @@ namespace PodcastProjekt.Models
                 sorteradKategoriLista.Add(k);
             }
             return sorteradKategoriLista;
-            
+
         }
 
         public static void taBortKategori(Kategori kategori)
@@ -98,7 +98,7 @@ namespace PodcastProjekt.Models
             }
 
             kategoriLista.Remove(kategori);
-         
+
         }
 
         public static void bytNamn(Kategori kategori, string nyttNamn)
@@ -140,7 +140,7 @@ namespace PodcastProjekt.Models
             kategoriLista.AddRange(kategorilista);
         }
 
-        
+
 
 
     }

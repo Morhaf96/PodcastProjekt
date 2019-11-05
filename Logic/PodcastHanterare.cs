@@ -9,14 +9,10 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Logic
 {
-    public class PodcastHanterare 
+    public class PodcastHanterare
     {
         private static List<Podcast> Podcasts = new List<Podcast>();
         private RSSHamtare rssHamtare = new RSSHamtare();
-
-        public PodcastHanterare()
-        {
-        }
 
         public delegate void UppdateradePodcastEventHandler(object sender, EventArgs e);
         public static event UppdateradePodcastEventHandler UppdateradePodcast;
@@ -27,7 +23,7 @@ namespace PodcastProjekt.Logic
             podcast.startaTimer();
             podcast.TimerTick += vidUppdateradPodcast;
             Podcasts.Add(podcast);
-           
+
 
         }
 
@@ -108,7 +104,7 @@ namespace PodcastProjekt.Logic
             foreach (var podcasts in Podcasts)
             {
                 podcasts.PodcastKategori = KategoriHanterare.getKategori(podcasts.PodcastKategori.KategoriNamn);
-}
+            }
         }
 
         public RSSHamtare getRssHamtare()
@@ -127,7 +123,7 @@ namespace PodcastProjekt.Logic
             string filnamn = "PodcastLokalData.json";
             var jsonLasare = new JsonLasare(filnamn);
             var podcastLista = jsonLasare.lasPodcastLista();
-            foreach(var podcast in podcastLista)
+            foreach (var podcast in podcastLista)
             {
                 Podcasts.Add(podcast);
             }

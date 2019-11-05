@@ -21,7 +21,8 @@ namespace PodcastProjekt.Models
             this.Titel = titel;
         }
 
-        public override string getTitel() {
+        public override string getTitel()
+        {
             return Titel;
         }
 
@@ -36,6 +37,10 @@ namespace PodcastProjekt.Models
             return Beskrivning;
         }
 
+        public override string ToString()
+        {
+            return Titel;
+        }
 
     }
 

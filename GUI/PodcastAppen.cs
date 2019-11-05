@@ -149,12 +149,12 @@ namespace PodcastProjekt
         }
 
         private void btnSparaKat_Click(object sender, EventArgs e)
-        { 
+        {
             string nyttNamn = tbKategori.Text.ToString().ToUpper();
 
             List<Kategori> kategoriLista = KategoriHanterare.getKategoriLista();
 
-           
+
             try
             {
                 Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
@@ -466,6 +466,13 @@ namespace PodcastProjekt
         private void btnVisaAllaPodcasts_Click(object sender, EventArgs e)
         {
             uppdateraPodcast();
+        }
+
+        private void dgvPod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgvPod.Rows[e.RowIndex];
+
+            Podcast valdPodcast = (Podcast)row.Tag;
         }
 
         private void btnAndraUrl_Click(object sender, EventArgs e)
