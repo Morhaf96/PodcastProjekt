@@ -392,11 +392,6 @@ namespace PodcastProjekt
             {
                 podcast.PodcastKategori = KategoriHanterare.getKategori((String)kat);
             }
-
-            //else if (kat is Kategori)
-            //{
-            //    podcast.PodcastKategori = (Kategori)kat;
-            //}
             string uppdateringsfrek = (String)rad.Cells["clmUppdateringsfrekvens"].Value.ToString();
             int uppdateringsIntervallet = konverteraUppdateringsTextTillVarde(uppdateringsfrek);
             try
