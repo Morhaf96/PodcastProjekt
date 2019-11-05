@@ -99,6 +99,14 @@ namespace PodcastProjekt.Logic
 
         }
 
+        public static void SynkaKategori()
+        {
+            foreach (var podcasts in Podcasts)
+            {
+                podcasts.PodcastKategori = KategoriHanterare.getKategori(podcasts.PodcastKategori.KategoriNamn);
+}
+        }
+
         public RSSHamtare getRssHamtare()
         {
             return rssHamtare;
