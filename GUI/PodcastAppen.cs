@@ -154,7 +154,7 @@ namespace PodcastProjekt
 
             List<Kategori> kategoriLista = KategoriHanterare.getKategoriLista();
 
-            tbKategori.Text = "";
+           
             try
             {
                 Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
@@ -180,6 +180,7 @@ namespace PodcastProjekt
             }
 
             uppdateraKategori();
+            tbKategori.Text = "";
 
         }
 
