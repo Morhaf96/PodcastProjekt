@@ -19,7 +19,7 @@ namespace PodcastProjekt.Data
             jsonSerializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.All };
             this.filnamn = filnamn;
         }
-        public void sparaKategorier(List<Kategori> kategoriLista)
+        public void SparaKategorier(List<Kategori> kategoriLista)
         {
             using (StreamWriter sw = new StreamWriter(filnamn))
             {
@@ -29,7 +29,7 @@ namespace PodcastProjekt.Data
                 }
             }
         }
-        public void sparaPodcasts(List<Podcast> podcastLista)
+        public void SparaPodcasts(List<Podcast> podcastLista)
         {
             using (StreamWriter sw = new StreamWriter(filnamn))
             {

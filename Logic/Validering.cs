@@ -12,7 +12,7 @@ namespace PodcastProjekt.Logic
     public static class Validering
     {
 
-        public static void isEmptyTextBox(TextBox enTextBox)
+        public static void IsEmptyTextBox(TextBox enTextBox)
         {
 
             if (enTextBox.Text.Trim().Equals(string.Empty))
@@ -22,7 +22,7 @@ namespace PodcastProjekt.Logic
 
         }
 
-        public static void valideraKategoriAngivet(Kategori kategori)
+        public static void ValideraKategoriAngivet(Kategori kategori)
         {
             if (kategori.KategoriNamn.Trim() == string.Empty)
             {
@@ -32,7 +32,7 @@ namespace PodcastProjekt.Logic
             return;
         }
 
-        public static void valideraKategoriFinns(List<Kategori> kategoriLista, string kategoriNamn)
+        public static void ValideraKategoriFinns(List<Kategori> kategoriLista, string kategoriNamn)
         {
 
             foreach (Kategori k in kategoriLista)

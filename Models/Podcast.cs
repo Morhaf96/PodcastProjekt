@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace PodcastProjekt.Models
 {
-    public class Podcast : IXmlSerializable
+    public class Podcast
     {
         public List<Avsnitt> AvsnittLista { get; set; }
         public Uri Uri { get; set; }
@@ -29,92 +29,34 @@ namespace PodcastProjekt.Models
 
         }
 
-        public Podcast(Uri uri)
-        {
-            Uri = uri;
-            AvsnittLista = new List<Avsnitt>();
 
-        }
-
-        public virtual string getTitel()
+        public virtual string GetTitel()
         {
             return Titel;
         }
 
-        public Uri getPodcastUri()
-        {
-            return Uri;
-        }
 
-        public Kategori getPodcastKategori()
-        {
-            return PodcastKategori;
-        }
-
-        public int getUppdateringsFrekvens()
-        {
-            return UppdateringsFrekvens;
-        }
-
-        public void initialiseraKategori()
-        {
-            PodcastKategori = KategoriHanterare.getKategori(KategoriNamn);
-        }
-
-        private void uppdateraTimer()
+        private void UppdateraTimer()
         {
             timer.Interval = UppdateringsFrekvens;
         }
 
-        public void setUppdateringsFrekvensen(int intervall)
+        public void SetUppdateringsFrekvensen(int intervall)
         {
             UppdateringsFrekvens = intervall;
-            uppdateraTimer();
+            UppdateraTimer();
         }
 
-        public int getUppdateringsFrekvensen()
-        {
-            return UppdateringsFrekvens;
-        }
 
-        public void startaTimer()
+        public void StartaTimer()
         {
             timer.Interval = UppdateringsFrekvens;
-            timer.Tick += onTimerTick;
+            timer.Tick += OnTimerTick;
             timer.Enabled = true;
         }
 
-        public XmlSchema GetSchema()
-        {
-            throw new NotImplementedException();
-        }
 
-        public void ReadXml(XmlReader xmlLasare)
-        {
-            Uri = new Uri(xmlLasare.GetAttribute("Uri"));
-            Titel = xmlLasare.GetAttribute("Titel");
-            KategoriNamn = xmlLasare.GetAttribute("PodcastKategori");
-            try
-            {
-                string uppdateringsfrekvens = xmlLasare.GetAttribute("UppdateringsFrekvens");
-                UppdateringsFrekvens = int.Parse(uppdateringsfrekvens);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("XML kunde inte läsa/int.Parse:a uppdateringsfrekvensen " + ex.Message);
-            }
-            xmlLasare.Skip();
-        }
-
-        public void WriteXml(XmlWriter writer)
-        {
-            writer.WriteAttributeString("Uri", Uri.AbsoluteUri);
-            writer.WriteAttributeString("Titel", Titel);
-            writer.WriteAttributeString("PodcastKategori", PodcastKategori.KategoriNamn);
-            writer.WriteAttributeString("UppdateringsFrekvens", UppdateringsFrekvens.ToString());
-        }
-
-        public void onTimerTick(object sender, EventArgs e)
+        public void OnTimerTick(object sender, EventArgs e)
         {
             if (TimerTick != null)
                 TimerTick(this, EventArgs.Empty);

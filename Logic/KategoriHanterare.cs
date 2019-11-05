@@ -16,12 +16,12 @@ namespace PodcastProjekt.Models
     {
         private static List<Kategori> kategoriLista = new List<Kategori>();
 
-        public static void laggTillKategori(Kategori kategori)
+        public static void LaggTillKategori(Kategori kategori)
         {
 
             try
             {
-                Validering.valideraKategoriAngivet(kategori);
+                Validering.ValideraKategoriAngivet(kategori);
 
 
             }
@@ -36,14 +36,14 @@ namespace PodcastProjekt.Models
             kategoriLista.Add(kategori);
         }
 
-        public static void laggTillKategori(string kategoriNamn)
+        public static void LaggTillKategori(string kategoriNamn)
         {
             Kategori kategori = new Kategori(kategoriNamn.ToUpper());
 
             try
             {
-                Validering.valideraKategoriFinns(kategoriLista, kategoriNamn);
-                laggTillKategori(kategori);
+                Validering.ValideraKategoriFinns(kategoriLista, kategoriNamn);
+                LaggTillKategori(kategori);
 
             }
             catch (ValideringsException ex)
@@ -58,7 +58,7 @@ namespace PodcastProjekt.Models
 
         }
 
-        public static Kategori getKategori(string kategoriNamn)
+        public static Kategori GetKategori(string kategoriNamn)
         {
             foreach (Kategori k in kategoriLista)
             {
@@ -68,11 +68,11 @@ namespace PodcastProjekt.Models
                 }
             }
             Kategori nyKategori = new Kategori(kategoriNamn);
-            laggTillKategori(nyKategori);
+            LaggTillKategori(nyKategori);
             return nyKategori;
         }
 
-        public static List<Kategori> getKategoriLista()
+        public static List<Kategori> GetKategoriLista()
         {
             List<Kategori> sorteradKategoriLista = new List<Kategori>();
             foreach (Kategori k in kategoriLista)
@@ -83,7 +83,7 @@ namespace PodcastProjekt.Models
 
         }
 
-        public static void taBortKategori(Kategori kategori)
+        public static void TaBortKategori(Kategori kategori)
         {
             List<Podcast> podcast = PodcastHanterare.HamtaPodcasts();
             foreach (var p in podcast)
@@ -101,13 +101,13 @@ namespace PodcastProjekt.Models
 
         }
 
-        public static void bytNamn(Kategori kategori, string nyttNamn)
+        public static void BytNamn(Kategori kategori, string nyttNamn)
         {
 
 
             try
             {
-                Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
+                Validering.ValideraKategoriFinns(kategoriLista, nyttNamn);
                 int i = kategoriLista.IndexOf(kategori);
                 kategoriLista[i].KategoriNamn = nyttNamn.ToUpper();
 
@@ -125,18 +125,18 @@ namespace PodcastProjekt.Models
 
 
         }
-        public static void sparaListanTillFil(List<Kategori> kategorier)
+        public static void SparaListanTillFil(List<Kategori> kategorier)
         {
             string filnamn = "KategoriLokalData.json";
             var jsonSkrivare = new JsonSkrivare(filnamn);
-            jsonSkrivare.sparaKategorier(kategorier);
+            jsonSkrivare.SparaKategorier(kategorier);
         }
 
-        public void lasFranFil()
+        public void LasFranFil()
         {
             string filnamn = "KategoriLokalData.json";
             var jsonLasare = new JsonLasare(filnamn);
-            var kategorilista = jsonLasare.lasKategoriLista();
+            var kategorilista = jsonLasare.LasKategoriLista();
             kategoriLista.AddRange(kategorilista);
         }
 

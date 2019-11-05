@@ -19,7 +19,7 @@ namespace PodcastProjekt.Data
             this.filnamn = filnamn;
             jsonSerializer = new JsonSerializer { TypeNameHandling = TypeNameHandling.All };
         }
-        public List<Kategori> lasKategoriLista()
+        public List<Kategori> LasKategoriLista()
         {
             try
             {
@@ -37,7 +37,7 @@ namespace PodcastProjekt.Data
             }
         }
 
-        public List<Podcast> lasPodcastLista()
+        public List<Podcast> LasPodcastLista()
         {
             try
             {

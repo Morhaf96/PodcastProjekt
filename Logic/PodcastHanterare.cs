@@ -20,8 +20,8 @@ namespace PodcastProjekt.Logic
 
         public void LaggTillPodcast(Podcast podcast)
         {
-            podcast.startaTimer();
-            podcast.TimerTick += vidUppdateradPodcast;
+            podcast.StartaTimer();
+            podcast.TimerTick += VidUppdateradPodcast;
             Podcasts.Add(podcast);
 
 
@@ -54,7 +54,7 @@ namespace PodcastProjekt.Logic
 
         }
 
-        public void taBortPodcast(Podcast podcast)
+        public void TaBortPodcast(Podcast podcast)
         {
             Podcasts.Remove(podcast);
         }
@@ -81,7 +81,7 @@ namespace PodcastProjekt.Logic
         }
 
 
-        public async static void uppdateraPodcastAvsnitt(Podcast podcast)
+        public async static void UppdateraPodcastAvsnitt(Podcast podcast)
         {
             RSSHamtare hamtare = new RSSHamtare();
             Uri podcastUri = podcast.Uri;
@@ -89,9 +89,9 @@ namespace PodcastProjekt.Logic
             await Task.Run(() => { podcast.AvsnittLista = enPodcast.AvsnittLista; });
         }
 
-        static void vidUppdateradPodcast(object sender, EventArgs e)
+        static void VidUppdateradPodcast(object sender, EventArgs e)
         {
-            uppdateraPodcastAvsnitt((Podcast)sender);
+            UppdateraPodcastAvsnitt((Podcast)sender);
             if (UppdateradePodcast != null)
             {
                 UppdateradePodcast(typeof(PodcastHanterare), EventArgs.Empty);
@@ -103,26 +103,26 @@ namespace PodcastProjekt.Logic
         {
             foreach (var podcasts in Podcasts)
             {
-                podcasts.PodcastKategori = KategoriHanterare.getKategori(podcasts.PodcastKategori.KategoriNamn);
+                podcasts.PodcastKategori = KategoriHanterare.GetKategori(podcasts.PodcastKategori.KategoriNamn);
             }
         }
 
-        public RSSHamtare getRssHamtare()
+        public RSSHamtare GetRssHamtare()
         {
             return rssHamtare;
         }
-        public static void sparaListanTillFil(List<Podcast> poddar)
+        public static void SparaListanTillFil(List<Podcast> poddar)
         {
             string filnamn = "PodcastLokalData.json";
             var jsonSkrivare = new JsonSkrivare(filnamn);
-            jsonSkrivare.sparaPodcasts(poddar);
+            jsonSkrivare.SparaPodcasts(poddar);
         }
 
-        public void lasFranFil()
+        public void LasFranFil()
         {
             string filnamn = "PodcastLokalData.json";
             var jsonLasare = new JsonLasare(filnamn);
-            var podcastLista = jsonLasare.lasPodcastLista();
+            var podcastLista = jsonLasare.LasPodcastLista();
             foreach (var podcast in podcastLista)
             {
                 Podcasts.Add(podcast);

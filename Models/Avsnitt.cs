@@ -8,7 +8,7 @@ namespace PodcastProjekt.Models
 {
     public class Avsnitt : Podcast
     {
-        public string Titel { get; set; }
+        public string avsnittTitel { get; set; }
         public string Beskrivning { get; set; }
 
         public Avsnitt()
@@ -16,30 +16,16 @@ namespace PodcastProjekt.Models
 
         }
 
-        public Avsnitt(string titel)
+
+        public override string GetTitel()
         {
-            this.Titel = titel;
+            return avsnittTitel;
         }
 
-        public override string getTitel()
-        {
-            return Titel;
-        }
-
-        public Avsnitt(string titel, string beskrivning)
-        {
-            this.Titel = titel;
-            this.Beskrivning = beskrivning;
-        }
-
-        public string getBeskrivning(Avsnitt avsnitt)
-        {
-            return Beskrivning;
-        }
 
         public override string ToString()
         {
-            return Titel;
+            return avsnittTitel;
         }
 
     }

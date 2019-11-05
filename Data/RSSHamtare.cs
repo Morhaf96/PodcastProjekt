@@ -58,7 +58,7 @@ namespace PodcastProjekt.Data
         private Avsnitt AvsnittFranSyndicationFeedAvsnitt(SyndicationItem syndicationItem)
         {
             Avsnitt output = new Avsnitt();
-            output.Titel = syndicationItem.Title.Text;
+            output.avsnittTitel = syndicationItem.Title.Text;
             output.Beskrivning = syndicationItem.Summary.Text;
 
             return output;
