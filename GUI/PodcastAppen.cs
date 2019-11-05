@@ -29,7 +29,11 @@ namespace PodcastProjekt
 
             lasInSparadData();
 
+            PodcastHanterare.SynkaKategori();
+
             PodcastHanterare.UppdateradePodcast += UpdatedFeed;
+
+            uppdateraPodcast();
 
         }
 
@@ -150,7 +154,7 @@ namespace PodcastProjekt
 
             List<Kategori> kategoriLista = KategoriHanterare.getKategoriLista();
 
-            tbKategori.Text = "";
+           
             try
             {
                 Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
@@ -176,6 +180,7 @@ namespace PodcastProjekt
             }
 
             uppdateraKategori();
+            tbKategori.Text = "";
 
         }
 
