@@ -17,7 +17,7 @@ namespace PodcastProjekt
     {
         private PodcastHanterare podcastHanterare = new PodcastHanterare();
         private Avsnitt avsnitt;
-        KategoriHanterare kategori = new KategoriHanterare();
+        KategoriHanterare kh = new KategoriHanterare();
         private bool harAndrats = false;
 
 
@@ -27,7 +27,7 @@ namespace PodcastProjekt
 
             InitializeComponent();
 
-            lasInPersistens();
+            lasInSparadData();
 
             PodcastHanterare.UppdateradePodcast += UpdatedFeed;
 
@@ -41,34 +41,34 @@ namespace PodcastProjekt
             }
         }
 
-        private void lasInPersistens()
+        private void lasInSparadData()
         {
-            KategoriHanterare kh = new KategoriHanterare();
+            //KategoriHanterare kh = new KategoriHanterare();
             kh.LaddaFranPersistentFil();
 
-            PodcastHanterare podcastHanterare = new PodcastHanterare();
+            //PodcastHanterare podcastHanterare = new PodcastHanterare();
             podcastHanterare.LaddaFranPersistentFil();
 
-            PersistensHanterare pHanterare = new PersistensHanterare();
-            PersistentFil fil = pHanterare.Las();
+            //PersistensHanterare pHanterare = new PersistensHanterare();
+            //PersistentFil fil = pHanterare.Las();
 
-            foreach (Kategori k in fil.kategoriLista)
-            {
-                KategoriHanterare.laggTillKategori(k);
-            }
-            foreach (Podcast p in fil.podcastLista)
-            {
-                podcastHanterare.LaggTillPodcast(p);
-                p.initialiseraKategori();
-            }
+            //foreach (Kategori k in fil.kategoriLista)
+            //{
+            //    KategoriHanterare.laggTillKategori(k);
+            //}
+            //foreach (Podcast p in fil.podcastLista)
+            //{
+            //    podcastHanterare.LaggTillPodcast(p);
+            //    p.initialiseraKategori();
+            //}
 
 
             uppdateraKategori();
             uppdateraPodcast();
-            
+
 
         }
-        
+
         private void uppdateraKategori()
         {
             cmbKat.Items.Clear();
@@ -166,41 +166,40 @@ namespace PodcastProjekt
         private void btnSparaKat_Click(object sender, EventArgs e)
         {
 
-            if (!tbKategori.Text.Equals(""))
+
+            //string gammaltNamn = lvKat.SelectedItems.ToString();
+            string nyttNamn = tbKategori.Text.ToString().ToUpper();
+
+            List<Kategori> kategoriLista = KategoriHanterare.getKategoriLista();
+
+            tbKategori.Text = "";
+            try
             {
-                string gammaltNamn = lvKat.SelectedItems.ToString();
-                string nyttNamn = tbKategori.Text.ToString().ToUpper();
-
-                List<Kategori> kategoriLista = KategoriHanterare.getKategoriLista();
-
-                tbKategori.Text = "";
-                try
-                {
-
-                    Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
-                    int i = lvKat.SelectedIndices[0];
-                    Kategori kategori = (Kategori)lvKat.Items[i].Tag;
-                    KategoriHanterare.bytNamn(kategori, nyttNamn);
-                }
-
-                catch (ArgumentOutOfRangeException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                catch (KategoriFinnsRedanException ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-
-                uppdateraKategori();
-
+                Validering.isEmptyTextBox(tbKategori);
+                Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
+                int i = lvKat.SelectedIndices[0];
+                Kategori kategori = (Kategori)lvKat.Items[i].Tag;
+                KategoriHanterare.bytNamn(kategori, nyttNamn);
             }
 
-            else
+            catch (ArgumentOutOfRangeException ex)
             {
-                MessageBox.Show("Du måste välja en kategori och sen ange ett nytt namn i textrutan!");
+                MessageBox.Show(ex.Message);
             }
+
+            catch (KategoriFinnsRedanException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            catch (TextFaltArTomException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            uppdateraKategori();
+
+
         }
 
         private void btnTaBortKat_Click(object sender, EventArgs e)
@@ -452,7 +451,7 @@ namespace PodcastProjekt
         private void btnTaBortPod_Click(object sender, EventArgs e)
         {
 
-            
+
             if (dgvPod.SelectedRows.Count < 1)
             {
                 MessageBox.Show("Du måste starta en podcast från podcast-rutan för att kunna ta bort den!");
@@ -522,17 +521,19 @@ namespace PodcastProjekt
 
             var rh = podcastHanterare.getRssHamtare();
 
-            try { Validering.isEmptyTextBox(tbUrl); 
-            string hamtadUrl = tbUrl.Text.Trim();
-            Uri hamtadUri = new Uri(hamtadUrl);
-            Podcast nyPodcast = rh.HamtaPodcast(hamtadUri);
+            try
+            {
+                Validering.isEmptyTextBox(tbUrl);
+                string hamtadUrl = tbUrl.Text.Trim();
+                Uri hamtadUri = new Uri(hamtadUrl);
+                Podcast nyPodcast = rh.HamtaPodcast(hamtadUri);
 
 
 
-            valdPodcast.Titel = nyPodcast.Titel;
-            valdPodcast.AvsnittLista = nyPodcast.AvsnittLista;
-            valdPodcast.Uri = nyPodcast.Uri;
-            valdPodcast = nyPodcast;
+                valdPodcast.Titel = nyPodcast.Titel;
+                valdPodcast.AvsnittLista = nyPodcast.AvsnittLista;
+                valdPodcast.Uri = nyPodcast.Uri;
+                valdPodcast = nyPodcast;
             }
             catch (TextFaltArTomException) { MessageBox.Show("Du måste skriva in en ny Url i urlfältet"); }
             uppdateraPodcast();
