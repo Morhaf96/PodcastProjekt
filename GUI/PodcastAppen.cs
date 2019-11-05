@@ -17,7 +17,7 @@ namespace PodcastProjekt
     {
         private PodcastHanterare podcastHanterare = new PodcastHanterare();
         private Avsnitt avsnitt;
-        KategoriHanterare kh = new KategoriHanterare();
+        KategoriHanterare katgoriHanterare = new KategoriHanterare();
         private bool harAndrats = false;
 
 
@@ -43,29 +43,10 @@ namespace PodcastProjekt
 
         private void lasInSparadData()
         {
-            //KategoriHanterare kh = new KategoriHanterare();
-            kh.LaddaFranPersistentFil();
-
-            //PodcastHanterare podcastHanterare = new PodcastHanterare();
-            podcastHanterare.LaddaFranPersistentFil();
-
-            //PersistensHanterare pHanterare = new PersistensHanterare();
-            //PersistentFil fil = pHanterare.Las();
-
-            //foreach (Kategori k in fil.kategoriLista)
-            //{
-            //    KategoriHanterare.laggTillKategori(k);
-            //}
-            //foreach (Podcast p in fil.podcastLista)
-            //{
-            //    podcastHanterare.LaggTillPodcast(p);
-            //    p.initialiseraKategori();
-            //}
-
-
+            katgoriHanterare.lasFranFil();
+            podcastHanterare.lasFranFil();
             uppdateraKategori();
             uppdateraPodcast();
-
 
         }
 
@@ -386,12 +367,6 @@ namespace PodcastProjekt
             }
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            PersistensHanterare ph = new PersistensHanterare();
-            ph.Skriv(new PersistentFil(PodcastHanterare.HamtaPodcasts(), KategoriHanterare.getKategoriLista()));
-
-        }
 
         private void dgvPod_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {

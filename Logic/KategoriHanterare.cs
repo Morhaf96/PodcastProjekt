@@ -55,7 +55,7 @@ namespace PodcastProjekt.Models
             {
                 throw ex;
             }
-            SparaTillPersistentFil(kategoriLista);
+            sparaListanTillFil(kategoriLista);
         }
 
         public static Kategori getKategori(string kategoriNamn)
@@ -98,7 +98,7 @@ namespace PodcastProjekt.Models
             }
 
             kategoriLista.Remove(kategori);
-            SparaTillPersistentFil(kategoriLista);
+            sparaListanTillFil(kategoriLista);
         }
 
         public static void bytNamn(Kategori kategori, string nyttNamn)
@@ -122,18 +122,18 @@ namespace PodcastProjekt.Models
             {
                 Console.WriteLine("BytNamn metoden i kategorihanterare " + ex.Message);
             }
-            SparaTillPersistentFil(kategoriLista);
+            sparaListanTillFil(kategoriLista);
 
 
         }
-        public static void SparaTillPersistentFil(List<Kategori> kategorier)
+        public static void sparaListanTillFil(List<Kategori> kategorier)
         {
             string filnamn = "KategoriLokalData.json";
             var jsonSkrivare = new JsonSkrivare(filnamn);
             jsonSkrivare.sparaKategorier(kategorier);
         }
 
-        public void LaddaFranPersistentFil()
+        public void lasFranFil()
         {
             string filnamn = "KategoriLokalData.json";
             var jsonLasare = new JsonLasare(filnamn);
