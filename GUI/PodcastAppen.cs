@@ -463,13 +463,6 @@ namespace PodcastProjekt
             uppdateraPodcast();
         }
 
-        private void dgvPod_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            var row = dgvPod.Rows[e.RowIndex];
-
-            Podcast valdPodcast = (Podcast)row.Tag;
-        }
-
         private void btnAndraUrl_Click(object sender, EventArgs e)
         {
             if (dgvPod.SelectedRows.Count < 1)
@@ -513,7 +506,7 @@ namespace PodcastProjekt
             List<Kategori> katLista = KategoriHanterare.getKategoriLista();
             List<Podcast> podLista = PodcastHanterare.HamtaPodcasts();
             KategoriHanterare.sparaListanTillFil(katLista);
-            PodcastHanterare.sparaListaTillFil(podLista);
+            PodcastHanterare.sparaListanTillFil(podLista);
         }
     }
 }

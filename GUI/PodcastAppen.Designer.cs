@@ -87,7 +87,6 @@
             this.dgvPod.Size = new System.Drawing.Size(466, 151);
             this.dgvPod.TabIndex = 3;
             this.dgvPod.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dgvPod_CellBeginEdit);
-            this.dgvPod.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellDoubleClick);
             this.dgvPod.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPod_CellValueChanged);
             this.dgvPod.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvPod_DataError);
             this.dgvPod.SelectionChanged += new System.EventHandler(this.dgvPod_SelectionChanged);

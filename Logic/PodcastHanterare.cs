@@ -9,10 +9,14 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Logic
 {
-    public class PodcastHanterare
+    public class PodcastHanterare 
     {
         private static List<Podcast> Podcasts = new List<Podcast>();
         private RSSHamtare rssHamtare = new RSSHamtare();
+
+        public PodcastHanterare()
+        {
+        }
 
         public delegate void UppdateradePodcastEventHandler(object sender, EventArgs e);
         public static event UppdateradePodcastEventHandler UppdateradePodcast;
@@ -103,7 +107,7 @@ namespace PodcastProjekt.Logic
         {
             return rssHamtare;
         }
-        public static void sparaListaTillFil(List<Podcast> poddar)
+        public static void sparaListanTillFil(List<Podcast> poddar)
         {
             string filnamn = "PodcastLokalData.json";
             var jsonSkrivare = new JsonSkrivare(filnamn);

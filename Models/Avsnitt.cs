@@ -36,10 +36,6 @@ namespace PodcastProjekt.Models
             return Beskrivning;
         }
 
-        public override string ToString()
-        {
-            return Titel;
-        }
 
     }
 
