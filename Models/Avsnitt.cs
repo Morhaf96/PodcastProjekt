@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PodcastProjekt.Models
 {
-    public class Avsnitt
+    public class Avsnitt : Podcast
     {
         public string Titel { get; set; }
         public string Beskrivning { get; set; }
@@ -19,6 +19,10 @@ namespace PodcastProjekt.Models
         public Avsnitt(string titel)
         {
             this.Titel = titel;
+        }
+
+        public override string getTitel() {
+            return Titel;
         }
 
         public Avsnitt(string titel, string beskrivning)

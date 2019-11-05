@@ -111,7 +111,7 @@ namespace PodcastProjekt
             {
                 int rad = dgvPod.Rows.Add();
                 dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.Titel;
-                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori.KategoriNamn;
+                dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori;
                 string uppdateringsFrekvensString = konverteraUppdateringsVardeTillText(podcast.UppdateringsFrekvens);
                 dgvPod.Rows[rad].Cells["clmUppdateringsfrekvens"].Value = uppdateringsFrekvensString;
                 dgvPod.Rows[rad].Cells["clmAvsnitt"].Value = podcast.AvsnittLista.Count;
@@ -153,8 +153,8 @@ namespace PodcastProjekt
             tbKategori.Text = "";
             try
             {
-                Validering.isEmptyTextBox(tbKategori);
                 Validering.valideraKategoriFinns(kategoriLista, nyttNamn);
+                Validering.isEmptyTextBox(tbKategori);
                 int i = lvKat.SelectedIndices[0];
                 Kategori kategori = (Kategori)lvKat.Items[i].Tag;
                 KategoriHanterare.bytNamn(kategori, nyttNamn);
@@ -172,7 +172,7 @@ namespace PodcastProjekt
 
             catch (TextFaltArTomException ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Du måste välja en kategori och ange ett nytt namn till den!");
             }
 
             uppdateraKategori();

@@ -36,6 +36,11 @@ namespace PodcastProjekt.Models
 
         }
 
+        public virtual string getTitel()
+        {
+            return Titel;
+        }
+
         public Uri getPodcastUri()
         {
             return Uri;
