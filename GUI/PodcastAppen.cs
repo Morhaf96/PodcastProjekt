@@ -92,7 +92,7 @@ namespace PodcastProjekt
                 {
 
                     int rad = dgvPod.Rows.Add();
-                    dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.Titel;
+                    dgvPod.Rows[rad].Cells["clmNamn"].Value = podcast.GetTitel();
                     dgvPod.Rows[rad].Cells["clmKategori"].Value = podcast.PodcastKategori;
                     string uppdateringsFrekvensString = KonverteraUppdateringsVardeTillText(podcast.UppdateringsFrekvens);
                     dgvPod.Rows[rad].Cells["clmUppdateringsfrekvens"].Value = uppdateringsFrekvensString;
