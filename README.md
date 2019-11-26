@@ -12,6 +12,6 @@ https://www.terrampacis.org/media/rss-feed/in-the-news
 https://www.terrampacis.org/media/rss-feed/in-the-events
 
 
-Edvin Elebring
-Joel Hellström
+Edvin Elebring,
+Joel Hellström,
 Murhaf Jammal
